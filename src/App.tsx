@@ -26,17 +26,27 @@ interface Feature {
 }
 
 const ITEM_HEIGHT = 220;
+const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term'; // Key for localStorage
 
 function App() {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  // Initialize searchTerm from localStorage or empty string
+  const [searchTerm, setSearchTerm] = useState<string>(
+    localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || ''
+  );
 
   useEffect(() => {
     fetchFeatures();
   }, []);
+
+  // Effect to save searchTerm to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_SEARCH_KEY, searchTerm);
+  }, [searchTerm]);
+
 
   const fetchFeatures = async () => {
     try {
@@ -113,7 +123,6 @@ function App() {
     });
   }, [features, searchTerm]);
 
-  // Calculate verified and pending counts for filtered features
   const { verifiedCount, pendingCount } = useMemo(() => {
     const counts = { verifiedCount: 0, pendingCount: 0 };
     filteredFeatures.forEach(feature => {
