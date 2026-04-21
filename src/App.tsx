@@ -26,14 +26,13 @@ interface Feature {
 }
 
 const ITEM_HEIGHT = 220;
-const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term'; // Key for localStorage
+const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term';
 
 function App() {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
-  // Initialize searchTerm from localStorage or empty string
   const [searchTerm, setSearchTerm] = useState<string>(
     localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || ''
   );
@@ -42,11 +41,9 @@ function App() {
     fetchFeatures();
   }, []);
 
-  // Effect to save searchTerm to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH_KEY, searchTerm);
   }, [searchTerm]);
-
 
   const fetchFeatures = async () => {
     try {
@@ -91,36 +88,62 @@ function App() {
   };
 
   const filteredFeatures = useMemo(() => {
-    if (!searchTerm) {
-      return features;
+    let currentFeatures = features;
+    let textFilter = searchTerm.toLowerCase();
+    let statusFilter: 'pending' | 'verified' | 'all' = 'all';
+
+    // Check for status keywords
+    const statusKeywords = {
+      ' @confirmed': 'verified',
+      ' @完了': 'verified',
+      ' @pending': 'pending',
+      ' @未完了': 'pending',
+    };
+
+    for (const keyword in statusKeywords) {
+      if (textFilter.endsWith(keyword)) {
+        statusFilter = statusKeywords[keyword as keyof typeof statusKeywords] as 'pending' | 'verified';
+        textFilter = textFilter.slice(0, textFilter.length - keyword.length).trim();
+        break;
+      }
     }
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    return features.filter(feature => {
-      const props = feature.properties;
 
-      const checkProperty = (value: string | number | undefined | string[]) => {
-        if (Array.isArray(value)) {
-          return value.some(item => typeof item === 'string' && item.toLowerCase().includes(lowerCaseSearchTerm));
-        }
-        return typeof value === 'string' && value.toLowerCase().includes(lowerCaseSearchTerm);
-      };
-      
-      const checkNumberProperty = (value: string | number | undefined) => {
-        return typeof value === 'number' && String(value).includes(lowerCaseSearchTerm);
-      };
-
-      return (
-        checkProperty(props.name) ||
-        checkProperty(props.description) ||
-        checkProperty(props.address) ||
-        checkProperty(props.contributor) ||
-        checkProperty(props.type) ||
-        checkProperty(props.place) ||
-        checkNumberProperty(props.place) ||
-        checkProperty(props.built_year) ||
-        checkNumberProperty(props.built_year)
+    if (statusFilter !== 'all') {
+      currentFeatures = currentFeatures.filter(feature =>
+        feature.properties.verificationStatus === statusFilter
       );
-    });
+    }
+
+    if (textFilter) {
+      currentFeatures = currentFeatures.filter(feature => {
+        const props = feature.properties;
+
+        const checkProperty = (value: string | number | undefined | string[]) => {
+          if (Array.isArray(value)) {
+            return value.some(item => typeof item === 'string' && item.toLowerCase().includes(textFilter));
+          }
+          return typeof value === 'string' && value.toLowerCase().includes(textFilter);
+        };
+        
+        const checkNumberProperty = (value: string | number | undefined) => {
+          return typeof value === 'number' && String(value).includes(textFilter);
+        };
+
+        return (
+          checkProperty(props.name) ||
+          checkProperty(props.description) ||
+          checkProperty(props.address) ||
+          checkProperty(props.contributor) ||
+          checkProperty(props.type) ||
+          checkProperty(props.place) ||
+          checkNumberProperty(props.place) ||
+          checkProperty(props.built_year) ||
+          checkNumberProperty(props.built_year)
+        );
+      });
+    }
+
+    return currentFeatures;
   }, [features, searchTerm]);
 
   const { verifiedCount, pendingCount } = useMemo(() => {
@@ -202,7 +225,7 @@ function App() {
       <div className="filter-section">
         <input
           type="text"
-          placeholder="地物をフィルタ..."
+          placeholder="地物をフィルタ (例: 東京都 @未完了)"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
