@@ -16,10 +16,18 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-.feature-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
+/* Updated for react-window */
+.feature-list-container {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  overflow: hidden; /* Ensure virtualized content is clipped */
+  /* We set height/width directly on FixedSizeList, so this mainly for styling the outer box */
+}
+
+.feature-card-wrapper {
+  padding: 0.5rem; /* Spacing around each card */
+  box-sizing: border-box; /* Include padding in width/height calculation */
 }
 
 .feature-card {
@@ -29,6 +37,10 @@ h1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: left;
   background-color: #f9f9f9;
+  height: 100%; /* Make card fill its wrapper */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .feature-card h2 {
@@ -53,13 +65,19 @@ h1 {
   text-decoration: underline;
 }
 
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
 .actions button {
-  margin-right: 0.5rem;
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.85rem;
+  flex-grow: 1; /* Make buttons expand to fill space */
 }
 
 .actions button:hover:not(:disabled) {
