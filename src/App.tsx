@@ -1,121 +1,120 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+// src/App.tsx
+import { useState, useEffect } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+interface FeatureProperties {
+  name?: string;
+  description?: string;
+  // Add other properties if known from stone_db.geojson
+  verificationStatus: 'pending' | 'verified';
+  [key: string]: any; // Allow for arbitrary properties
 }
 
-export default App
+interface Feature {
+  id: string;
+  type: string;
+  geometry: {
+    type: string;
+    coordinates: number[]; // [longitude, latitude]
+  };
+  properties: FeatureProperties;
+}
+
+function App() {
+  const [features, setFeatures] = useState<Feature[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchFeatures();
+  }, []);
+
+  const fetchFeatures = async () => {
+    try {
+      const response = await fetch('/api/features');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setFeatures(data.features);
+    } catch (err) {
+      setError('Failed to fetch features.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateFeatureStatus = async (id: string, status: 'pending' | 'verified') => {
+    try {
+      const response = await fetch('/api/update-status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id, status }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Optimistically update the UI or re-fetch features
+      setFeatures(prevFeatures =>
+        prevFeatures.map(feature =>
+          feature.id === id ? { ...feature, properties: { ...feature.properties, verificationStatus: status } } : feature
+        )
+      );
+    } catch (err) {
+      setError('Failed to update status.');
+      console.error(err);
+    }
+  };
+
+  if (loading) {
+    return <div className="app-container">Loading features...</div>;
+  }
+
+  if (error) {
+    return <div className="app-container error">Error: {error}</div>;
+  }
+
+  return (
+    <div className="app-container">
+      <h1>石のデータベース検証</h1>
+      <div className="feature-list">
+        {features.map(feature => (
+          <div key={feature.id} className="feature-card">
+            <h2>{feature.properties?.name || `Feature ${feature.id}`}</h2>
+            <p><strong>Status:</strong> <span className={`status-${feature.properties.verificationStatus}`}>{feature.properties.verificationStatus}</span></p>
+            {feature.properties?.description && <p>{feature.properties.description}</p>}
+            {feature.geometry && feature.geometry.type === 'Point' && (
+              <p>
+                <strong>Coordinates:</strong> {feature.geometry.coordinates[1]}, {feature.geometry.coordinates[0]}
+              </p>
+            )}
+            {feature.geometry && feature.geometry.type === 'Point' && (
+              <p>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Googleマップで確認
+                </a>
+              </p>
+            )}
+            <div className="actions">
+              <button onClick={() => updateFeatureStatus(feature.id, 'verified')} disabled={feature.properties.verificationStatus === 'verified'}>
+                Verified
+              </button>
+              <button onClick={() => updateFeatureStatus(feature.id, 'pending')} disabled={feature.properties.verificationStatus === 'pending'}>
+                Pending
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
