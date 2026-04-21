@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { FixedSizeList } from 'react-window';
 import './App.css';
 
@@ -7,6 +7,11 @@ interface FeatureProperties {
   name?: string;
   description?: string;
   verificationStatus: 'pending' | 'verified';
+  contributor?: string;
+  place?: string | number;
+  built_year?: string | number;
+  address?: string;
+  type?: string[];
   [key: string]: any;
 }
 
@@ -20,13 +25,14 @@ interface Feature {
   properties: FeatureProperties;
 }
 
-const ITEM_HEIGHT = 220; // Estimated height of each feature card including padding/margin
+const ITEM_HEIGHT = 220;
 
 function App() {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null); // New state for selected feature
+  const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     fetchFeatures();
@@ -65,7 +71,6 @@ function App() {
           feature.id === id ? { ...feature, properties: { ...feature.properties, verificationStatus: status } } : feature
         )
       );
-      // If the selected feature's status is updated, also update selectedFeature
       if (selectedFeature && selectedFeature.id === id) {
         setSelectedFeature(prev => prev ? { ...prev, properties: { ...prev.properties, verificationStatus: status } } : null);
       }
@@ -75,8 +80,55 @@ function App() {
     }
   };
 
+  const filteredFeatures = useMemo(() => {
+    if (!searchTerm) {
+      return features;
+    }
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return features.filter(feature => {
+      const props = feature.properties;
+
+      const checkProperty = (value: string | number | undefined | string[]) => {
+        if (Array.isArray(value)) {
+          return value.some(item => typeof item === 'string' && item.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        return typeof value === 'string' && value.toLowerCase().includes(lowerCaseSearchTerm);
+      };
+      
+      const checkNumberProperty = (value: string | number | undefined) => {
+        return typeof value === 'number' && String(value).includes(lowerCaseSearchTerm);
+      };
+
+      return (
+        checkProperty(props.name) ||
+        checkProperty(props.description) ||
+        checkProperty(props.address) ||
+        checkProperty(props.contributor) ||
+        checkProperty(props.type) ||
+        checkProperty(props.place) ||
+        checkNumberProperty(props.place) ||
+        checkProperty(props.built_year) ||
+        checkNumberProperty(props.built_year)
+      );
+    });
+  }, [features, searchTerm]);
+
+  // Calculate verified and pending counts for filtered features
+  const { verifiedCount, pendingCount } = useMemo(() => {
+    const counts = { verifiedCount: 0, pendingCount: 0 };
+    filteredFeatures.forEach(feature => {
+      if (feature.properties.verificationStatus === 'verified') {
+        counts.verifiedCount++;
+      } else {
+        counts.pendingCount++;
+      }
+    });
+    return counts;
+  }, [filteredFeatures]);
+
+
   const FeatureRow = ({ index, style }: { index: number; style: React.CSSProperties }) => {
-    const feature = features[index];
+    const feature = filteredFeatures[index];
     if (!feature) return null;
 
     const isSelected = selectedFeature?.id === feature.id;
@@ -85,7 +137,7 @@ function App() {
       <div className="feature-card-wrapper" style={style}>
         <div className={`feature-card ${isSelected ? 'selected' : ''}`}>
           <h2>{feature.properties?.name || `Feature ${feature.id}`}</h2>
-          <p><strong>Status:</strong> <span className={`status-${feature.properties.verificationStatus}`}>{feature.properties.verificationStatus}</span></p>
+          <p><strong>Status:</strong> <span className={`status-${feature.properties.verificationStatus}`}>{feature.properties.verificationStatus === 'verified' ? '完了' : '未完了'}</span></p>
           {feature.properties?.description && <p>{feature.properties.description}</p>}
           {feature.geometry && feature.geometry.type === 'Point' && (
             <p>
@@ -112,10 +164,10 @@ function App() {
           )}
           <div className="actions">
             <button onClick={() => updateFeatureStatus(feature.id, 'verified')} disabled={feature.properties.verificationStatus === 'verified'}>
-              Verified
+              完了
             </button>
             <button onClick={() => updateFeatureStatus(feature.id, 'pending')} disabled={feature.properties.verificationStatus === 'pending'}>
-              Pending
+              未完了
             </button>
           </div>
         </div>
@@ -138,14 +190,27 @@ function App() {
   return (
     <div className="app-container">
       <h1>石のデータベース検証</h1>
-      <p className="feature-count">表示中のFeature数: {features.length}</p>
+      <div className="filter-section">
+        <input
+          type="text"
+          placeholder="地物をフィルタ..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <p className="feature-count">
+          表示中のFeature数: {filteredFeatures.length} / 全Feature数: {features.length}
+          (完了: <span className="status-verified">{verifiedCount}</span>, 未完了: <span className="status-pending">{pendingCount}</span>)
+        </p>
+      </div>
+
 
       <div className="content-wrapper">
         <div className="feature-list-section">
           <div className="feature-list-container">
             <FixedSizeList
               height={600}
-              itemCount={features.length}
+              itemCount={filteredFeatures.length}
               itemSize={ITEM_HEIGHT}
               width={'100%'}
             >
