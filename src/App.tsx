@@ -35,7 +35,6 @@ interface Feature {
 const ITEM_HEIGHT = 120;
 const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term';
 
-// Define a curated list of properties for the details panel, and their Japanese labels
 const DETAIL_PROPERTIES: { key: keyof FeatureProperties, label: string }[] = [
   { key: 'description', label: '説明' },
   { key: 'place', label: '場所' },
@@ -96,11 +95,13 @@ function App() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      // Update local state optimistically
       setFeatures(prevFeatures =>
         prevFeatures.map(feature =>
           feature.id === id ? { ...feature, properties: { ...feature.properties, verificationStatus: status } } : feature
         )
       );
+      // Also update selectedFeature if it's the one being modified
       if (selectedFeature && selectedFeature.id === id) {
         setSelectedFeature(prev => prev ? { ...prev, properties: { ...prev.properties, verificationStatus: status } } : null);
       }
@@ -147,7 +148,6 @@ function App() {
       ' @未完了': 'pending',
     };
 
-    // Extract status filter
     for (const keyword in statusKeywords) {
       if (rawSearchTerm.endsWith(keyword)) {
         statusFilter = statusKeywords[keyword as keyof typeof statusKeywords] as 'pending' | 'verified';
@@ -156,21 +156,18 @@ function App() {
       }
     }
 
-    // Apply status filter first
     if (statusFilter !== 'all') {
       currentFeatures = currentFeatures.filter(feature =>
         feature.properties.verificationStatus === statusFilter
       );
     }
 
-    // Split remaining text into individual terms for AND search
     const textSearchTerms = rawSearchTerm.split(' ').filter(term => term !== '');
 
     if (textSearchTerms.length > 0) {
       currentFeatures = currentFeatures.filter(feature => {
         const props = feature.properties;
 
-        // Check if a feature's property (string or number) contains a given term
         const propertyContainsTerm = (value: string | number | undefined | string[], term: string) => {
           if (Array.isArray(value)) {
             return value.some(item => typeof item === 'string' && item.toLowerCase().includes(term));
@@ -184,7 +181,6 @@ function App() {
           return false;
         };
 
-        // A feature matches if ALL text search terms are found in any of its relevant properties
         return textSearchTerms.every(term =>
           propertyContainsTerm(props.name, term) ||
           propertyContainsTerm(props.description, term) ||
@@ -223,6 +219,15 @@ function App() {
       setSelectedFeature(feature);
     };
 
+    const handleStatusToggle = () => {
+      const newStatus = feature.properties.verificationStatus === 'verified' ? 'pending' : 'verified';
+      updateFeatureStatus(feature.id, newStatus);
+    };
+
+    const toggleButtonText = feature.properties.verificationStatus === 'verified'
+      ? '未完了に切替'
+      : '完了に切替';
+
     return (
       <div className="feature-card-wrapper" style={style}>
         <div className={`feature-card ${isSelected ? 'selected' : ''}`} onClick={handleFeatureClick}>
@@ -231,16 +236,10 @@ function App() {
           <p><strong>住所:</strong> {feature.properties?.address || 'N/A'}</p>
           <div className="actions status-actions">
             <button
-              onClick={(e) => { e.stopPropagation(); updateFeatureStatus(feature.id, 'verified'); }}
-              disabled={feature.properties.verificationStatus === 'verified'}
+              onClick={(e) => { e.stopPropagation(); handleStatusToggle(); }}
+              className={feature.properties.verificationStatus === 'verified' ? 'status-verified' : 'status-pending'}
             >
-              完了
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); updateFeatureStatus(feature.id, 'pending'); }}
-              disabled={feature.properties.verificationStatus === 'pending'}
-            >
-              未完了
+              {toggleButtonText}
             </button>
           </div>
         </div>
