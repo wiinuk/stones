@@ -22,6 +22,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
 }
 
 .search-input {
@@ -48,6 +49,22 @@ h1 {
   font-weight: bold;
   color: #555;
   font-size: 0.95rem;
+}
+
+.copy-feedback {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-top: 5px;
 }
 
 .content-wrapper {
@@ -139,6 +156,20 @@ h1 {
   text-decoration: underline;
 }
 
+.coordinates-display {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline dashed;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.coordinates-display:hover {
+  color: #0056b3;
+}
+
+
 .actions {
   margin-top: 1rem;
   display: flex;
@@ -175,6 +206,11 @@ h1 {
   color: white;
 }
 
+.copy-json-button {
+  background-color: #17a2b8; /* Info blue */
+  color: white;
+}
+
 
 .status-pending {
   color: orange;
@@ -187,12 +223,13 @@ h1 {
 }
 
 /* Specific buttons for verified/pending. Note: These might need adjustment if button order changes */
-.actions button:nth-of-type(3) { /* Assuming 'Verified' is the third button in the div.actions */
+/* These are now in a separate .actions div, so their nth-of-type will be 1 and 2 within their parent */
+.actions:last-child button:nth-of-type(1) { /* Verified button */
   background-color: #28a745;
   color: white;
 }
 
-.actions button:nth-of-type(4) { /* Assuming 'Pending' is the fourth button in the div.actions */
+.actions:last-child button:nth-of-type(2) { /* Pending button */
   background-color: #ffc107;
   color: #333;
 }

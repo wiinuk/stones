@@ -8,10 +8,17 @@ interface FeatureProperties {
   description?: string;
   verificationStatus: 'pending' | 'verified';
   contributor?: string;
+  created_at?: string; // Added to interface
   place?: string | number;
-  built_year?: string | number;
-  address?: string;
   type?: string[];
+  image?: string[]; // Added to interface
+  project?: string[]; // Added to interface
+  built_year?: string | number;
+  built_year_ce?: number; // Added to interface
+  photo_date?: string; // Added to interface
+  address?: string;
+  city_code?: number; // Added to interface
+  mesh_code?: number; // Added to interface
   [key: string]: any;
 }
 
@@ -28,6 +35,22 @@ interface Feature {
 const ITEM_HEIGHT = 220;
 const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term';
 
+// Define a curated list of properties to display, and their Japanese labels
+const DISPLAY_PROPERTIES: { key: keyof FeatureProperties, label: string }[] = [
+  { key: 'place', label: '場所' },
+  { key: 'address', label: '住所' },
+  { key: 'type', label: '種類' },
+  { key: 'built_year', label: '建立年' },
+  { key: 'built_year_ce', label: '建立年(西暦)' },
+  { key: 'contributor', label: '投稿者' },
+  { key: 'created_at', label: '登録日' },
+  { key: 'photo_date', label: '撮影日' },
+  { key: 'project', label: 'プロジェクト' },
+  { key: 'city_code', label: '市コード' },
+  { key: 'mesh_code', label: 'メッシュコード' },
+  { key: 'image', label: '画像' }, // Just showing the presence, not actual images
+];
+
 function App() {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,6 +59,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState<string>(
     localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || ''
   );
+  const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
   useEffect(() => {
     fetchFeatures();
@@ -87,12 +111,36 @@ function App() {
     }
   };
 
+  const copyCoordinatesToClipboard = async (latitude: number, longitude: number) => {
+    const coordinatesString = `${latitude},${longitude}`;
+    try {
+      await navigator.clipboard.writeText(coordinatesString);
+      setCopyFeedback('座標をコピーしました！');
+      setTimeout(() => setCopyFeedback(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy coordinates: ', err);
+      setCopyFeedback('座標のコピーに失敗しました。');
+      setTimeout(() => setCopyFeedback(null), 2000);
+    }
+  };
+
+  const copyFeaturePropertiesToClipboard = async (properties: FeatureProperties) => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(properties, null, 2));
+      setCopyFeedback('Feature JSON (properties) をコピーしました！');
+      setTimeout(() => setCopyFeedback(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy feature properties JSON: ', err);
+      setCopyFeedback('Feature JSON (properties) のコピーに失敗しました。');
+      setTimeout(() => setCopyFeedback(null), 2000);
+    }
+  };
+
   const filteredFeatures = useMemo(() => {
     let currentFeatures = features;
     let textFilter = searchTerm.toLowerCase();
     let statusFilter: 'pending' | 'verified' | 'all' = 'all';
 
-    // Check for status keywords
     const statusKeywords = {
       ' @confirmed': 'verified',
       ' @完了': 'verified',
@@ -171,29 +219,54 @@ function App() {
           <h2>{feature.properties?.name || `Feature ${feature.id}`}</h2>
           <p><strong>Status:</strong> <span className={`status-${feature.properties.verificationStatus}`}>{feature.properties.verificationStatus === 'verified' ? '完了' : '未完了'}</span></p>
           {feature.properties?.description && <p>{feature.properties.description}</p>}
+
+          {/* Display curated properties */}
+          {DISPLAY_PROPERTIES.map(prop => {
+            const value = feature.properties[prop.key];
+            if (value !== undefined && value !== null && value !== '') {
+              let displayValue: React.ReactNode;
+              if (Array.isArray(value)) {
+                displayValue = value.join(', ');
+              } else if (prop.key === 'image') {
+                // If 'image' property, just indicate its presence
+                displayValue = value.length > 0 ? 'あり' : 'なし';
+              }
+              else {
+                displayValue = String(value);
+              }
+              return <p key={prop.key}><strong>{prop.label}:</strong> {displayValue}</p>;
+            }
+            return null;
+          })}
+
           {feature.geometry && feature.geometry.type === 'Point' && (
-            <p>
-              <strong>Coordinates:</strong> {feature.geometry.coordinates[1]}, {feature.geometry.coordinates[0]}
+            <p className="coordinates-display" onClick={() => copyCoordinatesToClipboard(feature.geometry.coordinates[1], feature.geometry.coordinates[0])}>
+              <strong>Coordinates:</strong> {feature.geometry.coordinates[1]}, {feature.geometry.coordinates[0]} (クリックでコピー)
             </p>
           )}
-          {feature.geometry && feature.geometry.type === 'Point' && (
-            <div className="actions">
-              <button
-                onClick={() => setSelectedFeature(feature)}
-                className="show-on-map-button"
-              >
-                地図に表示
-              </button>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="external-map-link-button"
-              >
-                Googleマップで開く
-              </a>
-            </div>
-          )}
+          <div className="actions">
+            {feature.geometry && feature.geometry.type === 'Point' && (
+              <>
+                <button
+                  onClick={() => setSelectedFeature(feature)}
+                  className="show-on-map-button"
+                >
+                  地図に表示
+                </button>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="external-map-link-button"
+                >
+                  Googleマップで開く
+                </a>
+              </>
+            )}
+            <button onClick={() => copyFeaturePropertiesToClipboard(feature.properties)} className="copy-json-button">
+              JSONをコピー
+            </button>
+          </div>
           <div className="actions">
             <button onClick={() => updateFeatureStatus(feature.id, 'verified')} disabled={feature.properties.verificationStatus === 'verified'}>
               完了
@@ -234,6 +307,7 @@ function App() {
           表示中のFeature数: {filteredFeatures.length} / 全Feature数: {features.length}
           (完了: <span className="status-verified">{verifiedCount}</span>, 未完了: <span className="status-pending">{pendingCount}</span>)
         </p>
+        {copyFeedback && <div className="copy-feedback">{copyFeedback}</div>}
       </div>
 
 
