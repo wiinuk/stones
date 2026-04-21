@@ -32,7 +32,7 @@ interface Feature {
   properties: FeatureProperties;
 }
 
-const ITEM_HEIGHT = 120; // Adjusted item height for simplified list item
+const ITEM_HEIGHT = 120;
 const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term';
 
 // Define a curated list of properties for the details panel, and their Japanese labels
@@ -47,7 +47,7 @@ const DETAIL_PROPERTIES: { key: keyof FeatureProperties, label: string }[] = [
   { key: 'project', label: 'プロジェクト' },
   { key: 'city_code', label: '市コード' },
   { key: 'mesh_code', label: 'メッシュコード' },
-  { key: 'image', label: '画像' }, // Just showing the presence, not actual images
+  { key: 'image', label: '画像' },
 ];
 
 function App() {
@@ -137,7 +137,7 @@ function App() {
 
   const filteredFeatures = useMemo(() => {
     let currentFeatures = features;
-    let textFilter = searchTerm.toLowerCase();
+    let rawSearchTerm = searchTerm.toLowerCase();
     let statusFilter: 'pending' | 'verified' | 'all' = 'all';
 
     const statusKeywords = {
@@ -147,45 +147,52 @@ function App() {
       ' @未完了': 'pending',
     };
 
+    // Extract status filter
     for (const keyword in statusKeywords) {
-      if (textFilter.endsWith(keyword)) {
+      if (rawSearchTerm.endsWith(keyword)) {
         statusFilter = statusKeywords[keyword as keyof typeof statusKeywords] as 'pending' | 'verified';
-        textFilter = textFilter.slice(0, textFilter.length - keyword.length).trim();
+        rawSearchTerm = rawSearchTerm.slice(0, rawSearchTerm.length - keyword.length).trim();
         break;
       }
     }
 
+    // Apply status filter first
     if (statusFilter !== 'all') {
       currentFeatures = currentFeatures.filter(feature =>
         feature.properties.verificationStatus === statusFilter
       );
     }
 
-    if (textFilter) {
+    // Split remaining text into individual terms for AND search
+    const textSearchTerms = rawSearchTerm.split(' ').filter(term => term !== '');
+
+    if (textSearchTerms.length > 0) {
       currentFeatures = currentFeatures.filter(feature => {
         const props = feature.properties;
 
-        const checkProperty = (value: string | number | undefined | string[]) => {
+        // Check if a feature's property (string or number) contains a given term
+        const propertyContainsTerm = (value: string | number | undefined | string[], term: string) => {
           if (Array.isArray(value)) {
-            return value.some(item => typeof item === 'string' && item.toLowerCase().includes(textFilter));
+            return value.some(item => typeof item === 'string' && item.toLowerCase().includes(term));
           }
-          return typeof value === 'string' && value.toLowerCase().includes(textFilter);
-        };
-        
-        const checkNumberProperty = (value: string | number | undefined) => {
-          return typeof value === 'number' && String(value).includes(textFilter);
+          if (typeof value === 'string') {
+            return value.toLowerCase().includes(term);
+          }
+          if (typeof value === 'number') {
+            return String(value).includes(term);
+          }
+          return false;
         };
 
-        return (
-          checkProperty(props.name) ||
-          checkProperty(props.description) ||
-          checkProperty(props.address) ||
-          checkProperty(props.contributor) ||
-          checkProperty(props.type) ||
-          checkProperty(props.place) ||
-          checkNumberProperty(props.place) ||
-          checkProperty(props.built_year) ||
-          checkNumberProperty(props.built_year)
+        // A feature matches if ALL text search terms are found in any of its relevant properties
+        return textSearchTerms.every(term =>
+          propertyContainsTerm(props.name, term) ||
+          propertyContainsTerm(props.description, term) ||
+          propertyContainsTerm(props.address, term) ||
+          propertyContainsTerm(props.contributor, term) ||
+          propertyContainsTerm(props.type, term) ||
+          propertyContainsTerm(props.place, term) ||
+          propertyContainsTerm(props.built_year, term)
         );
       });
     }
@@ -259,7 +266,7 @@ function App() {
       <div className="filter-section">
         <input
           type="text"
-          placeholder="地物をフィルタ (例: 東京都 @未完了)"
+          placeholder="地物をフィルタ (例: 東京都 神社 @未完了)"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
@@ -286,13 +293,12 @@ function App() {
           </div>
         </div>
 
-        <div className="details-section"> {/* Renamed from map-section */}
+        <div className="details-section">
           {selectedFeature ? (
             <div className="feature-details-panel">
               <h2>{selectedFeature.properties?.name || `Feature ${selectedFeature.id}`}</h2>
               <p><strong>Status:</strong> <span className={`status-${selectedFeature.properties.verificationStatus}`}>{selectedFeature.properties.verificationStatus === 'verified' ? '完了' : '未完了'}</span></p>
 
-              {/* Display curated detail properties */}
               {DETAIL_PROPERTIES.map(prop => {
                 const value = selectedFeature.properties[prop.key];
                 if (value !== undefined && value !== null && value !== '') {
