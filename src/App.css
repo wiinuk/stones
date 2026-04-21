@@ -78,13 +78,35 @@ h1 {
   min-width: 400px;
 }
 
-.map-section {
+.details-section { /* Renamed from map-section */
   flex: 1;
   min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding: 1rem; /* Added padding */
+  border: 1px solid #eee; /* Added border */
+  border-radius: 8px; /* Added border-radius */
+  background-color: #f9f9f9; /* Added background */
+}
+
+.feature-details-panel {
+  width: 100%;
+  /* No specific border/shadow here, already on .details-section */
+}
+
+.details-section h2, .details-section h3 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.select-feature-message {
+  color: #666;
+  font-style: italic;
+  margin-top: 2rem;
 }
 
 .map-embed-container {
@@ -93,15 +115,16 @@ h1 {
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* Changed to white */
+  margin-top: 1rem; /* Space from other details */
 }
 
-.map-embed-container h2 {
-  margin-top: 0;
-  color: #333;
+.map-embed-container h3 {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
+
 
 .feature-list-container {
   border: 1px solid #eee;
@@ -127,6 +150,11 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  cursor: pointer; /* Indicate clickability */
+}
+
+.feature-card:hover {
+  background-color: #f0f0f0; /* Light hover effect */
 }
 
 .feature-card.selected {
@@ -134,33 +162,25 @@ h1 {
   background-color: #e6f2ff;
 }
 
-.feature-card h2 {
+.feature-card h3 { /* Changed from h2 for list items */
   color: #333;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
 .feature-card p {
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  margin-bottom: 0.4rem; /* Reduced margin */
+  font-size: 0.85rem; /* Reduced font size */
+  line-height: 1.3;
 }
 
-.feature-card a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.feature-card a:hover {
-  text-decoration: underline;
-}
-
+/* Coordinates display is now only in details panel, so no specific styling for list item anymore */
 .coordinates-display {
   cursor: pointer;
   color: #007bff;
   text-decoration: underline dashed;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem; /* Adjusted margin */
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -170,24 +190,35 @@ h1 {
 }
 
 
-.actions {
+.actions { /* General actions container */
   margin-top: 1rem;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.actions button {
+.actions.status-actions { /* Specific for status buttons in list item */
+  margin-top: 0.5rem;
+  justify-content: flex-end; /* Align buttons to the right in list item */
+}
+
+
+.actions button, .actions a { /* Apply to both buttons and links acting as buttons */
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.85rem;
   flex-grow: 1;
-  min-width: 100px;
+  min-width: 80px; /* Reduced min-width for smaller buttons */
+  text-decoration: none; /* For anchor tags */
+  text-align: center; /* For anchor tags */
+  display: flex; /* For anchor tags to center text */
+  align-items: center; /* For anchor tags to center text */
+  justify-content: center; /* For anchor tags to center text */
 }
 
-.actions button:hover:not(:disabled) {
+.actions button:hover:not(:disabled), .actions a:hover {
   opacity: 0.9;
 }
 
@@ -196,7 +227,8 @@ h1 {
   cursor: not-allowed;
 }
 
-.show-on-map-button {
+/* Specific button styles */
+.show-on-map-button { /* Only in details panel now */
   background-color: #007bff;
   color: white;
 }
@@ -204,10 +236,11 @@ h1 {
 .external-map-link-button {
   background-color: #6c757d;
   color: white;
+  margin-bottom: 1rem; /* Space between link and iframe */
 }
 
 .copy-json-button {
-  background-color: #17a2b8; /* Info blue */
+  background-color: #17a2b8;
   color: white;
 }
 
@@ -222,14 +255,13 @@ h1 {
   font-weight: bold;
 }
 
-/* Specific buttons for verified/pending. Note: These might need adjustment if button order changes */
-/* These are now in a separate .actions div, so their nth-of-type will be 1 and 2 within their parent */
-.actions:last-child button:nth-of-type(1) { /* Verified button */
+/* Status buttons specific to list item */
+.actions.status-actions button:nth-of-type(1) { /* Verified button in list item */
   background-color: #28a745;
   color: white;
 }
 
-.actions:last-child button:nth-of-type(2) { /* Pending button */
+.actions.status-actions button:nth-of-type(2) { /* Pending button in list item */
   background-color: #ffc107;
   color: #333;
 }
@@ -237,4 +269,15 @@ h1 {
 .error {
   color: red;
   font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .feature-list-section, .details-section {
+    min-width: unset;
+    width: 100%;
+  }
 }

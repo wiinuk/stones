@@ -8,17 +8,17 @@ interface FeatureProperties {
   description?: string;
   verificationStatus: 'pending' | 'verified';
   contributor?: string;
-  created_at?: string; // Added to interface
+  created_at?: string;
   place?: string | number;
   type?: string[];
-  image?: string[]; // Added to interface
-  project?: string[]; // Added to interface
+  image?: string[];
+  project?: string[];
   built_year?: string | number;
-  built_year_ce?: number; // Added to interface
-  photo_date?: string; // Added to interface
+  built_year_ce?: number;
+  photo_date?: string;
   address?: string;
-  city_code?: number; // Added to interface
-  mesh_code?: number; // Added to interface
+  city_code?: number;
+  mesh_code?: number;
   [key: string]: any;
 }
 
@@ -32,14 +32,13 @@ interface Feature {
   properties: FeatureProperties;
 }
 
-const ITEM_HEIGHT = 220;
+const ITEM_HEIGHT = 120; // Adjusted item height for simplified list item
 const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term';
 
-// Define a curated list of properties to display, and their Japanese labels
-const DISPLAY_PROPERTIES: { key: keyof FeatureProperties, label: string }[] = [
+// Define a curated list of properties for the details panel, and their Japanese labels
+const DETAIL_PROPERTIES: { key: keyof FeatureProperties, label: string }[] = [
+  { key: 'description', label: '説明' },
   { key: 'place', label: '場所' },
-  { key: 'address', label: '住所' },
-  { key: 'type', label: '種類' },
   { key: 'built_year', label: '建立年' },
   { key: 'built_year_ce', label: '建立年(西暦)' },
   { key: 'contributor', label: '投稿者' },
@@ -213,65 +212,27 @@ function App() {
 
     const isSelected = selectedFeature?.id === feature.id;
 
+    const handleFeatureClick = () => {
+      setSelectedFeature(feature);
+    };
+
     return (
       <div className="feature-card-wrapper" style={style}>
-        <div className={`feature-card ${isSelected ? 'selected' : ''}`}>
-          <h2>{feature.properties?.name || `Feature ${feature.id}`}</h2>
-          <p><strong>Status:</strong> <span className={`status-${feature.properties.verificationStatus}`}>{feature.properties.verificationStatus === 'verified' ? '完了' : '未完了'}</span></p>
-          {feature.properties?.description && <p>{feature.properties.description}</p>}
-
-          {/* Display curated properties */}
-          {DISPLAY_PROPERTIES.map(prop => {
-            const value = feature.properties[prop.key];
-            if (value !== undefined && value !== null && value !== '') {
-              let displayValue: React.ReactNode;
-              if (Array.isArray(value)) {
-                displayValue = value.join(', ');
-              } else if (prop.key === 'image') {
-                // If 'image' property, just indicate its presence
-                displayValue = value.length > 0 ? 'あり' : 'なし';
-              }
-              else {
-                displayValue = String(value);
-              }
-              return <p key={prop.key}><strong>{prop.label}:</strong> {displayValue}</p>;
-            }
-            return null;
-          })}
-
-          {feature.geometry && feature.geometry.type === 'Point' && (
-            <p className="coordinates-display" onClick={() => copyCoordinatesToClipboard(feature.geometry.coordinates[1], feature.geometry.coordinates[0])}>
-              <strong>Coordinates:</strong> {feature.geometry.coordinates[1]}, {feature.geometry.coordinates[0]} (クリックでコピー)
-            </p>
-          )}
-          <div className="actions">
-            {feature.geometry && feature.geometry.type === 'Point' && (
-              <>
-                <button
-                  onClick={() => setSelectedFeature(feature)}
-                  className="show-on-map-button"
-                >
-                  地図に表示
-                </button>
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="external-map-link-button"
-                >
-                  Googleマップで開く
-                </a>
-              </>
-            )}
-            <button onClick={() => copyFeaturePropertiesToClipboard(feature.properties)} className="copy-json-button">
-              JSONをコピー
-            </button>
-          </div>
-          <div className="actions">
-            <button onClick={() => updateFeatureStatus(feature.id, 'verified')} disabled={feature.properties.verificationStatus === 'verified'}>
+        <div className={`feature-card ${isSelected ? 'selected' : ''}`} onClick={handleFeatureClick}>
+          <h3>{feature.properties?.name || `Feature ${feature.id}`}</h3>
+          <p><strong>種類:</strong> {Array.isArray(feature.properties?.type) ? feature.properties.type.join(', ') : 'N/A'}</p>
+          <p><strong>住所:</strong> {feature.properties?.address || 'N/A'}</p>
+          <div className="actions status-actions">
+            <button
+              onClick={(e) => { e.stopPropagation(); updateFeatureStatus(feature.id, 'verified'); }}
+              disabled={feature.properties.verificationStatus === 'verified'}
+            >
               完了
             </button>
-            <button onClick={() => updateFeatureStatus(feature.id, 'pending')} disabled={feature.properties.verificationStatus === 'pending'}>
+            <button
+              onClick={(e) => { e.stopPropagation(); updateFeatureStatus(feature.id, 'pending'); }}
+              disabled={feature.properties.verificationStatus === 'pending'}
+            >
               未完了
             </button>
           </div>
@@ -325,22 +286,66 @@ function App() {
           </div>
         </div>
 
-        <div className="map-section">
+        <div className="details-section"> {/* Renamed from map-section */}
           {selectedFeature ? (
-            <div className="map-embed-container">
-              <h2>選択中の地物: {selectedFeature.properties?.name || `Feature ${selectedFeature.id}`}</h2>
-              <iframe
-                src={mapUrl}
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="feature-details-panel">
+              <h2>{selectedFeature.properties?.name || `Feature ${selectedFeature.id}`}</h2>
+              <p><strong>Status:</strong> <span className={`status-${selectedFeature.properties.verificationStatus}`}>{selectedFeature.properties.verificationStatus === 'verified' ? '完了' : '未完了'}</span></p>
+
+              {/* Display curated detail properties */}
+              {DETAIL_PROPERTIES.map(prop => {
+                const value = selectedFeature.properties[prop.key];
+                if (value !== undefined && value !== null && value !== '') {
+                  let displayValue: React.ReactNode;
+                  if (Array.isArray(value)) {
+                    displayValue = value.join(', ');
+                  } else if (prop.key === 'image') {
+                    displayValue = value.length > 0 ? 'あり' : 'なし';
+                  } else {
+                    displayValue = String(value);
+                  }
+                  return <p key={prop.key}><strong>{prop.label}:</strong> {displayValue}</p>;
+                }
+                return null;
+              })}
+
+              {selectedFeature.geometry && selectedFeature.geometry.type === 'Point' && (
+                <p className="coordinates-display" onClick={() => copyCoordinatesToClipboard(selectedFeature.geometry.coordinates[1], selectedFeature.geometry.coordinates[0])}>
+                  <strong>Coordinates:</strong> {selectedFeature.geometry.coordinates[1]}, {selectedFeature.geometry.coordinates[0]} (クリックでコピー)
+                </p>
+              )}
+
+              <div className="actions">
+                <button onClick={() => copyFeaturePropertiesToClipboard(selectedFeature.properties)} className="copy-json-button">
+                  JSONをコピー
+                </button>
+              </div>
+
+              {selectedFeature.geometry && selectedFeature.geometry.type === 'Point' && (
+                <div className="map-embed-container">
+                  <h3>地図</h3>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="external-map-link-button"
+                  >
+                    Googleマップで開く
+                  </a>
+                  <iframe
+                    src={mapUrl}
+                    width="100%"
+                    height="300"
+                    style={{ border: 0, marginTop: '10px' }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              )}
             </div>
           ) : (
-            <p>地物を選択すると地図が表示されます。</p>
+            <p className="select-feature-message">地物を選択すると詳細が表示されます。</p>
           )}
         </div>
       </div>
