@@ -1,12 +1,12 @@
 // src/App.tsx
-import { useState, useEffect, useMemo } from 'react';
-import { FixedSizeList } from 'react-window';
-import './App.css';
+import { useState, useEffect, useMemo } from "react";
+import { FixedSizeList } from "react-window";
+import "./App.css";
 
 interface FeatureProperties {
   name?: string;
   description?: string;
-  verificationStatus: 'pending' | 'verified';
+  verificationStatus: "pending" | "verified";
   contributor?: string;
   created_at?: string;
   place?: string | number;
@@ -23,7 +23,7 @@ interface FeatureProperties {
 }
 
 interface Feature {
-  id: string;
+  id: string; // ID is now directly on the Feature object
   type: string;
   geometry: {
     type: string;
@@ -32,21 +32,21 @@ interface Feature {
   properties: FeatureProperties;
 }
 
-const ITEM_HEIGHT = 120;
-const LOCAL_STORAGE_SEARCH_KEY = 'stone_db_search_term';
+const ITEM_HEIGHT = 80; // Adjusted item height for simplified list item
+const LOCAL_STORAGE_SEARCH_KEY = "stone_db_search_term";
 
-const DETAIL_PROPERTIES: { key: keyof FeatureProperties, label: string }[] = [
-  { key: 'description', label: '説明' },
-  { key: 'place', label: '場所' },
-  { key: 'built_year', label: '建立年' },
-  { key: 'built_year_ce', label: '建立年(西暦)' },
-  { key: 'contributor', label: '投稿者' },
-  { key: 'created_at', label: '登録日' },
-  { key: 'photo_date', label: '撮影日' },
-  { key: 'project', label: 'プロジェクト' },
-  { key: 'city_code', label: '市コード' },
-  { key: 'mesh_code', label: 'メッシュコード' },
-  { key: 'image', label: '画像' },
+const DETAIL_PROPERTIES: { key: keyof FeatureProperties; label: string }[] = [
+  { key: "description", label: "説明" },
+  { key: "place", label: "場所" },
+  { key: "built_year", label: "建立年" },
+  { key: "built_year_ce", label: "建立年(西暦)" },
+  { key: "contributor", label: "投稿者" },
+  { key: "created_at", label: "登録日" },
+  { key: "photo_date", label: "撮影日" },
+  { key: "project", label: "プロジェクト" },
+  { key: "city_code", label: "市コード" },
+  { key: "mesh_code", label: "メッシュコード" },
+  { key: "image", label: "画像" },
 ];
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>(
-    localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || ''
+    localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || "",
   );
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
@@ -69,69 +69,90 @@ function App() {
 
   const fetchFeatures = async () => {
     try {
-      const response = await fetch('/api/features');
+      const response = await fetch("/api/features");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       setFeatures(data.features);
     } catch (err) {
-      setError('Failed to fetch features.');
+      setError("Failed to fetch features.");
       console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-  const updateFeatureStatus = async (id: string, status: 'pending' | 'verified') => {
+  const updateFeatureStatus = async (
+    id: string,
+    status: "pending" | "verified",
+  ) => {
     try {
-      const response = await fetch('/api/update-status', {
-        method: 'POST',
+      const response = await fetch("/api/update-status", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ id, status }),
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      // Update local state optimistically
-      setFeatures(prevFeatures =>
-        prevFeatures.map(feature =>
-          feature.id === id ? { ...feature, properties: { ...feature.properties, verificationStatus: status } } : feature
-        )
+      setFeatures((prevFeatures) =>
+        prevFeatures.map((feature) =>
+          feature.id === id
+            ? {
+                ...feature,
+                properties: {
+                  ...feature.properties,
+                  verificationStatus: status,
+                },
+              }
+            : feature,
+        ),
       );
-      // Also update selectedFeature if it's the one being modified
       if (selectedFeature && selectedFeature.id === id) {
-        setSelectedFeature(prev => prev ? { ...prev, properties: { ...prev.properties, verificationStatus: status } } : null);
+        setSelectedFeature((prev) =>
+          prev
+            ? {
+                ...prev,
+                properties: { ...prev.properties, verificationStatus: status },
+              }
+            : null,
+        );
       }
     } catch (err) {
-      setError('Failed to update status.');
+      setError("Failed to update status.");
       console.error(err);
     }
   };
 
-  const copyCoordinatesToClipboard = async (latitude: number, longitude: number) => {
+  const copyCoordinatesToClipboard = async (
+    latitude: number,
+    longitude: number,
+  ) => {
     const coordinatesString = `${latitude},${longitude}`;
     try {
       await navigator.clipboard.writeText(coordinatesString);
-      setCopyFeedback('座標をコピーしました！');
+      setCopyFeedback("座標をコピーしました！");
       setTimeout(() => setCopyFeedback(null), 2000);
     } catch (err) {
-      console.error('Failed to copy coordinates: ', err);
-      setCopyFeedback('座標のコピーに失敗しました。');
+      console.error("Failed to copy coordinates: ", err);
+      setCopyFeedback("座標のコピーに失敗しました。");
       setTimeout(() => setCopyFeedback(null), 2000);
     }
   };
 
-  const copyFeaturePropertiesToClipboard = async (properties: FeatureProperties) => {
+  const copyFeaturePropertiesToClipboard = async (
+    properties: FeatureProperties,
+  ) => {
     try {
       await navigator.clipboard.writeText(JSON.stringify(properties, null, 2));
-      setCopyFeedback('Feature JSON (properties) をコピーしました！');
+      setCopyFeedback("Feature JSON (properties) をコピーしました！");
       setTimeout(() => setCopyFeedback(null), 2000);
     } catch (err) {
-      console.error('Failed to copy feature properties JSON: ', err);
-      setCopyFeedback('Feature JSON (properties) のコピーに失敗しました。');
+      console.error("Failed to copy feature properties JSON: ", err);
+      setCopyFeedback("Feature JSON (properties) のコピーに失敗しました。");
       setTimeout(() => setCopyFeedback(null), 2000);
     }
   };
@@ -139,56 +160,69 @@ function App() {
   const filteredFeatures = useMemo(() => {
     let currentFeatures = features;
     let rawSearchTerm = searchTerm.toLowerCase();
-    let statusFilter: 'pending' | 'verified' | 'all' = 'all';
+    let statusFilter: "pending" | "verified" | "all" = "all";
 
     const statusKeywords = {
-      ' @confirmed': 'verified',
-      ' @完了': 'verified',
-      ' @pending': 'pending',
-      ' @未完了': 'pending',
+      " @confirmed": "verified",
+      " @完了": "verified",
+      " @pending": "pending",
+      " @未完了": "pending",
     };
 
     for (const keyword in statusKeywords) {
       if (rawSearchTerm.endsWith(keyword)) {
-        statusFilter = statusKeywords[keyword as keyof typeof statusKeywords] as 'pending' | 'verified';
-        rawSearchTerm = rawSearchTerm.slice(0, rawSearchTerm.length - keyword.length).trim();
+        statusFilter = statusKeywords[
+          keyword as keyof typeof statusKeywords
+        ] as "pending" | "verified";
+        rawSearchTerm = rawSearchTerm
+          .slice(0, rawSearchTerm.length - keyword.length)
+          .trim();
         break;
       }
     }
 
-    if (statusFilter !== 'all') {
-      currentFeatures = currentFeatures.filter(feature =>
-        feature.properties.verificationStatus === statusFilter
+    if (statusFilter !== "all") {
+      currentFeatures = currentFeatures.filter(
+        (feature) => feature.properties.verificationStatus === statusFilter,
       );
     }
 
-    const textSearchTerms = rawSearchTerm.split(' ').filter(term => term !== '');
+    const textSearchTerms = rawSearchTerm
+      .split(" ")
+      .filter((term) => term !== "");
 
     if (textSearchTerms.length > 0) {
-      currentFeatures = currentFeatures.filter(feature => {
+      currentFeatures = currentFeatures.filter((feature) => {
         const props = feature.properties;
 
-        const propertyContainsTerm = (value: string | number | undefined | string[], term: string) => {
+        const propertyContainsTerm = (
+          value: string | number | undefined | string[],
+          term: string,
+        ) => {
           if (Array.isArray(value)) {
-            return value.some(item => typeof item === 'string' && item.toLowerCase().includes(term));
+            return value.some(
+              (item) =>
+                typeof item === "string" && item.toLowerCase().includes(term),
+            );
           }
-          if (typeof value === 'string') {
+          if (typeof value === "string") {
             return value.toLowerCase().includes(term);
           }
-          if (typeof value === 'number') {
+          if (typeof value === "number") {
             return String(value).includes(term);
           }
           return false;
         };
 
-        return textSearchTerms.every(term =>
-          propertyContainsTerm(props.name, term) ||
-          propertyContainsTerm(props.description, term) ||
-          propertyContainsTerm(props.address, term) ||
-          propertyContainsTerm(props.contributor, term) ||
-          propertyContainsTerm(props.type, term) ||
-          propertyContainsTerm(props.place, term) ||
-          propertyContainsTerm(props.built_year, term)
+        return textSearchTerms.every(
+          (term) =>
+            propertyContainsTerm(props.name, term) ||
+            propertyContainsTerm(props.description, term) ||
+            propertyContainsTerm(props.address, term) ||
+            propertyContainsTerm(props.contributor, term) ||
+            propertyContainsTerm(props.type, term) ||
+            propertyContainsTerm(props.place, term) ||
+            propertyContainsTerm(props.built_year, term),
         );
       });
     }
@@ -198,8 +232,8 @@ function App() {
 
   const { verifiedCount, pendingCount } = useMemo(() => {
     const counts = { verifiedCount: 0, pendingCount: 0 };
-    filteredFeatures.forEach(feature => {
-      if (feature.properties.verificationStatus === 'verified') {
+    filteredFeatures.forEach((feature) => {
+      if (feature.properties.verificationStatus === "verified") {
         counts.verifiedCount++;
       } else {
         counts.pendingCount++;
@@ -208,8 +242,13 @@ function App() {
     return counts;
   }, [filteredFeatures]);
 
-
-  const FeatureRow = ({ index, style }: { index: number; style: React.CSSProperties }) => {
+  const FeatureRow = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => {
     const feature = filteredFeatures[index];
     if (!feature) return null;
 
@@ -220,28 +259,55 @@ function App() {
     };
 
     const handleStatusToggle = () => {
-      const newStatus = feature.properties.verificationStatus === 'verified' ? 'pending' : 'verified';
+      const newStatus =
+        feature.properties.verificationStatus === "verified"
+          ? "pending"
+          : "verified";
       updateFeatureStatus(feature.id, newStatus);
     };
 
-    const toggleButtonText = feature.properties.verificationStatus === 'verified'
-      ? '未完了に切替'
-      : '完了に切替';
+    const toggleButtonText =
+      feature.properties.verificationStatus === "verified"
+        ? "完了"
+        : "未完了";
 
     return (
       <div className="feature-card-wrapper" style={style}>
-        <div className={`feature-card ${isSelected ? 'selected' : ''}`} onClick={handleFeatureClick}>
-          <h3>{feature.properties?.name || `Feature ${feature.id}`}</h3>
-          <p><strong>種類:</strong> {Array.isArray(feature.properties?.type) ? feature.properties.type.join(', ') : 'N/A'}</p>
-          <p><strong>住所:</strong> {feature.properties?.address || 'N/A'}</p>
-          <div className="actions status-actions">
-            <button
-              onClick={(e) => { e.stopPropagation(); handleStatusToggle(); }}
-              className={feature.properties.verificationStatus === 'verified' ? 'status-verified' : 'status-pending'}
-            >
-              {toggleButtonText}
-            </button>
+        <div
+          className={`feature-card ${isSelected ? "selected" : ""}`}
+          onClick={handleFeatureClick}
+        >
+          <div className="card-header-line">
+            {" "}
+            {/* Wrapper for the header line */}
+            <p className="actions status-actions">
+              {" "}
+              {/* Toggle button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleStatusToggle();
+                }}
+                className={
+                  feature.properties.verificationStatus === "verified"
+                    ? "status-verified"
+                    : "status-pending"
+                }
+              >
+                {toggleButtonText}
+              </button>
+            </p>
+            <p className="feature-list-meta">
+              {" "}
+              {/* Combined ID, Type, Address */}
+              {feature.id} | {" "}
+              {Array.isArray(feature.properties?.type)
+                ? feature.properties.type.join(", ")
+                : "N/A"}{" "}
+              | {feature.properties?.address || "N/A"}
+            </p>
           </div>
+          {/* The h3 with name/id is removed as requested. */}
         </div>
       </div>
     );
@@ -255,9 +321,12 @@ function App() {
     return <div className="app-container error">Error: {error}</div>;
   }
 
-  const mapUrl = selectedFeature && selectedFeature.geometry && selectedFeature.geometry.type === 'Point'
-    ? `https://maps.google.com/maps?q=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}&output=embed`
-    : '';
+  const mapUrl =
+    selectedFeature &&
+    selectedFeature.geometry &&
+    selectedFeature.geometry.type === "Point"
+      ? `https://maps.google.com/maps?q=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}&output=embed`
+      : "";
 
   return (
     <div className="app-container">
@@ -271,12 +340,13 @@ function App() {
           className="search-input"
         />
         <p className="feature-count">
-          表示中のFeature数: {filteredFeatures.length} / 全Feature数: {features.length}
-          (完了: <span className="status-verified">{verifiedCount}</span>, 未完了: <span className="status-pending">{pendingCount}</span>)
+          表示中のFeature数: {filteredFeatures.length} / 全Feature数:{" "}
+          {features.length}
+          (完了: <span className="status-verified">{verifiedCount}</span>,
+          未完了: <span className="status-pending">{pendingCount}</span>)
         </p>
         {copyFeedback && <div className="copy-feedback">{copyFeedback}</div>}
       </div>
-
 
       <div className="content-wrapper">
         <div className="feature-list-section">
@@ -285,7 +355,7 @@ function App() {
               height={600}
               itemCount={filteredFeatures.length}
               itemSize={ITEM_HEIGHT}
-              width={'100%'}
+              width={"100%"}
             >
               {FeatureRow}
             </FixedSizeList>
@@ -295,62 +365,97 @@ function App() {
         <div className="details-section">
           {selectedFeature ? (
             <div className="feature-details-panel">
-              <h2>{selectedFeature.properties?.name || `Feature ${selectedFeature.id}`}</h2>
-              <p><strong>Status:</strong> <span className={`status-${selectedFeature.properties.verificationStatus}`}>{selectedFeature.properties.verificationStatus === 'verified' ? '完了' : '未完了'}</span></p>
+              <h2>
+                {selectedFeature.properties?.name ||
+                  `Feature ${selectedFeature.id}`}
+              </h2>
+              <p>
+                <strong>Status:</strong>{" "}
+                <span
+                  className={`status-${selectedFeature.properties.verificationStatus}`}
+                >
+                  {selectedFeature.properties.verificationStatus === "verified"
+                    ? "完了"
+                    : "未完了"}
+                </span>
+              </p>
 
-              {DETAIL_PROPERTIES.map(prop => {
+              {DETAIL_PROPERTIES.map((prop) => {
                 const value = selectedFeature.properties[prop.key];
-                if (value !== undefined && value !== null && value !== '') {
+                if (value !== undefined && value !== null && value !== "") {
                   let displayValue: React.ReactNode;
                   if (Array.isArray(value)) {
-                    displayValue = value.join(', ');
-                  } else if (prop.key === 'image') {
-                    displayValue = value.length > 0 ? 'あり' : 'なし';
+                    displayValue = value.join(", ");
+                  } else if (prop.key === "image") {
+                    displayValue = value.length > 0 ? "あり" : "なし";
                   } else {
                     displayValue = String(value);
                   }
-                  return <p key={prop.key}><strong>{prop.label}:</strong> {displayValue}</p>;
+                  return (
+                    <p key={prop.key}>
+                      <strong>{prop.label}:</strong> {displayValue}
+                    </p>
+                  );
                 }
                 return null;
               })}
 
-              {selectedFeature.geometry && selectedFeature.geometry.type === 'Point' && (
-                <p className="coordinates-display" onClick={() => copyCoordinatesToClipboard(selectedFeature.geometry.coordinates[1], selectedFeature.geometry.coordinates[0])}>
-                  <strong>Coordinates:</strong> {selectedFeature.geometry.coordinates[1]}, {selectedFeature.geometry.coordinates[0]} (クリックでコピー)
-                </p>
-              )}
+              {selectedFeature.geometry &&
+                selectedFeature.geometry.type === "Point" && (
+                  <p
+                    className="coordinates-display"
+                    onClick={() =>
+                      copyCoordinatesToClipboard(
+                        selectedFeature.geometry.coordinates[1],
+                        selectedFeature.geometry.coordinates[0],
+                      )
+                    }
+                  >
+                    <strong>Coordinates:</strong>{" "}
+                    {selectedFeature.geometry.coordinates[1]},{" "}
+                    {selectedFeature.geometry.coordinates[0]} (クリックでコピー)
+                  </p>
+                )}
 
               <div className="actions">
-                <button onClick={() => copyFeaturePropertiesToClipboard(selectedFeature.properties)} className="copy-json-button">
+                <button
+                  onClick={() =>
+                    copyFeaturePropertiesToClipboard(selectedFeature.properties)
+                  }
+                  className="copy-json-button"
+                >
                   JSONをコピー
                 </button>
               </div>
 
-              {selectedFeature.geometry && selectedFeature.geometry.type === 'Point' && (
-                <div className="map-embed-container">
-                  <h3>地図</h3>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="external-map-link-button"
-                  >
-                    Googleマップで開く
-                  </a>
-                  <iframe
-                    src={mapUrl}
-                    width="100%"
-                    height="300"
-                    style={{ border: 0, marginTop: '10px' }}
-                    allowFullScreen={false}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
-              )}
+              {selectedFeature.geometry &&
+                selectedFeature.geometry.type === "Point" && (
+                  <div className="map-embed-container">
+                    <h3>地図</h3>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="external-map-link-button"
+                    >
+                      Googleマップで開く
+                    </a>
+                    <iframe
+                      src={mapUrl}
+                      width="100%"
+                      height="300"
+                      style={{ border: 0, marginTop: "10px" }}
+                      allowFullScreen={false}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                  </div>
+                )}
             </div>
           ) : (
-            <p className="select-feature-message">地物を選択すると詳細が表示されます。</p>
+            <p className="select-feature-message">
+              地物を選択すると詳細が表示されます。
+            </p>
           )}
         </div>
       </div>
