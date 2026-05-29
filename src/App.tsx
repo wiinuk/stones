@@ -267,9 +267,7 @@ function App() {
     };
 
     const toggleButtonText =
-      feature.properties.verificationStatus === "verified"
-        ? "完了"
-        : "未完了";
+      feature.properties.verificationStatus === "verified" ? "完了" : "未完了";
 
     return (
       <div className="feature-card-wrapper" style={style}>
@@ -300,7 +298,7 @@ function App() {
             <p className="feature-list-meta">
               {" "}
               {/* Combined ID, Type, Address */}
-              {feature.id} | {" "}
+              {feature.id} |{" "}
               {Array.isArray(feature.properties?.type)
                 ? feature.properties.type.join(", ")
                 : "N/A"}{" "}
@@ -325,7 +323,7 @@ function App() {
     selectedFeature &&
     selectedFeature.geometry &&
     selectedFeature.geometry.type === "Point"
-      ? `https://maps.google.com/maps?q=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}&output=embed`
+      ? `https://maps.google.com/maps?q=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}&output=embed&t=h`
       : "";
 
   return (
@@ -433,12 +431,20 @@ function App() {
                   <div className="map-embed-container">
                     <h3>地図</h3>
                     <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}`}
+                      href={`http://maps.google.com/maps?q=loc:${selectedFeature.geometry.coordinates[1]}+${selectedFeature.geometry.coordinates[0]}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="external-map-link-button"
                     >
                       Googleマップで開く
+                    </a>
+                    <a
+                      href={`https://archives.sekibutsu.info/${selectedFeature.id}.html`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="external-map-link-button"
+                    >
+                      みんなで石仏調査
                     </a>
                     <iframe
                       src={mapUrl}
