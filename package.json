@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:server": "nodemon --ext js,ts,tsx,json,css server.js",
+    "dev:server": "cross-env PORT=3001 nodemon --ext js,ts,tsx,json,css server.js",
     "dev:client": "vite",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "prebuild": "node scripts/copy-geojson.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -35,6 +36,7 @@
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.9",
     "concurrently": "^8.2.2",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "cross-env": "^7.0.3"
   }
 }

@@ -40,6 +40,14 @@ app.get("/api/features", (req, res) => {
     res.status(500).send("Error processing geojson data.");
   }
 });
+
+// Serve raw geojson file at root path for client-side fetching
+app.get("/stone_db.geojson", (req, res) => {
+  if (!existsSync(GEOJSON_PATH)) {
+    return res.status(404).send("stone_db.geojson not found.");
+  }
+  res.sendFile(GEOJSON_PATH);
+});
 // NOTE: No server-side API to update status. Client must store status locally.
 
 // Serve static files from the 'dist' directory (Vite's build output)
