@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { FixedSizeList } from "react-window";
 import "./App.css";
 
@@ -34,6 +34,7 @@ interface Feature {
 
 const ITEM_HEIGHT = 80; // Adjusted item height for simplified list item
 const LOCAL_STORAGE_SEARCH_KEY = "stone_db_search_term";
+const LOCAL_STORAGE_PROGRESS_KEY = "verification_progress";
 
 const DETAIL_PROPERTIES: { key: keyof FeatureProperties; label: string }[] = [
   { key: "description", label: "説明" },
@@ -69,12 +70,29 @@ function App() {
 
   const fetchFeatures = async () => {
     try {
-      const response = await fetch("/api/features");
+      const response = await fetch("/stone_db.geojson");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setFeatures(data.features);
+      // Load per-user progress from localStorage
+      const storedProgress = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
+      );
+
+      const featuresWithLocalStatus = data.features.map(
+        (feature: any, index: number) => {
+          const id = feature.properties?.id || feature.id || `feature-${index}`;
+          const verificationStatus = storedProgress[id] || "pending";
+          return {
+            ...feature,
+            id,
+            properties: { ...feature.properties, verificationStatus },
+          } as Feature;
+        },
+      );
+
+      setFeatures(featuresWithLocalStatus);
     } catch (err) {
       setError("Failed to fetch features.");
       console.error(err);
@@ -87,17 +105,14 @@ function App() {
     id: string,
     status: "pending" | "verified",
   ) => {
+    // Store status locally in localStorage (per-user)
     try {
-      const response = await fetch("/api/update-status", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id, status }),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      const stored = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
+      );
+      stored[id] = status;
+      localStorage.setItem(LOCAL_STORAGE_PROGRESS_KEY, JSON.stringify(stored));
+
       setFeatures((prevFeatures) =>
         prevFeatures.map((feature) =>
           feature.id === id
@@ -111,6 +126,7 @@ function App() {
             : feature,
         ),
       );
+
       if (selectedFeature && selectedFeature.id === id) {
         setSelectedFeature((prev) =>
           prev
@@ -122,7 +138,7 @@ function App() {
         );
       }
     } catch (err) {
-      setError("Failed to update status.");
+      setError("Failed to update status locally.");
       console.error(err);
     }
   };
@@ -155,6 +171,65 @@ function App() {
       setCopyFeedback("Feature JSON (properties) のコピーに失敗しました。");
       setTimeout(() => setCopyFeedback(null), 2000);
     }
+  };
+
+  // Import / Export handlers
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const exportProgress = () => {
+    const stored = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
+    );
+    const blob = new Blob([JSON.stringify(stored, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "verification_progress.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const triggerImportDialog = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const parsed = JSON.parse(String(ev.target?.result || "{}"));
+        if (typeof parsed !== "object" || Array.isArray(parsed)) {
+          throw new Error("Invalid format");
+        }
+        localStorage.setItem(
+          LOCAL_STORAGE_PROGRESS_KEY,
+          JSON.stringify(parsed),
+        );
+
+        // Update features state to reflect imported statuses
+        setFeatures((prev) =>
+          prev.map((feature) => ({
+            ...feature,
+            properties: {
+              ...feature.properties,
+              verificationStatus: parsed[feature.id] || "pending",
+            },
+          })),
+        );
+      } catch (err) {
+        console.error("Failed to import progress file:", err);
+        setError("インポートに失敗しました：ファイル形式を確認してください");
+      }
+    };
+    reader.readAsText(file);
+    // reset input so same file can be selected again later
+    e.currentTarget.value = "";
   };
 
   const filteredFeatures = useMemo(() => {
@@ -337,6 +412,21 @@ function App() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
         />
+        <div className="import-export-controls">
+          <button onClick={exportProgress} className="export-button">
+            エクスポート
+          </button>
+          <button onClick={triggerImportDialog} className="import-button">
+            インポート
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json"
+            style={{ display: "none" }}
+            onChange={handleImportFile}
+          />
+        </div>
         <p className="feature-count">
           表示中のFeature数: {filteredFeatures.length} / 全Feature数:{" "}
           {features.length}
