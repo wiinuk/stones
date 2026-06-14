@@ -1,5 +1,6 @@
 // src/App.tsx
 import { useState, useEffect, useMemo, useRef } from "react";
+import { matchFeatureFromQuery } from "./search/query";
 import { FixedSizeList } from "react-window";
 import "./App.css";
 
@@ -233,76 +234,9 @@ function App() {
   };
 
   const filteredFeatures = useMemo(() => {
-    let currentFeatures = features;
-    let rawSearchTerm = searchTerm.toLowerCase();
-    let statusFilter: "pending" | "verified" | "all" = "all";
-
-    const statusKeywords = {
-      " @confirmed": "verified",
-      " @完了": "verified",
-      " @pending": "pending",
-      " @未完了": "pending",
-    };
-
-    for (const keyword in statusKeywords) {
-      if (rawSearchTerm.endsWith(keyword)) {
-        statusFilter = statusKeywords[
-          keyword as keyof typeof statusKeywords
-        ] as "pending" | "verified";
-        rawSearchTerm = rawSearchTerm
-          .slice(0, rawSearchTerm.length - keyword.length)
-          .trim();
-        break;
-      }
-    }
-
-    if (statusFilter !== "all") {
-      currentFeatures = currentFeatures.filter(
-        (feature) => feature.properties.verificationStatus === statusFilter,
-      );
-    }
-
-    const textSearchTerms = rawSearchTerm
-      .split(" ")
-      .filter((term) => term !== "");
-
-    if (textSearchTerms.length > 0) {
-      currentFeatures = currentFeatures.filter((feature) => {
-        const props = feature.properties;
-
-        const propertyContainsTerm = (
-          value: string | number | undefined | string[],
-          term: string,
-        ) => {
-          if (Array.isArray(value)) {
-            return value.some(
-              (item) =>
-                typeof item === "string" && item.toLowerCase().includes(term),
-            );
-          }
-          if (typeof value === "string") {
-            return value.toLowerCase().includes(term);
-          }
-          if (typeof value === "number") {
-            return String(value).includes(term);
-          }
-          return false;
-        };
-
-        return textSearchTerms.every(
-          (term) =>
-            propertyContainsTerm(props.name, term) ||
-            propertyContainsTerm(props.description, term) ||
-            propertyContainsTerm(props.address, term) ||
-            propertyContainsTerm(props.contributor, term) ||
-            propertyContainsTerm(props.type, term) ||
-            propertyContainsTerm(props.place, term) ||
-            propertyContainsTerm(props.built_year, term),
-        );
-      });
-    }
-
-    return currentFeatures;
+    const q = searchTerm.trim();
+    if (!q) return features;
+    return features.filter((f) => matchFeatureFromQuery(q, f));
   }, [features, searchTerm]);
 
   const { verifiedCount, pendingCount } = useMemo(() => {

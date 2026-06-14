@@ -10,6 +10,7 @@
     "prebuild": "node scripts/copy-geojson.js",
     "build": "tsc -b && vite build",
     "deploy": "npm run build && gh-pages -d dist",
+    "test": "vitest",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "node server.js"
@@ -28,18 +29,17 @@
     "@types/react-dom": "^19.2.3",
     "@types/react-window": "^1.8.8",
     "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "gh-pages": "^5.0.0",
     "globals": "^17.5.0",
     "nodemon": "^3.1.4",
-    "concurrently": "^8.2.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.9",
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.1.4",
-    "cross-env": "^7.0.3",
-    "gh-pages": "^5.0.0"
+    "vitest": "^1.6.1"
   }
 }
