@@ -114,29 +114,69 @@ function App() {
       stored[id] = status;
       localStorage.setItem(LOCAL_STORAGE_PROGRESS_KEY, JSON.stringify(stored));
 
-      setFeatures((prevFeatures) =>
-        prevFeatures.map((feature) =>
-          feature.id === id
-            ? {
-                ...feature,
-                properties: {
-                  ...feature.properties,
-                  verificationStatus: status,
-                },
-              }
-            : feature,
-        ),
+      // create updated features synchronously to determine new filtered set
+      const updatedFeatures = features.map((feature) =>
+        feature.id === id
+          ? {
+              ...feature,
+              properties: { ...feature.properties, verificationStatus: status },
+            }
+          : feature,
       );
 
-      if (selectedFeature && selectedFeature.id === id) {
-        setSelectedFeature((prev) =>
-          prev
-            ? {
-                ...prev,
-                properties: { ...prev.properties, verificationStatus: status },
+      // apply updated features state
+      setFeatures(updatedFeatures);
+
+      const prevSelectedId = selectedFeature?.id;
+
+      // compute new filtered list after update
+      const newFiltered = updatedFeatures.filter((f) =>
+        matchFeatureFromQuery(searchTerm.trim(), f),
+      );
+
+      if (prevSelectedId) {
+        // if previously selected still visible, update its status in selection
+        if (newFiltered.some((f) => f.id === prevSelectedId)) {
+          if (selectedFeature && selectedFeature.id === id) {
+            setSelectedFeature((prev) =>
+              prev
+                ? {
+                    ...prev,
+                    properties: {
+                      ...prev.properties,
+                      verificationStatus: status,
+                    },
+                  }
+                : null,
+            );
+          }
+        } else {
+          // find next visible feature based on previous filtered order
+          const prevFiltered = filteredFeatures;
+          const idx = prevFiltered.findIndex((f) => f.id === prevSelectedId);
+          let chosen: any = null;
+          if (idx >= 0) {
+            for (let j = idx + 1; j < prevFiltered.length; j++) {
+              const candidateId = prevFiltered[j].id;
+              const found = newFiltered.find((nf) => nf.id === candidateId);
+              if (found) {
+                chosen = found;
+                break;
               }
-            : null,
-        );
+            }
+            if (!chosen) {
+              for (let j = idx - 1; j >= 0; j--) {
+                const candidateId = prevFiltered[j].id;
+                const found = newFiltered.find((nf) => nf.id === candidateId);
+                if (found) {
+                  chosen = found;
+                  break;
+                }
+              }
+            }
+          }
+          setSelectedFeature(chosen || null);
+        }
       }
     } catch (err) {
       setError("Failed to update status locally.");
