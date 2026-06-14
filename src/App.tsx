@@ -70,7 +70,7 @@ function App() {
 
   const fetchFeatures = async () => {
     try {
-      const response = await fetch("/stone_db.geojson");
+      const response = await fetch("./stone_db.geojson");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
