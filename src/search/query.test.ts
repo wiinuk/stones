@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { tokenize, parse, matchNode, matchFeatureFromQuery } from "./query";
+import { tokenize, parse, matchFeatureFromQuery } from "./query";
 
 describe("tokenize", () => {
   it("splits words and @", () => {

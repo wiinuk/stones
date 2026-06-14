@@ -266,14 +266,17 @@ function App() {
             JSON.stringify(parsed),
           );
           setFeatures((prev) =>
-            prev.map((feature) => ({
-              ...feature,
-              properties: {
-                ...feature.properties,
-                verificationStatus:
-                  (parsed as Record<string, string>)[feature.id] || "pending",
-              },
-            })),
+            prev.map((feature) => {
+              const raw = (parsed as Record<string, string>)[feature.id];
+              const vs: "verified" | "pending" = raw === "verified" ? "verified" : "pending";
+              return {
+                ...feature,
+                properties: {
+                  ...feature.properties,
+                  verificationStatus: vs,
+                },
+              };
+            }),
           );
         }
       } catch (err) {
@@ -299,13 +302,17 @@ function App() {
     }
     localStorage.setItem(LOCAL_STORAGE_PROGRESS_KEY, JSON.stringify(result));
     setFeatures((prev) =>
-      prev.map((feature) => ({
-        ...feature,
-        properties: {
-          ...feature.properties,
-          verificationStatus: result[feature.id] || "pending",
-        },
-      })),
+      prev.map((feature) => {
+        const raw = result[feature.id];
+        const vs: "verified" | "pending" = raw === "verified" ? "verified" : "pending";
+        return {
+          ...feature,
+          properties: {
+            ...feature.properties,
+            verificationStatus: vs,
+          },
+        };
+      }),
     );
     setImportCandidate(null);
     setShowImportDialog(false);
