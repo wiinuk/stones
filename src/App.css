@@ -7,7 +7,7 @@
 }
 
 .app-container {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
 }
 
@@ -32,7 +32,7 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-input::placeholder {
@@ -63,7 +63,7 @@ h1 {
   font-size: 0.9rem;
   z-index: 10;
   white-space: nowrap;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin-top: 5px;
 }
 
@@ -95,7 +95,8 @@ h1 {
   width: 100%;
 }
 
-.details-section h2, .details-section h3 {
+.details-section h2,
+.details-section h3 {
   color: #333;
   font-size: 1.5rem;
   margin-top: 0;
@@ -124,7 +125,6 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-
 .feature-list-container {
   border: 1px solid #eee;
   border-radius: 8px;
@@ -147,7 +147,9 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
   cursor: pointer;
 }
 
@@ -178,7 +180,8 @@ h1 {
   gap: 1em;
 }
 
-.feature-list-meta { /* New style for the combined ID, Type, Address line */
+.feature-list-meta {
+  /* New style for the combined ID, Type, Address line */
   font-size: 0.8rem;
   color: #555;
   margin-bottom: 0.6rem;
@@ -198,7 +201,6 @@ h1 {
   color: #0056b3;
 }
 
-
 .actions {
   margin-top: 1rem;
   display: flex;
@@ -211,8 +213,8 @@ h1 {
   justify-content: flex-end;
 }
 
-
-.actions button, .actions a {
+.actions button,
+.actions a {
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
@@ -227,7 +229,8 @@ h1 {
   justify-content: center;
 }
 
-.actions button:hover:not(:disabled), .actions a:hover {
+.actions button:hover:not(:disabled),
+.actions a:hover {
   opacity: 0.9;
 }
 
@@ -252,8 +255,8 @@ h1 {
   color: white;
 }
 
-
-button.status-pending, button.status-verified {
+button.status-pending,
+button.status-verified {
   color: white;
 }
 button.status-pending {
@@ -283,7 +286,8 @@ button.status-verified {
   .content-wrapper {
     flex-direction: column;
   }
-  .feature-list-section, .details-section {
+  .feature-list-section,
+  .details-section {
     min-width: unset;
     width: 100%;
   }

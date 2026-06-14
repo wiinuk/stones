@@ -176,6 +176,11 @@ function App() {
 
   // Import / Export handlers
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [importCandidate, setImportCandidate] = useState<Record<
+    string,
+    string
+  > | null>(null);
+  const [showImportDialog, setShowImportDialog] = useState(false);
 
   const exportProgress = () => {
     const stored = JSON.parse(
@@ -208,21 +213,29 @@ function App() {
         if (typeof parsed !== "object" || Array.isArray(parsed)) {
           throw new Error("Invalid format");
         }
-        localStorage.setItem(
-          LOCAL_STORAGE_PROGRESS_KEY,
-          JSON.stringify(parsed),
+        const existing = JSON.parse(
+          localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
         );
-
-        // Update features state to reflect imported statuses
-        setFeatures((prev) =>
-          prev.map((feature) => ({
-            ...feature,
-            properties: {
-              ...feature.properties,
-              verificationStatus: parsed[feature.id] || "pending",
-            },
-          })),
-        );
+        const hasExisting = existing && Object.keys(existing).length > 0;
+        if (hasExisting) {
+          setImportCandidate(parsed as Record<string, string>);
+          setShowImportDialog(true);
+        } else {
+          localStorage.setItem(
+            LOCAL_STORAGE_PROGRESS_KEY,
+            JSON.stringify(parsed),
+          );
+          setFeatures((prev) =>
+            prev.map((feature) => ({
+              ...feature,
+              properties: {
+                ...feature.properties,
+                verificationStatus:
+                  (parsed as Record<string, string>)[feature.id] || "pending",
+              },
+            })),
+          );
+        }
       } catch (err) {
         console.error("Failed to import progress file:", err);
         setError("インポートに失敗しました：ファイル形式を確認してください");
@@ -231,6 +244,36 @@ function App() {
     reader.readAsText(file);
     // reset input so same file can be selected again later
     e.currentTarget.value = "";
+  };
+
+  const applyImport = (mode: "merge" | "overwrite") => {
+    if (!importCandidate) return;
+    const existing = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
+    );
+    let result: Record<string, string>;
+    if (mode === "merge") {
+      result = { ...(existing || {}), ...importCandidate };
+    } else {
+      result = { ...importCandidate };
+    }
+    localStorage.setItem(LOCAL_STORAGE_PROGRESS_KEY, JSON.stringify(result));
+    setFeatures((prev) =>
+      prev.map((feature) => ({
+        ...feature,
+        properties: {
+          ...feature.properties,
+          verificationStatus: result[feature.id] || "pending",
+        },
+      })),
+    );
+    setImportCandidate(null);
+    setShowImportDialog(false);
+  };
+
+  const cancelImport = () => {
+    setImportCandidate(null);
+    setShowImportDialog(false);
   };
 
   const filteredFeatures = useMemo(() => {
@@ -361,6 +404,59 @@ function App() {
             onChange={handleImportFile}
           />
         </div>
+        {showImportDialog && (
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.4)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 2000,
+            }}
+          >
+            <div
+              style={{
+                background: "#fff",
+                padding: 20,
+                borderRadius: 8,
+                width: 420,
+                boxShadow: "0 6px 24px rgba(0,0,0,0.3)",
+              }}
+            >
+              <h3>既存の進捗データが見つかりました</h3>
+              <p>インポート方法を選択してください。</p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 8,
+                  marginTop: 12,
+                  justifyContent: "flex-end",
+                }}
+              >
+                <button
+                  onClick={() => cancelImport()}
+                  style={{ padding: "6px 10px" }}
+                >
+                  キャンセル
+                </button>
+                <button
+                  onClick={() => applyImport("merge")}
+                  style={{ padding: "6px 10px" }}
+                >
+                  マージ（既存を保持しつつ上書き）
+                </button>
+                <button
+                  onClick={() => applyImport("overwrite")}
+                  style={{ padding: "6px 10px" }}
+                >
+                  全て上書き
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         <p className="feature-count">
           表示中のFeature数: {filteredFeatures.length} / 全Feature数:{" "}
           {features.length}
