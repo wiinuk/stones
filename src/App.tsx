@@ -1,37 +1,12 @@
 // src/App.tsx
 import { useState, useEffect, useMemo, useRef } from "react";
 import { matchFeatureFromQuery } from "./search/query";
+import type { Feature, FeatureProperties } from "./types";
+import { isStatus } from "./types";
 import { FixedSizeList } from "react-window";
 import "./App.css";
 
-interface FeatureProperties {
-  name?: string;
-  description?: string;
-  verificationStatus: "pending" | "verified";
-  contributor?: string;
-  created_at?: string;
-  place?: string | number;
-  type?: string[];
-  image?: string[];
-  project?: string[];
-  built_year?: string | number;
-  built_year_ce?: number;
-  photo_date?: string;
-  address?: string;
-  city_code?: number;
-  mesh_code?: number;
-  [key: string]: any;
-}
-
-interface Feature {
-  id: string; // ID is now directly on the Feature object
-  type: string;
-  geometry: {
-    type: string;
-    coordinates: number[]; // [longitude, latitude]
-  };
-  properties: FeatureProperties;
-}
+// Use shared Feature types from src/types.ts
 
 const ITEM_HEIGHT = 80; // Adjusted item height for simplified list item
 const LOCAL_STORAGE_SEARCH_KEY = "stone_db_search_term";
@@ -59,6 +34,15 @@ function App() {
   const [searchTerm, setSearchTerm] = useState<string>(
     localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || "",
   );
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>(
+    localStorage.getItem(LOCAL_STORAGE_SEARCH_KEY) || "",
+  );
+
+  // Debounce searchTerm updates to avoid frequent filtering
+  useEffect(() => {
+    const id = setTimeout(() => setDebouncedSearchTerm(searchTerm), 300);
+    return () => clearTimeout(id);
+  }, [searchTerm]);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
   useEffect(() => {
@@ -79,19 +63,40 @@ function App() {
       // Load per-user progress from localStorage
       const storedProgress = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
-      );
+      ) as Record<string, unknown>;
 
-      const featuresWithLocalStatus = data.features.map(
-        (feature: any, index: number) => {
-          const id = feature.properties?.id || feature.id || `feature-${index}`;
-          const verificationStatus = storedProgress[id] || "pending";
-          return {
-            ...feature,
-            id,
-            properties: { ...feature.properties, verificationStatus },
-          } as Feature;
-        },
-      );
+      const normalizeFeature = (raw: unknown, index: number): Feature => {
+        const obj = raw as any;
+        const id: string =
+          (obj.properties && obj.properties.id) || obj.id || `feature-${index}`;
+        const geometry =
+          obj.geometry && Array.isArray(obj.geometry.coordinates)
+            ? {
+                type: obj.geometry.type || "Point",
+                coordinates: obj.geometry.coordinates,
+              }
+            : { type: "Point", coordinates: [0, 0] };
+        const propsObj =
+          obj.properties && typeof obj.properties === "object"
+            ? obj.properties
+            : {};
+        const rawStatus = storedProgress[id] ?? propsObj.verificationStatus;
+        const verificationStatus = isStatus(rawStatus) ? rawStatus : "pending";
+        const properties: FeatureProperties = {
+          ...propsObj,
+          verificationStatus,
+        } as FeatureProperties;
+        return {
+          id,
+          type: obj.type || "Feature",
+          geometry,
+          properties,
+        };
+      };
+
+      const featuresWithLocalStatus = Array.isArray(data.features)
+        ? data.features.map((f: unknown, i: number) => normalizeFeature(f, i))
+        : [];
 
       setFeatures(featuresWithLocalStatus);
     } catch (err) {
@@ -154,7 +159,7 @@ function App() {
           // find next visible feature based on previous filtered order
           const prevFiltered = filteredFeatures;
           const idx = prevFiltered.findIndex((f) => f.id === prevSelectedId);
-          let chosen: any = null;
+          let chosen: Feature | null = null;
           if (idx >= 0) {
             for (let j = idx + 1; j < prevFiltered.length; j++) {
               const candidateId = prevFiltered[j].id;
@@ -268,7 +273,8 @@ function App() {
           setFeatures((prev) =>
             prev.map((feature) => {
               const raw = (parsed as Record<string, string>)[feature.id];
-              const vs: "verified" | "pending" = raw === "verified" ? "verified" : "pending";
+              const vs: "verified" | "pending" =
+                raw === "verified" ? "verified" : "pending";
               return {
                 ...feature,
                 properties: {
@@ -304,7 +310,8 @@ function App() {
     setFeatures((prev) =>
       prev.map((feature) => {
         const raw = result[feature.id];
-        const vs: "verified" | "pending" = raw === "verified" ? "verified" : "pending";
+        const vs: "verified" | "pending" =
+          raw === "verified" ? "verified" : "pending";
         return {
           ...feature,
           properties: {
@@ -324,10 +331,10 @@ function App() {
   };
 
   const filteredFeatures = useMemo(() => {
-    const q = searchTerm.trim();
+    const q = debouncedSearchTerm.trim();
     if (!q) return features;
     return features.filter((f) => matchFeatureFromQuery(q, f));
-  }, [features, searchTerm]);
+  }, [features, debouncedSearchTerm]);
 
   const { verifiedCount, pendingCount } = useMemo(() => {
     const counts = { verifiedCount: 0, pendingCount: 0 };
@@ -552,7 +559,11 @@ function App() {
                   if (Array.isArray(value)) {
                     displayValue = value.join(", ");
                   } else if (prop.key === "image") {
-                    displayValue = value.length > 0 ? "あり" : "なし";
+                    if (Array.isArray(value)) {
+                      displayValue = value.length > 0 ? "あり" : "なし";
+                    } else {
+                      displayValue = String(value);
+                    }
                   } else {
                     displayValue = String(value);
                   }

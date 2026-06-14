@@ -1,3 +1,5 @@
+import { isFeature } from "../types";
+
 export type Node = WordNode | VarNode | SeqNode;
 
 export type WordNode = { type: "Word"; value: string };
@@ -45,8 +47,9 @@ function normalizeText(s: string): string {
 }
 
 // Evaluate AST against a feature. Default Word semantics: partial, case-insensitive match across all properties.
-export function matchNode(node: Node, feature: any): boolean {
+export function matchNode(node: Node, feature: unknown): boolean {
   if (!node) return true;
+  if (!isFeature(feature)) return false;
   if (node.type === "Seq") {
     return node.nodes.every((n) => matchNode(n, feature));
   }
@@ -55,7 +58,7 @@ export function matchNode(node: Node, feature: any): boolean {
     // search in properties
     const props = feature.properties || {};
     for (const key of Object.keys(props)) {
-      const val = props[key];
+      const val = props[key] as unknown;
       if (Array.isArray(val)) {
         for (const item of val) {
           if (normalizeText(String(item)).includes(term)) return true;
@@ -72,7 +75,7 @@ export function matchNode(node: Node, feature: any): boolean {
   if (node.type === "Var") {
     const name = normalizeText(node.name);
     // support common status vars
-    if (name === "confirmed" || name === "完了" || name === "confirmed") {
+    if (name === "confirmed" || name === "完了") {
       return (feature.properties?.verificationStatus || "") === "verified";
     }
     if (name === "pending" || name === "未完了") {
@@ -84,7 +87,10 @@ export function matchNode(node: Node, feature: any): boolean {
   return false;
 }
 
-export function matchFeatureFromQuery(query: string, feature: any): boolean {
+export function matchFeatureFromQuery(
+  query: string,
+  feature: unknown,
+): boolean {
   const ast = parse(query);
   return matchNode(ast, feature);
 }
