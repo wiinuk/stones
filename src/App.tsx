@@ -501,6 +501,27 @@ function App() {
     );
   };
 
+  // ref to the react-window list so we can programmatically scroll to the selected item
+  const listRef = useRef<any>(null);
+
+  // When filteredFeatures or selectedFeature changes, ensure the selected item is visible
+  useEffect(() => {
+    if (!selectedFeature) return;
+    const idx = filteredFeatures.findIndex(
+      (f) => String(f.id) === String(selectedFeature.id),
+    );
+    if (idx >= 0 && listRef.current) {
+      // yield to allow list to render updated items
+      setTimeout(() => {
+        try {
+          listRef.current.scrollToItem(idx, "center");
+        } catch (e) {
+          // ignore scroll errors
+        }
+      }, 0);
+    }
+  }, [filteredFeatures, selectedFeature]);
+
   if (loading) {
     return <div className="app-container">Loading features...</div>;
   }
@@ -627,6 +648,7 @@ function App() {
               itemCount={filteredFeatures.length}
               itemSize={ITEM_HEIGHT}
               width={"100%"}
+              ref={listRef}
             >
               {FeatureRow}
             </FixedSizeList>
