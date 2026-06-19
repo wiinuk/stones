@@ -7,7 +7,7 @@
     "dev:server": "cross-env PORT=3001 nodemon --ext js,ts,tsx,json,css server.js",
     "dev:client": "vite",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "prebuild": "node scripts/write-version.js && node scripts/copy-geojson.js",
+    "prebuild": "node scripts/write-version.cjs && node scripts/copy-geojson.js",
     "build": "tsc -b && vite build",
     "deploy": "npm run build && gh-pages -d dist",
     "test": "vitest",
