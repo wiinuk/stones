@@ -9,6 +9,13 @@ describe("tokenize", () => {
       "confirmed",
       "test",
     ]);
+    // fullwidth ＠ should be recognized the same way
+    expect(tokenize("東京 ＠confirmed test")).toEqual([
+      "東京",
+      "＠",
+      "confirmed",
+      "test",
+    ]);
   });
 });
 
@@ -19,6 +26,10 @@ describe("parse", () => {
     // @confirmed should be Var
     // @ts-ignore
     expect((ast as any).nodes[1].type).toBe("Var");
+    // fullwidth marker should also parse as Var
+    const ast2 = parse("東京 ＠confirmed");
+    // @ts-ignore
+    expect((ast2 as any).nodes[1].type).toBe("Var");
   });
 });
 
@@ -57,6 +68,9 @@ describe("matching", () => {
   it("matches var tokens for confirmed/pending", () => {
     expect(matchFeatureFromQuery("@confirmed", sampleFeature)).toBe(true);
     expect(matchFeatureFromQuery("@pending", sampleFeature)).toBe(false);
+    // fullwidth marker variants
+    expect(matchFeatureFromQuery("＠confirmed", sampleFeature)).toBe(true);
+    expect(matchFeatureFromQuery("＠pending", sampleFeature)).toBe(false);
   });
 
   it("ANDs tokens in sequence", () => {

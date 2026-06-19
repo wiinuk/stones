@@ -9,7 +9,8 @@ export type SeqNode = { type: "Seq"; nodes: Node[] };
 // Tokenize: split into '@' tokens and words (non-space, non-@ sequences)
 export function tokenize(query: string): string[] {
   const tokens: string[] = [];
-  const re = /@|[^@\s]+/g;
+  // accept ASCII @ and fullwidth ＠ (U+FF20)
+  const re = /@|＠|[^@\s＠]+/g;
   let m;
   while ((m = re.exec(query)) !== null) {
     tokens.push(m[0]);
@@ -23,14 +24,15 @@ export function parse(tokens: string[] | string): Node {
   const nodes: Node[] = [];
   for (let i = 0; i < toks.length; i++) {
     const t = toks[i];
-    if (t === "@") {
+    if (t === "@" || t === "＠") {
       const next = toks[i + 1];
       if (next && next !== "@") {
         nodes.push({ type: "Var", name: next });
         i += 1; // consume next
       } else {
         // stray @ treated as Word
-        nodes.push({ type: "Word", value: "@" });
+        // preserve the exact marker (ASCII or fullwidth) as a Word
+        nodes.push({ type: "Word", value: t });
       }
     } else {
       nodes.push({ type: "Word", value: t });
