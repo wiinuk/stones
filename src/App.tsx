@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { matchFeatureFromQuery } from "./search/query";
 import type { Feature, FeatureProperties } from "./types";
 import { isStatus } from "./types";
-import { VERSION, BUILD_TIME } from "./version";
+import { VERSION } from "./version";
 import { FixedSizeList } from "react-window";
 import "./App.css";
 
