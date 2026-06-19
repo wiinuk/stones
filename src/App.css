@@ -313,6 +313,32 @@ button.status-verified {
     width: 100%;
     max-width: none;
   }
+
+  /* Hide scrollbars on mobile while keeping padding/layout unchanged */
+  /* Hide scrollbars on mobile while keeping padding/layout unchanged */
+  html,
+  body,
+  .bottom-sheet,
+  .feature-list-container,
+  .sheet-body,
+  .feature-list-container *,
+  .sheet-body * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  .bottom-sheet::-webkit-scrollbar,
+  .feature-list-container::-webkit-scrollbar,
+  .sheet-body::-webkit-scrollbar,
+  .feature-list-container *::-webkit-scrollbar,
+  .sheet-body *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
 }
 
 /* Bottom sheet (mobile) */
