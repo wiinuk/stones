@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { matchFeatureFromQuery } from "./search/query";
 import type { Feature, FeatureProperties } from "./types";
 import { isStatus } from "./types";
+import { VERSION, BUILD_TIME } from "./version";
 import { FixedSizeList } from "react-window";
 import "./App.css";
 
@@ -108,7 +109,7 @@ function App() {
   };
 
   const updateFeatureStatus = async (
-    id: string,
+    id: string | number,
     status: "pending" | "verified",
   ) => {
     // Store status locally in localStorage (per-user)
@@ -116,12 +117,12 @@ function App() {
       const stored = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_PROGRESS_KEY) || "{}",
       );
-      stored[id] = status;
+      stored[String(id)] = status;
       localStorage.setItem(LOCAL_STORAGE_PROGRESS_KEY, JSON.stringify(stored));
 
       // create updated features synchronously to determine new filtered set
       const updatedFeatures = features.map((feature) =>
-        feature.id === id
+        String(feature.id) === String(id)
           ? {
               ...feature,
               properties: { ...feature.properties, verificationStatus: status },
@@ -141,8 +142,8 @@ function App() {
 
       if (prevSelectedId) {
         // if previously selected still visible, update its status in selection
-        if (newFiltered.some((f) => f.id === prevSelectedId)) {
-          if (selectedFeature && selectedFeature.id === id) {
+        if (newFiltered.some((f) => String(f.id) === String(prevSelectedId))) {
+          if (selectedFeature && String(selectedFeature.id) === String(id)) {
             setSelectedFeature((prev) =>
               prev
                 ? {
@@ -158,12 +159,16 @@ function App() {
         } else {
           // find next visible feature based on previous filtered order
           const prevFiltered = filteredFeatures;
-          const idx = prevFiltered.findIndex((f) => f.id === prevSelectedId);
+          const idx = prevFiltered.findIndex(
+            (f) => String(f.id) === String(prevSelectedId),
+          );
           let chosen: Feature | null = null;
           if (idx >= 0) {
             for (let j = idx + 1; j < prevFiltered.length; j++) {
               const candidateId = prevFiltered[j].id;
-              const found = newFiltered.find((nf) => nf.id === candidateId);
+              const found = newFiltered.find(
+                (nf) => String(nf.id) === String(candidateId),
+              );
               if (found) {
                 chosen = found;
                 break;
@@ -172,7 +177,9 @@ function App() {
             if (!chosen) {
               for (let j = idx - 1; j >= 0; j--) {
                 const candidateId = prevFiltered[j].id;
-                const found = newFiltered.find((nf) => nf.id === candidateId);
+                const found = newFiltered.find(
+                  (nf) => String(nf.id) === String(candidateId),
+                );
                 if (found) {
                   chosen = found;
                   break;
@@ -271,8 +278,9 @@ function App() {
             JSON.stringify(parsed),
           );
           setFeatures((prev) =>
-            prev.map((feature) => {
-              const raw = (parsed as Record<string, string>)[feature.id];
+            (prev || []).map((feature) => {
+              const key = String(feature.id);
+              const raw = (parsed as Record<string, string>)[key];
               const vs: "verified" | "pending" =
                 raw === "verified" ? "verified" : "pending";
               return {
@@ -308,8 +316,9 @@ function App() {
     }
     localStorage.setItem(LOCAL_STORAGE_PROGRESS_KEY, JSON.stringify(result));
     setFeatures((prev) =>
-      prev.map((feature) => {
-        const raw = result[feature.id];
+      (prev || []).map((feature) => {
+        const key = String(feature.id);
+        const raw = result[key];
         const vs: "verified" | "pending" =
           raw === "verified" ? "verified" : "pending";
         return {
@@ -335,6 +344,22 @@ function App() {
     if (!q) return features;
     return features.filter((f) => matchFeatureFromQuery(q, f));
   }, [features, debouncedSearchTerm]);
+
+  const latestFeatureTime = useMemo(() => {
+    if (!features || features.length === 0) return null;
+    // prefer properties.created_at, fallback to photo_date
+    const times = features
+      .map((f) => f.properties?.created_at || f.properties?.photo_date)
+      .filter(Boolean)
+      .map((s) => {
+        const d = new Date(String(s));
+        return isNaN(d.getTime()) ? null : d;
+      })
+      .filter((d) => d != null) as Date[];
+    if (times.length === 0) return null;
+    const latest = times.reduce((a, b) => (a > b ? a : b));
+    return latest.toISOString();
+  }, [features]);
 
   const { verifiedCount, pendingCount } = useMemo(() => {
     const counts = { verifiedCount: 0, pendingCount: 0 };
@@ -369,7 +394,7 @@ function App() {
         feature.properties.verificationStatus === "verified"
           ? "pending"
           : "verified";
-      updateFeatureStatus(feature.id, newStatus);
+      updateFeatureStatus(String(feature.id), newStatus);
     };
 
     const toggleButtonText =
@@ -435,6 +460,16 @@ function App() {
   return (
     <div className="app-container">
       <h1>石のデータベース検証</h1>
+      <div className="app-meta">
+        <small>Version: {VERSION}</small>
+        <br />
+        <small>
+          Latest feature:{" "}
+          {latestFeatureTime
+            ? new Date(latestFeatureTime).toLocaleString()
+            : "N/A"}
+        </small>
+      </div>
       <div className="filter-section">
         <input
           type="text"
