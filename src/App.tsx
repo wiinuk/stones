@@ -339,10 +339,69 @@ function App() {
     setShowImportDialog(false);
   };
 
-  const filteredFeatures = useMemo(() => {
+  const [filteredFeatures, setFilteredFeatures] = useState<Feature[]>([]);
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [filterProgress, setFilterProgress] = useState(0);
+
+  // Perform chunked filtering to avoid blocking UI thread for long datasets.
+  useEffect(() => {
+    let cancelled = false;
     const q = debouncedSearchTerm.trim();
-    if (!q) return features;
-    return features.filter((f) => matchFeatureFromQuery(q, f));
+
+    // If no query, use full list and skip chunking.
+    if (!q) {
+      setFilteredFeatures(features);
+      setFilterProgress(features.length === 0 ? 100 : 100);
+      setIsFiltering(false);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    setIsFiltering(true);
+    setFilterProgress(0);
+
+    const results: Feature[] = [];
+    const total = features.length;
+    const chunkSize = Math.max(100, Math.floor(total / 50)); // adaptive chunk size
+    let index = 0;
+    let chunkCount = 0;
+
+    const processChunk = () => {
+      if (cancelled) return;
+      const end = Math.min(index + chunkSize, total);
+      for (; index < end; index++) {
+        const f = features[index];
+        try {
+          if (matchFeatureFromQuery(q, f)) results.push(f);
+        } catch (e) {
+          // ignore single feature error
+        }
+      }
+      chunkCount++;
+      // update progress and partial results periodically to reduce churn
+      if (chunkCount % 3 === 0 || index >= total) {
+        setFilteredFeatures(results.slice());
+        setFilterProgress(
+          total === 0 ? 100 : Math.round((index / total) * 100),
+        );
+      }
+
+      if (index < total) {
+        // yield to event loop — use setTimeout to be compatible with environments
+        setTimeout(processChunk, 0);
+      } else {
+        setIsFiltering(false);
+        setFilterProgress(100);
+      }
+    };
+
+    // start processing asynchronously
+    setTimeout(processChunk, 0);
+
+    return () => {
+      cancelled = true;
+    };
   }, [features, debouncedSearchTerm]);
 
   const latestFeatureTime = useMemo(() => {
@@ -548,9 +607,14 @@ function App() {
         )}
         <p className="feature-count">
           表示中のFeature数: {filteredFeatures.length} / 全Feature数:{" "}
-          {features.length}
-          (完了: <span className="status-verified">{verifiedCount}</span>,
-          未完了: <span className="status-pending">{pendingCount}</span>)
+          {features.length} ( 完了:{" "}
+          <span className="status-verified">{verifiedCount}</span>, 未完了:{" "}
+          <span className="status-pending">{pendingCount}</span>)
+          {isFiltering && (
+            <span style={{ marginLeft: 8 }}>
+              フィルタ処理中... {filterProgress}%
+            </span>
+          )}
         </p>
         {copyFeedback && <div className="copy-feedback">{copyFeedback}</div>}
       </div>
