@@ -31,6 +31,23 @@ const sampleFeature = {
   },
 };
 
+const numericIdFeature = {
+  id: 123,
+  properties: {
+    name: "数値IDの石",
+    place: "東京都",
+    verificationStatus: "verified",
+  },
+};
+
+const noIdFeature = {
+  properties: {
+    name: "IDなしの石",
+    place: "神奈川県",
+    verificationStatus: "pending",
+  },
+};
+
 describe("matching", () => {
   it("matches word tokens across properties", () => {
     expect(matchFeatureFromQuery("日枝", sampleFeature)).toBe(true);
@@ -45,5 +62,12 @@ describe("matching", () => {
   it("ANDs tokens in sequence", () => {
     expect(matchFeatureFromQuery("日枝 東京都", sampleFeature)).toBe(true);
     expect(matchFeatureFromQuery("日枝 横浜", sampleFeature)).toBe(false);
+  });
+
+  it("supports numeric id features and features without id", () => {
+    expect(matchFeatureFromQuery("数値ID", numericIdFeature)).toBe(true);
+    expect(matchFeatureFromQuery("IDなし", noIdFeature)).toBe(true);
+    // ensure non-matching still returns false
+    expect(matchFeatureFromQuery("横浜", numericIdFeature)).toBe(false);
   });
 });

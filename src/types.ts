@@ -19,7 +19,8 @@ export interface FeatureProperties {
 }
 
 export interface Feature {
-  id: string;
+  // id may be string or number (GeoJSON allows numeric ids), and may be omitted
+  id?: string | number;
   type: string;
   geometry: {
     type: string;
@@ -34,7 +35,11 @@ export const isStatus = (s: unknown): s is "pending" | "verified" =>
 export function isFeature(obj: unknown): obj is Feature {
   if (!obj || typeof obj !== "object") return false;
   const o = obj as any;
-  if (typeof o.id !== "string" && !(o.properties && o.properties.id))
+  // require either an id (string|number) or a properties object
+  if (o.id == null && (!o.properties || typeof o.properties !== "object"))
+    return false;
+  // if id is provided, it must be a string or number
+  if (o.id != null && typeof o.id !== "string" && typeof o.id !== "number")
     return false;
   if (!o.properties || typeof o.properties !== "object") return false;
   return true;
