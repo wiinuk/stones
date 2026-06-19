@@ -327,9 +327,11 @@ button.status-verified {
   box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
   transition: bottom 240ms ease-in-out;
   max-height: 75%;
-  overflow: auto;
   z-index: 3000;
-  padding: 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .bottom-sheet.open {
   bottom: 0;
@@ -338,8 +340,12 @@ button.status-verified {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 4px;
+  padding: 8px 12px;
   border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
 }
 .sheet-close {
   background: transparent;
@@ -349,7 +355,9 @@ button.status-verified {
   cursor: pointer;
 }
 .sheet-body {
-  padding: 8px 4px 24px 4px;
+  padding: 12px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .bottom-sheet iframe {
