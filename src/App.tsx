@@ -522,6 +522,19 @@ function App() {
     }
   }, [filteredFeatures, selectedFeature]);
 
+  // detect mobile viewport to switch to bottom-sheet UI
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const handler = () => setIsMobile(mq.matches);
+    handler();
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const showBottomSheet = isMobile && !!selectedFeature;
+  const closeBottomSheet = () => setSelectedFeature(null);
+
   if (loading) {
     return <div className="app-container">Loading features...</div>;
   }
@@ -656,7 +669,7 @@ function App() {
         </div>
 
         <div className="details-section">
-          {selectedFeature ? (
+          {!isMobile && selectedFeature ? (
             <div className="feature-details-panel">
               <h2>
                 {selectedFeature.properties?.name ||
@@ -758,10 +771,107 @@ function App() {
                 )}
             </div>
           ) : (
-            <p className="select-feature-message">
-              地物を選択すると詳細が表示されます。
-            </p>
+            !isMobile && (
+              <p className="select-feature-message">
+                地物を選択すると詳細が表示されます。
+              </p>
+            )
           )}
+        </div>
+      </div>
+
+      {/* Bottom sheet for mobile */}
+      <div className={`bottom-sheet ${showBottomSheet ? "open" : ""}`}>
+        <div className="sheet-header">
+          <div style={{ fontWeight: "bold" }}>
+            {selectedFeature?.properties?.name ||
+              `Feature ${selectedFeature?.id}`}
+          </div>
+          <button className="sheet-close" onClick={closeBottomSheet}>
+            閉じる
+          </button>
+        </div>
+        <div className="sheet-body">
+          {selectedFeature ? (
+            <div>
+              <p>
+                <strong>Status:</strong>{" "}
+                <span
+                  className={`status-${selectedFeature.properties.verificationStatus}`}
+                >
+                  {selectedFeature.properties.verificationStatus === "verified"
+                    ? "完了"
+                    : "未完了"}
+                </span>
+              </p>
+              {DETAIL_PROPERTIES.map((prop) => {
+                const value = selectedFeature.properties[prop.key];
+                if (value !== undefined && value !== null && value !== "") {
+                  let displayValue: React.ReactNode;
+                  if (Array.isArray(value)) {
+                    displayValue = value.join(", ");
+                  } else if (prop.key === "image") {
+                    if (Array.isArray(value)) {
+                      displayValue = value.length > 0 ? "あり" : "なし";
+                    } else {
+                      displayValue = String(value);
+                    }
+                  } else {
+                    displayValue = String(value);
+                  }
+                  return (
+                    <p key={prop.key}>
+                      <strong>{prop.label}:</strong> {displayValue}
+                    </p>
+                  );
+                }
+                return null;
+              })}
+              <div style={{ marginTop: 8 }}>
+                <button
+                  onClick={() =>
+                    copyFeaturePropertiesToClipboard(selectedFeature.properties)
+                  }
+                  className="copy-json-button"
+                >
+                  JSONをコピー
+                </button>
+              </div>
+              {selectedFeature.geometry &&
+                selectedFeature.geometry.type === "Point" && (
+                  <div style={{ marginTop: 12 }}>
+                    <h3>地図</h3>
+                    <a
+                      href={`http://maps.google.com/maps?q=loc:${selectedFeature.geometry.coordinates[1]}+${selectedFeature.geometry.coordinates[0]}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="external-map-link-button"
+                      style={{ marginRight: 8 }}
+                    >
+                      Googleマップで開く
+                    </a>
+                    <a
+                      href={`https://archives.sekibutsu.info/${selectedFeature.id}.html`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="external-map-link-button"
+                    >
+                      みんなで石仏調査
+                    </a>
+                    <div style={{ marginTop: 8 }}>
+                      <iframe
+                        src={mapUrl}
+                        width="100%"
+                        height={180}
+                        style={{ border: 0, marginTop: "8px" }}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    </div>
+                  </div>
+                )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

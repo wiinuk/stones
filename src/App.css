@@ -1,4 +1,17 @@
 /* src/App.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -285,10 +298,61 @@ button.status-verified {
 @media (max-width: 768px) {
   .content-wrapper {
     flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
   }
   .feature-list-section,
   .details-section {
     min-width: unset;
     width: 100%;
   }
+  #root {
+    padding: 1rem;
+  }
+  .search-input {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Bottom sheet (mobile) */
+.bottom-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  background: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
+  transition: bottom 240ms ease-in-out;
+  max-height: 75%;
+  overflow: auto;
+  z-index: 3000;
+  padding: 12px;
+}
+.bottom-sheet.open {
+  bottom: 0;
+}
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4px;
+  border-bottom: 1px solid #eee;
+}
+.sheet-close {
+  background: transparent;
+  border: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.sheet-body {
+  padding: 8px 4px 24px 4px;
+}
+
+.bottom-sheet iframe {
+  max-height: 220px;
+  width: 100%;
 }
