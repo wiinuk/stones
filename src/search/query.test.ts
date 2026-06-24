@@ -17,6 +17,11 @@ describe("tokenize", () => {
       "test",
     ]);
   });
+
+  it("splits fullwidth parentheses and hyphen", () => {
+    expect(tokenize("（東京 横浜）")).toEqual(["（", "東京", "横浜", "）"]);
+    expect(tokenize("－横浜")).toEqual(["－", "横浜"]);
+  });
 });
 
 describe("parse", () => {
@@ -62,6 +67,20 @@ describe("parse", () => {
     expect((ast2 as any).nodes[1].type).toBe("Not");
     // @ts-ignore
     expect((ast2 as any).nodes[1].node.type).toBe("Seq");
+
+    const ast3 = parse("（東京 横浜）");
+    expect(ast3.type).toBe("Seq");
+    // @ts-ignore
+    expect((ast3 as any).nodes[0].type).toBe("Word");
+    // @ts-ignore
+    expect((ast3 as any).nodes[1].type).toBe("Word");
+
+    const ast4 = parse("東京 －(横浜 日枝）");
+    expect(ast4.type).toBe("Seq");
+    // @ts-ignore
+    expect((ast4 as any).nodes[1].type).toBe("Not");
+    // @ts-ignore
+    expect((ast4 as any).nodes[1].node.type).toBe("Seq");
   });
 });
 

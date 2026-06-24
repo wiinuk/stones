@@ -7,11 +7,11 @@ export type VarNode = { type: "Var"; name: string };
 export type SeqNode = { type: "Seq"; nodes: Node[] };
 export type NotNode = { type: "Not"; node: Node };
 
-// Tokenize: split into '@' tokens, parentheses, and words (non-space, non-@ sequences)
+// Tokenize: split into '@' tokens, parentheses, fullwidth parentheses, hyphens, and words.
 export function tokenize(query: string): string[] {
   const tokens: string[] = [];
-  // accept ASCII @ and fullwidth ＠ (U+FF20)
-  const re = /@|＠|\(|\)|[^@\s＠()]+/g;
+  // accept ASCII and fullwidth variants of @, parentheses, and hyphen
+  const re = /@|＠|\(|\)|（|）|－|[^@\s＠()（）－]+/g;
   let m;
   while ((m = re.exec(query)) !== null) {
     tokens.push(m[0]);
@@ -30,7 +30,13 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
   const parseSingle = (token: string): [Node, number] => {
     if (token === "@" || token === "＠") {
       const next = tokens[i + 1];
-      if (next && next !== "@" && next !== "＠" && next !== ")") {
+      if (
+        next &&
+        next !== "@" &&
+        next !== "＠" &&
+        next !== ")" &&
+        next !== "）"
+      ) {
         i += 2;
         return [parseVar(next), i];
       }
@@ -38,7 +44,7 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
       return [parseWord(token), i];
     }
 
-    if (token === "-") {
+    if (token === "-" || token === "－") {
       const next = tokens[i + 1];
       if (next) {
         if (next === "@" || next === "＠") {
@@ -48,11 +54,11 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
             return [parseNegated(parseVar(nextVar)), i];
           }
         }
-        if (next === "(") {
+        if (next === "(" || next === "（") {
           i += 2;
           const [node, nextIndex] = parseSequence(tokens, i);
           i = nextIndex;
-          if (tokens[i] === ")") i += 1;
+          if (tokens[i] === ")" || tokens[i] === "）") i += 1;
           return [parseNegated(node), i];
         }
         i += 2;
@@ -62,7 +68,7 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
       return [parseWord(token), i];
     }
 
-    if (token.startsWith("-") && token.length > 1) {
+    if ((token.startsWith("-") || token.startsWith("－")) && token.length > 1) {
       const value = token.slice(1);
       if (value === "@" || value === "＠") {
         const nextVar = tokens[i + 1];
@@ -71,22 +77,22 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
           return [parseNegated(parseVar(nextVar)), i];
         }
       }
-      if (value === "(") {
+      if (value === "(" || value === "（") {
         i += 1;
         const [node, nextIndex] = parseSequence(tokens, i);
         i = nextIndex;
-        if (tokens[i] === ")") i += 1;
+        if (tokens[i] === ")" || tokens[i] === "）") i += 1;
         return [parseNegated(node), i];
       }
       i += 1;
       return [parseNegated(parseWord(value)), i];
     }
 
-    if (token === "(") {
+    if (token === "(" || token === "（") {
       i += 1;
       const [node, nextIndex] = parseSequence(tokens, i);
       i = nextIndex;
-      if (tokens[i] === ")") i += 1;
+      if (tokens[i] === ")" || tokens[i] === "）") i += 1;
       return [node, i];
     }
 
@@ -96,7 +102,7 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
 
   while (i < tokens.length) {
     const token = tokens[i];
-    if (token === ")") break;
+    if (token === ")" || token === "）") break;
     const [node, nextIndex] = parseSingle(token);
     nodes.push(node);
     i = nextIndex;
