@@ -5,13 +5,13 @@ export type Node = WordNode | VarNode | SeqNode | NotNode;
 export type WordNode = { type: "Word"; value: string };
 export type VarNode = { type: "Var"; name: string };
 export type SeqNode = { type: "Seq"; nodes: Node[] };
-export type NotNode = { type: "Not"; node: WordNode | VarNode };
+export type NotNode = { type: "Not"; node: Node };
 
-// Tokenize: split into '@' tokens and words (non-space, non-@ sequences)
+// Tokenize: split into '@' tokens, parentheses, and words (non-space, non-@ sequences)
 export function tokenize(query: string): string[] {
   const tokens: string[] = [];
   // accept ASCII @ and fullwidth ＠ (U+FF20)
-  const re = /@|＠|[^@\s＠]+/g;
+  const re = /@|＠|\(|\)|[^@\s＠()]+/g;
   let m;
   while ((m = re.exec(query)) !== null) {
     tokens.push(m[0]);
@@ -19,72 +19,98 @@ export function tokenize(query: string): string[] {
   return tokens;
 }
 
-// Parse tokens into AST: Var when '@' followed by word, otherwise Word nodes.
-export function parse(tokens: string[] | string): Node {
-  const toks = typeof tokens === "string" ? tokenize(tokens) : tokens;
+function parseSequence(tokens: string[], start = 0): [Node, number] {
   const nodes: Node[] = [];
-  for (let i = 0; i < toks.length; i++) {
-    const t = toks[i];
+  let i = start;
 
-    const parseWord = (value: string): WordNode => ({ type: "Word", value });
-    const parseVar = (name: string): VarNode => ({ type: "Var", name });
-    const parseNegated = (node: WordNode | VarNode): NotNode => ({
-      type: "Not",
-      node,
-    });
+  const parseWord = (value: string): WordNode => ({ type: "Word", value });
+  const parseVar = (name: string): VarNode => ({ type: "Var", name });
+  const parseNegated = (node: Node): NotNode => ({ type: "Not", node });
 
-    if (t === "@" || t === "＠") {
-      const next = toks[i + 1];
-      if (next && next !== "@") {
-        nodes.push(parseVar(next));
-        i += 1; // consume next
-      } else {
-        // stray @ treated as Word
-        nodes.push(parseWord(t));
+  const parseSingle = (token: string): [Node, number] => {
+    if (token === "@" || token === "＠") {
+      const next = tokens[i + 1];
+      if (next && next !== "@" && next !== "＠" && next !== ")") {
+        i += 2;
+        return [parseVar(next), i];
       }
-      continue;
+      i += 1;
+      return [parseWord(token), i];
     }
 
-    if (t === "-") {
-      const next = toks[i + 1];
+    if (token === "-") {
+      const next = tokens[i + 1];
       if (next) {
         if (next === "@" || next === "＠") {
-          const nextVar = toks[i + 2];
-          if (nextVar && nextVar !== "@") {
-            nodes.push(parseNegated(parseVar(nextVar)));
-            i += 2;
-            continue;
+          const nextVar = tokens[i + 2];
+          if (nextVar && nextVar !== "@" && nextVar !== "＠") {
+            i += 3;
+            return [parseNegated(parseVar(nextVar)), i];
           }
-        } else {
-          nodes.push(parseNegated(parseWord(next)));
-          i += 1;
-          continue;
         }
+        if (next === "(") {
+          i += 2;
+          const [node, nextIndex] = parseSequence(tokens, i);
+          i = nextIndex;
+          if (tokens[i] === ")") i += 1;
+          return [parseNegated(node), i];
+        }
+        i += 2;
+        return [parseNegated(parseWord(next)), i];
       }
-      nodes.push(parseWord(t));
-      continue;
+      i += 1;
+      return [parseWord(token), i];
     }
 
-    if (t.startsWith("-") && t.length > 1) {
-      const value = t.slice(1);
+    if (token.startsWith("-") && token.length > 1) {
+      const value = token.slice(1);
       if (value === "@" || value === "＠") {
-        const nextVar = toks[i + 1];
-        if (nextVar && nextVar !== "@") {
-          nodes.push(parseNegated(parseVar(nextVar)));
-          i += 1;
-          continue;
+        const nextVar = tokens[i + 1];
+        if (nextVar && nextVar !== "@" && nextVar !== "＠") {
+          i += 2;
+          return [parseNegated(parseVar(nextVar)), i];
         }
       }
-      nodes.push(parseNegated(parseWord(value)));
-      continue;
+      if (value === "(") {
+        i += 1;
+        const [node, nextIndex] = parseSequence(tokens, i);
+        i = nextIndex;
+        if (tokens[i] === ")") i += 1;
+        return [parseNegated(node), i];
+      }
+      i += 1;
+      return [parseNegated(parseWord(value)), i];
     }
 
-    nodes.push(parseWord(t));
+    if (token === "(") {
+      i += 1;
+      const [node, nextIndex] = parseSequence(tokens, i);
+      i = nextIndex;
+      if (tokens[i] === ")") i += 1;
+      return [node, i];
+    }
+
+    i += 1;
+    return [parseWord(token), i];
+  };
+
+  while (i < tokens.length) {
+    const token = tokens[i];
+    if (token === ")") break;
+    const [node, nextIndex] = parseSingle(token);
+    nodes.push(node);
+    i = nextIndex;
   }
 
-  if (nodes.length === 0) return { type: "Seq", nodes: [] };
-  if (nodes.length === 1) return nodes[0];
-  return { type: "Seq", nodes };
+  if (nodes.length === 0) return [{ type: "Seq", nodes: [] }, i];
+  if (nodes.length === 1) return [nodes[0], i];
+  return [{ type: "Seq", nodes }, i];
+}
+
+export function parse(tokens: string[] | string): Node {
+  const toks = typeof tokens === "string" ? tokenize(tokens) : tokens;
+  const [node] = parseSequence(toks, 0);
+  return node;
 }
 
 function normalizeText(s: string): string {

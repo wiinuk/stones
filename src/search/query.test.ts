@@ -47,6 +47,22 @@ describe("parse", () => {
     // @ts-ignore
     expect((ast2 as any).node.name).toBe("confirmed");
   });
+
+  it("parses grouped expressions", () => {
+    const ast = parse("(東京 横浜)");
+    expect(ast.type).toBe("Seq");
+    // @ts-ignore
+    expect((ast as any).nodes[0].type).toBe("Word");
+    // @ts-ignore
+    expect((ast as any).nodes[1].type).toBe("Word");
+
+    const ast2 = parse("東京 -(横浜 日枝)");
+    expect(ast2.type).toBe("Seq");
+    // @ts-ignore
+    expect((ast2 as any).nodes[1].type).toBe("Not");
+    // @ts-ignore
+    expect((ast2 as any).nodes[1].node.type).toBe("Seq");
+  });
 });
 
 const sampleFeature = {
