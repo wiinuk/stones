@@ -31,6 +31,22 @@ describe("parse", () => {
     // @ts-ignore
     expect((ast2 as any).nodes[1].type).toBe("Var");
   });
+
+  it("parses negative terms", () => {
+    const ast = parse("-横浜");
+    expect(ast.type).toBe("Not");
+    // @ts-ignore
+    expect((ast as any).node.type).toBe("Word");
+    // @ts-ignore
+    expect((ast as any).node.value).toBe("横浜");
+
+    const ast2 = parse("-@confirmed");
+    expect(ast2.type).toBe("Not");
+    // @ts-ignore
+    expect((ast2 as any).node.type).toBe("Var");
+    // @ts-ignore
+    expect((ast2 as any).node.name).toBe("confirmed");
+  });
 });
 
 const sampleFeature = {
@@ -76,6 +92,13 @@ describe("matching", () => {
   it("ANDs tokens in sequence", () => {
     expect(matchFeatureFromQuery("日枝 東京都", sampleFeature)).toBe(true);
     expect(matchFeatureFromQuery("日枝 横浜", sampleFeature)).toBe(false);
+  });
+
+  it("supports negative tokens", () => {
+    expect(matchFeatureFromQuery("東京都 -横浜", sampleFeature)).toBe(true);
+    expect(matchFeatureFromQuery("東京都 -東京都", sampleFeature)).toBe(false);
+    expect(matchFeatureFromQuery("-@confirmed", sampleFeature)).toBe(false);
+    expect(matchFeatureFromQuery("-@pending", sampleFeature)).toBe(true);
   });
 
   it("supports numeric id features and features without id", () => {

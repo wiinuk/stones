@@ -1,10 +1,11 @@
 import { isFeature } from "../types";
 
-export type Node = WordNode | VarNode | SeqNode;
+export type Node = WordNode | VarNode | SeqNode | NotNode;
 
 export type WordNode = { type: "Word"; value: string };
 export type VarNode = { type: "Var"; name: string };
 export type SeqNode = { type: "Seq"; nodes: Node[] };
+export type NotNode = { type: "Not"; node: WordNode | VarNode };
 
 // Tokenize: split into '@' tokens and words (non-space, non-@ sequences)
 export function tokenize(query: string): string[] {
@@ -24,19 +25,61 @@ export function parse(tokens: string[] | string): Node {
   const nodes: Node[] = [];
   for (let i = 0; i < toks.length; i++) {
     const t = toks[i];
+
+    const parseWord = (value: string): WordNode => ({ type: "Word", value });
+    const parseVar = (name: string): VarNode => ({ type: "Var", name });
+    const parseNegated = (node: WordNode | VarNode): NotNode => ({
+      type: "Not",
+      node,
+    });
+
     if (t === "@" || t === "＠") {
       const next = toks[i + 1];
       if (next && next !== "@") {
-        nodes.push({ type: "Var", name: next });
+        nodes.push(parseVar(next));
         i += 1; // consume next
       } else {
         // stray @ treated as Word
-        // preserve the exact marker (ASCII or fullwidth) as a Word
-        nodes.push({ type: "Word", value: t });
+        nodes.push(parseWord(t));
       }
-    } else {
-      nodes.push({ type: "Word", value: t });
+      continue;
     }
+
+    if (t === "-") {
+      const next = toks[i + 1];
+      if (next) {
+        if (next === "@" || next === "＠") {
+          const nextVar = toks[i + 2];
+          if (nextVar && nextVar !== "@") {
+            nodes.push(parseNegated(parseVar(nextVar)));
+            i += 2;
+            continue;
+          }
+        } else {
+          nodes.push(parseNegated(parseWord(next)));
+          i += 1;
+          continue;
+        }
+      }
+      nodes.push(parseWord(t));
+      continue;
+    }
+
+    if (t.startsWith("-") && t.length > 1) {
+      const value = t.slice(1);
+      if (value === "@" || value === "＠") {
+        const nextVar = toks[i + 1];
+        if (nextVar && nextVar !== "@") {
+          nodes.push(parseNegated(parseVar(nextVar)));
+          i += 1;
+          continue;
+        }
+      }
+      nodes.push(parseNegated(parseWord(value)));
+      continue;
+    }
+
+    nodes.push(parseWord(t));
   }
 
   if (nodes.length === 0) return { type: "Seq", nodes: [] };
@@ -54,6 +97,9 @@ export function matchNode(node: Node, feature: unknown): boolean {
   if (!isFeature(feature)) return false;
   if (node.type === "Seq") {
     return node.nodes.every((n) => matchNode(n, feature));
+  }
+  if (node.type === "Not") {
+    return !matchNode(node.node, feature);
   }
   if (node.type === "Word") {
     const term = normalizeText(node.value);
