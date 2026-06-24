@@ -82,6 +82,38 @@ describe("parse", () => {
     // @ts-ignore
     expect((ast4 as any).nodes[1].node.type).toBe("Seq");
   });
+
+  it("parses OR expressions", () => {
+    const ast = parse("東京|横浜");
+    expect(ast.type).toBe("Or");
+    // @ts-ignore
+    expect((ast as any).nodes.length).toBe(2);
+    // @ts-ignore
+    expect((ast as any).nodes[0].type).toBe("Word");
+    // @ts-ignore
+    expect((ast as any).nodes[1].type).toBe("Word");
+
+    const ast2 = parse("東京 ｜横浜");
+    expect(ast2.type).toBe("Or");
+    // @ts-ignore
+    expect((ast2 as any).nodes.length).toBe(2);
+  });
+
+  it("parses inverted OR groups correctly", () => {
+    const ast = parse("NotMatchWord (NotMatchWord | 東京都)");
+    expect(ast.type).toBe("Seq");
+    // @ts-ignore
+    expect((ast as any).nodes.length).toBe(2);
+    // @ts-ignore
+    expect((ast as any).nodes[0].type).toBe("Word");
+    // @ts-ignore
+    expect((ast as any).nodes[1].type).toBe("Or");
+
+    const ast2 = parse("NotMatchWord (東京都 | NotMatchWord)");
+    expect(ast2.type).toBe("Seq");
+    // @ts-ignore
+    expect((ast2 as any).nodes[1].type).toBe("Or");
+  });
 });
 
 const sampleFeature = {
@@ -134,6 +166,12 @@ describe("matching", () => {
     expect(matchFeatureFromQuery("東京都 -東京都", sampleFeature)).toBe(false);
     expect(matchFeatureFromQuery("-@confirmed", sampleFeature)).toBe(false);
     expect(matchFeatureFromQuery("-@pending", sampleFeature)).toBe(true);
+  });
+
+  it("supports OR matching", () => {
+    expect(matchFeatureFromQuery("横浜|東京都", sampleFeature)).toBe(true);
+    expect(matchFeatureFromQuery("横浜｜大阪", sampleFeature)).toBe(false);
+    expect(matchFeatureFromQuery("横浜｜東京都", sampleFeature)).toBe(true);
   });
 
   it("supports numeric id features and features without id", () => {

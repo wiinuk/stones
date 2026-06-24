@@ -1,17 +1,18 @@
 import { isFeature } from "../types";
 
-export type Node = WordNode | VarNode | SeqNode | NotNode;
+export type Node = WordNode | VarNode | SeqNode | NotNode | OrNode;
 
 export type WordNode = { type: "Word"; value: string };
 export type VarNode = { type: "Var"; name: string };
 export type SeqNode = { type: "Seq"; nodes: Node[] };
 export type NotNode = { type: "Not"; node: Node };
+export type OrNode = { type: "Or"; nodes: Node[] };
 
-// Tokenize: split into '@' tokens, parentheses, fullwidth parentheses, hyphens, and words.
+// Tokenize: split into '@' tokens, OR operators, parentheses, fullwidth variants, hyphens, and words.
 export function tokenize(query: string): string[] {
   const tokens: string[] = [];
-  // accept ASCII and fullwidth variants of @, parentheses, and hyphen
-  const re = /@|＠|\(|\)|（|）|－|[^@\s＠()（）－]+/g;
+  // accept ASCII and fullwidth variants of @, parentheses, OR, and hyphen
+  const re = /@|＠|\(|\)|（|）|\||｜|－|[^@\s＠()（）\|｜－]+/g;
   let m;
   while ((m = re.exec(query)) !== null) {
     tokens.push(m[0]);
@@ -56,7 +57,7 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
         }
         if (next === "(" || next === "（") {
           i += 2;
-          const [node, nextIndex] = parseSequence(tokens, i);
+          const [node, nextIndex] = parseOr(tokens, i);
           i = nextIndex;
           if (tokens[i] === ")" || tokens[i] === "）") i += 1;
           return [parseNegated(node), i];
@@ -79,7 +80,7 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
       }
       if (value === "(" || value === "（") {
         i += 1;
-        const [node, nextIndex] = parseSequence(tokens, i);
+        const [node, nextIndex] = parseOr(tokens, i);
         i = nextIndex;
         if (tokens[i] === ")" || tokens[i] === "）") i += 1;
         return [parseNegated(node), i];
@@ -90,7 +91,7 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
 
     if (token === "(" || token === "（") {
       i += 1;
-      const [node, nextIndex] = parseSequence(tokens, i);
+      const [node, nextIndex] = parseOr(tokens, i);
       i = nextIndex;
       if (tokens[i] === ")" || tokens[i] === "）") i += 1;
       return [node, i];
@@ -102,7 +103,8 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
 
   while (i < tokens.length) {
     const token = tokens[i];
-    if (token === ")" || token === "）") break;
+    if (token === ")" || token === "）" || token === "|" || token === "｜")
+      break;
     const [node, nextIndex] = parseSingle(token);
     nodes.push(node);
     i = nextIndex;
@@ -113,9 +115,29 @@ function parseSequence(tokens: string[], start = 0): [Node, number] {
   return [{ type: "Seq", nodes }, i];
 }
 
+function parseOr(tokens: string[] | string, start = 0): [Node, number] {
+  const toks = typeof tokens === "string" ? tokenize(tokens) : tokens;
+  const nodes: Node[] = [];
+  let i = start;
+
+  while (i < toks.length) {
+    const [node, nextIndex] = parseSequence(toks, i);
+    nodes.push(node);
+    i = nextIndex;
+    if (toks[i] === "|" || toks[i] === "｜") {
+      i += 1;
+      continue;
+    }
+    break;
+  }
+
+  if (nodes.length === 1) return [nodes[0], i];
+  return [{ type: "Or", nodes }, i];
+}
+
 export function parse(tokens: string[] | string): Node {
   const toks = typeof tokens === "string" ? tokenize(tokens) : tokens;
-  const [node] = parseSequence(toks, 0);
+  const [node] = parseOr(toks, 0);
   return node;
 }
 
@@ -129,6 +151,9 @@ export function matchNode(node: Node, feature: unknown): boolean {
   if (!isFeature(feature)) return false;
   if (node.type === "Seq") {
     return node.nodes.every((n) => matchNode(n, feature));
+  }
+  if (node.type === "Or") {
+    return node.nodes.some((n) => matchNode(n, feature));
   }
   if (node.type === "Not") {
     return !matchNode(node.node, feature);
