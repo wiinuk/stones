@@ -1,5 +1,12 @@
 # React + TypeScript + Vite
 
+## Data source
+
+This project now uses the upstream map data repository as a git submodule. The GeoJSON file is copied from the submodule into the public assets directory during build and sync steps.
+
+- Initial setup: `git submodule update --init --recursive`
+- Refresh data: `npm run sync:data`
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
