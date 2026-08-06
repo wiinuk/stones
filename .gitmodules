@@ -1,0 +1,4 @@
+[submodule "vendor/map_data"]
+	path = vendor/map_data
+	url = https://github.com/sekibutsu-info/map_data.git
+	branch = main
