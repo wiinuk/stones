@@ -28,3 +28,6 @@ verification_progress.json
 
 # Ignore generated version file
 /src/version.ts
+
+# Vite
+.vite/
