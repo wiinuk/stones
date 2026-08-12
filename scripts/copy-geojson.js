@@ -5,20 +5,20 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const rootGeo = path.join(__dirname, "..", "stone_db.geojson");
 const submoduleGeo = path.join(
   __dirname,
   "..",
   "vendor",
   "map_data",
-  "stone_db.geojson"
+  "stone_db.geojson",
 );
 const publicGeo = path.join(__dirname, "..", "public", "stone_db.geojson");
 
-const sourceGeo = existsSync(submoduleGeo) ? submoduleGeo : rootGeo;
+const sourceGeo = submoduleGeo;
 
 if (!existsSync(sourceGeo)) {
-  console.error("Source stone_db.geojson not found at", sourceGeo);
+  console.error("Submodule stone_db.geojson not found at", sourceGeo);
+  console.error("Please run: git submodule update --remote --init");
   process.exit(1);
 }
 

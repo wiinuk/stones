@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const GEOJSON_PATH = path.join(__dirname, "stone_db.geojson");
+const GEOJSON_PATH = path.join(__dirname, "public", "stone_db.geojson");
 // NOTE: Verification progress is stored per-user in the browser (localStorage)
 // to allow this app to be deployed as a static site (e.g. GitHub Pages).
 // Server no longer persists or manages verification_progress.json.

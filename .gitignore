@@ -29,5 +29,8 @@ verification_progress.json
 # Ignore generated version file
 /src/version.ts
 
+# Ignore old root geojson file (use submodule instead)
+stone_db.geojson
+
 # Vite
 .vite/
