@@ -1,6 +1,7 @@
 // src/App.tsx
 import { useState, useEffect, useMemo, useRef } from "react";
 import { matchFeatureFromQuery } from "./search/query";
+import { buildGoogleMapEmbedUrl, getFeatureMapKey } from "./map";
 import type { Feature, FeatureProperties } from "./types";
 import { isStatus } from "./types";
 import { VERSION } from "./version";
@@ -547,8 +548,12 @@ function App() {
     selectedFeature &&
     selectedFeature.geometry &&
     selectedFeature.geometry.type === "Point"
-      ? `https://maps.google.com/maps?q=${selectedFeature.geometry.coordinates[1]},${selectedFeature.geometry.coordinates[0]}&output=embed&t=h`
+      ? buildGoogleMapEmbedUrl(
+          selectedFeature.geometry.coordinates[1],
+          selectedFeature.geometry.coordinates[0],
+        )
       : "";
+  const mapIframeKey = getFeatureMapKey(selectedFeature);
 
   return (
     <div className="app-container">
@@ -759,6 +764,7 @@ function App() {
                       みんなで石仏調査
                     </a>
                     <iframe
+                      key={mapIframeKey}
                       src={mapUrl}
                       width="100%"
                       height="300"
@@ -860,6 +866,7 @@ function App() {
                     </a>
                     <div style={{ marginTop: 8 }}>
                       <iframe
+                        key={mapIframeKey}
                         src={mapUrl}
                         width="100%"
                         height={180}
