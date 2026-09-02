@@ -34,7 +34,7 @@ export const isStatus = (s: unknown): s is "pending" | "verified" =>
 
 export function isFeature(obj: unknown): obj is Feature {
   if (!obj || typeof obj !== "object") return false;
-  const o = obj as any;
+  const o = obj as Record<string, unknown>;
   // require either an id (string|number) or a properties object
   if (o.id == null && (!o.properties || typeof o.properties !== "object"))
     return false;

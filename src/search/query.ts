@@ -12,7 +12,7 @@ export type OrNode = { type: "Or"; nodes: Node[] };
 export function tokenize(query: string): string[] {
   const tokens: string[] = [];
   // accept ASCII and fullwidth variants of @, parentheses, OR, and hyphen
-  const re = /@|＠|\(|\)|（|）|\||｜|－|[^@\s＠()（）\|｜－]+/g;
+  const re = /@|＠|\(|\)|（|）|\||｜|－|[^@\s＠()（）|｜－]+/g;
   let m;
   while ((m = re.exec(query)) !== null) {
     tokens.push(m[0]);

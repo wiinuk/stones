@@ -1,6 +1,16 @@
 import { describe, it, expect } from "vitest";
 import { tokenize, parse, matchFeatureFromQuery } from "./query";
 
+type AstNode = {
+  type: string;
+  nodes?: AstNode[];
+  node?: AstNode;
+  value?: string;
+  name?: string;
+};
+
+const asAstNode = (value: unknown): AstNode => value as AstNode;
+
 describe("tokenize", () => {
   it("splits words and @", () => {
     expect(tokenize("東京 @confirmed test")).toEqual([
@@ -28,91 +38,68 @@ describe("parse", () => {
   it("parses Var and Word and Seq", () => {
     const ast = parse("東京 @confirmed");
     expect(ast.type).toBe("Seq");
-    // @confirmed should be Var
-    // @ts-ignore
-    expect((ast as any).nodes[1].type).toBe("Var");
-    // fullwidth marker should also parse as Var
+    expect(asAstNode(ast).nodes?.[1]?.type).toBe("Var");
+
     const ast2 = parse("東京 ＠confirmed");
-    // @ts-ignore
-    expect((ast2 as any).nodes[1].type).toBe("Var");
+    expect(asAstNode(ast2).nodes?.[1]?.type).toBe("Var");
   });
 
   it("parses negative terms", () => {
     const ast = parse("-横浜");
     expect(ast.type).toBe("Not");
-    // @ts-ignore
-    expect((ast as any).node.type).toBe("Word");
-    // @ts-ignore
-    expect((ast as any).node.value).toBe("横浜");
+    expect(asAstNode(ast).node?.type).toBe("Word");
+    expect(asAstNode(ast).node?.value).toBe("横浜");
 
     const ast2 = parse("-@confirmed");
     expect(ast2.type).toBe("Not");
-    // @ts-ignore
-    expect((ast2 as any).node.type).toBe("Var");
-    // @ts-ignore
-    expect((ast2 as any).node.name).toBe("confirmed");
+    expect(asAstNode(ast2).node?.type).toBe("Var");
+    expect(asAstNode(ast2).node?.name).toBe("confirmed");
   });
 
   it("parses grouped expressions", () => {
     const ast = parse("(東京 横浜)");
     expect(ast.type).toBe("Seq");
-    // @ts-ignore
-    expect((ast as any).nodes[0].type).toBe("Word");
-    // @ts-ignore
-    expect((ast as any).nodes[1].type).toBe("Word");
+    expect(asAstNode(ast).nodes?.[0]?.type).toBe("Word");
+    expect(asAstNode(ast).nodes?.[1]?.type).toBe("Word");
 
     const ast2 = parse("東京 -(横浜 日枝)");
     expect(ast2.type).toBe("Seq");
-    // @ts-ignore
-    expect((ast2 as any).nodes[1].type).toBe("Not");
-    // @ts-ignore
-    expect((ast2 as any).nodes[1].node.type).toBe("Seq");
+    expect(asAstNode(ast2).nodes?.[1]?.type).toBe("Not");
+    expect(asAstNode(asAstNode(ast2).nodes?.[1])?.node?.type).toBe("Seq");
 
     const ast3 = parse("（東京 横浜）");
     expect(ast3.type).toBe("Seq");
-    // @ts-ignore
-    expect((ast3 as any).nodes[0].type).toBe("Word");
-    // @ts-ignore
-    expect((ast3 as any).nodes[1].type).toBe("Word");
+    expect(asAstNode(ast3).nodes?.[0]?.type).toBe("Word");
+    expect(asAstNode(ast3).nodes?.[1]?.type).toBe("Word");
 
     const ast4 = parse("東京 －(横浜 日枝）");
     expect(ast4.type).toBe("Seq");
-    // @ts-ignore
-    expect((ast4 as any).nodes[1].type).toBe("Not");
-    // @ts-ignore
-    expect((ast4 as any).nodes[1].node.type).toBe("Seq");
+    expect(asAstNode(ast4).nodes?.[1]?.type).toBe("Not");
+    expect(asAstNode(asAstNode(ast4).nodes?.[1])?.node?.type).toBe("Seq");
   });
 
   it("parses OR expressions", () => {
     const ast = parse("東京|横浜");
     expect(ast.type).toBe("Or");
-    // @ts-ignore
-    expect((ast as any).nodes.length).toBe(2);
-    // @ts-ignore
-    expect((ast as any).nodes[0].type).toBe("Word");
-    // @ts-ignore
-    expect((ast as any).nodes[1].type).toBe("Word");
+    expect(asAstNode(ast).nodes?.length).toBe(2);
+    expect(asAstNode(ast).nodes?.[0]?.type).toBe("Word");
+    expect(asAstNode(ast).nodes?.[1]?.type).toBe("Word");
 
     const ast2 = parse("東京 ｜横浜");
     expect(ast2.type).toBe("Or");
-    // @ts-ignore
-    expect((ast2 as any).nodes.length).toBe(2);
+    expect(asAstNode(ast2).nodes?.length).toBe(2);
   });
 
   it("parses inverted OR groups correctly", () => {
     const ast = parse("NotMatchWord (NotMatchWord | 東京都)");
     expect(ast.type).toBe("Seq");
-    // @ts-ignore
-    expect((ast as any).nodes.length).toBe(2);
-    // @ts-ignore
-    expect((ast as any).nodes[0].type).toBe("Word");
-    // @ts-ignore
-    expect((ast as any).nodes[1].type).toBe("Or");
+    expect(asAstNode(ast).nodes?.length).toBe(2);
+    expect(asAstNode(ast).nodes?.[0]?.type).toBe("Word");
+    expect(asAstNode(ast).nodes?.[1]?.type).toBe("Or");
 
     const ast2 = parse("NotMatchWord (東京都 | NotMatchWord)");
     expect(ast2.type).toBe("Seq");
-    // @ts-ignore
-    expect((ast2 as any).nodes[1].type).toBe("Or");
+    expect(asAstNode(ast2).nodes?.[1]?.type).toBe("Or");
   });
 });
 

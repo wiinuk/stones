@@ -68,9 +68,15 @@ function App() {
       ) as Record<string, unknown>;
 
       const normalizeFeature = (raw: unknown, index: number): Feature => {
-        const obj = raw as any;
-        const id: string =
-          (obj.properties && obj.properties.id) || obj.id || `feature-${index}`;
+        const obj = raw as Record<string, unknown> & {
+          properties?: Record<string, unknown>;
+          geometry?: { type?: string; coordinates?: number[] };
+        };
+        const rawId =
+          obj.properties && obj.properties.id !== undefined
+            ? obj.properties.id
+            : obj.id;
+        const id = String(rawId ?? `feature-${index}`);
         const geometry =
           obj.geometry && Array.isArray(obj.geometry.coordinates)
             ? {
@@ -90,7 +96,7 @@ function App() {
         } as FeatureProperties;
         return {
           id,
-          type: obj.type || "Feature",
+          type: typeof obj.type === "string" ? obj.type : "Feature",
           geometry,
           properties,
         };
@@ -349,59 +355,78 @@ function App() {
     let cancelled = false;
     const q = debouncedSearchTerm.trim();
 
-    // If no query, use full list and skip chunking.
-    if (!q) {
-      setFilteredFeatures(features);
-      setFilterProgress(features.length === 0 ? 100 : 100);
-      setIsFiltering(false);
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    setIsFiltering(true);
-    setFilterProgress(0);
-
-    const results: Feature[] = [];
-    const total = features.length;
-    const chunkSize = Math.max(100, Math.floor(total / 50)); // adaptive chunk size
-    let index = 0;
-    let chunkCount = 0;
-
-    const processChunk = () => {
-      if (cancelled) return;
-      const end = Math.min(index + chunkSize, total);
-      for (; index < end; index++) {
-        const f = features[index];
-        try {
-          if (matchFeatureFromQuery(q, f)) results.push(f);
-        } catch (e) {
-          // ignore single feature error
-        }
-      }
-      chunkCount++;
-      // update progress and partial results periodically to reduce churn
-      if (chunkCount % 3 === 0 || index >= total) {
-        setFilteredFeatures(results.slice());
-        setFilterProgress(
-          total === 0 ? 100 : Math.round((index / total) * 100),
-        );
-      }
-
-      if (index < total) {
-        // yield to event loop — use setTimeout to be compatible with environments
-        setTimeout(processChunk, 0);
-      } else {
+    const finishFiltering = () => {
+      if (!cancelled) {
         setIsFiltering(false);
         setFilterProgress(100);
       }
     };
 
-    // start processing asynchronously
-    setTimeout(processChunk, 0);
+    const scheduleFiltering = () => {
+      if (!cancelled) {
+        setIsFiltering(true);
+        setFilterProgress(0);
+      }
+    };
+
+    // If no query, use full list and skip chunking.
+    if (!q) {
+      const timeoutId = window.setTimeout(() => {
+        if (!cancelled) {
+          setFilteredFeatures(features);
+          finishFiltering();
+        }
+      }, 0);
+      return () => {
+        cancelled = true;
+        window.clearTimeout(timeoutId);
+      };
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      if (cancelled) return;
+      scheduleFiltering();
+
+      const results: Feature[] = [];
+      const total = features.length;
+      const chunkSize = Math.max(100, Math.floor(total / 50)); // adaptive chunk size
+      let index = 0;
+      let chunkCount = 0;
+
+      const processChunk = () => {
+        if (cancelled) return;
+        const end = Math.min(index + chunkSize, total);
+        for (; index < end; index++) {
+          const f = features[index];
+          try {
+            if (matchFeatureFromQuery(q, f)) results.push(f);
+          } catch {
+            // ignore single feature error
+          }
+        }
+        chunkCount++;
+        // update progress and partial results periodically to reduce churn
+        if (chunkCount % 3 === 0 || index >= total) {
+          setFilteredFeatures(results.slice());
+          setFilterProgress(
+            total === 0 ? 100 : Math.round((index / total) * 100),
+          );
+        }
+
+        if (index < total) {
+          // yield to event loop — use setTimeout to be compatible with environments
+          setTimeout(processChunk, 0);
+        } else {
+          finishFiltering();
+        }
+      };
+
+      processChunk();
+    }, 0);
 
     return () => {
       cancelled = true;
+      window.clearTimeout(timeoutId);
     };
   }, [features, debouncedSearchTerm]);
 
@@ -503,7 +528,7 @@ function App() {
   };
 
   // ref to the react-window list so we can programmatically scroll to the selected item
-  const listRef = useRef<any>(null);
+  const listRef = useRef<FixedSizeList | null>(null);
 
   // When filteredFeatures or selectedFeature changes, ensure the selected item is visible
   useEffect(() => {
@@ -515,8 +540,8 @@ function App() {
       // yield to allow list to render updated items
       setTimeout(() => {
         try {
-          listRef.current.scrollToItem(idx, "center");
-        } catch (e) {
+          listRef.current?.scrollToItem(idx, "center");
+        } catch {
           // ignore scroll errors
         }
       }, 0);
