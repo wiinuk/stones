@@ -1,0 +1,8 @@
+vendor/
+public/
+**/*.geojson
+**/*.csv
+**/*.md
+**/*.json
+**/*.yml
+**/*.yaml

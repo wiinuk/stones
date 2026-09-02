@@ -13,7 +13,7 @@ For TypeScript / React changes:
 
 - `npm run typecheck`
 - `npm run lint`
-- `npm run format:check`
+- `npm run format:check` (restricted to the `src` tree; do not format vendor or submodule files)
 
 For a full repository validation, run:
 
