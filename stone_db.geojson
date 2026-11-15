@@ -196826,9 +196826,7 @@
                 "built_year": "天保三年",
                 "built_year_ce": 1832,
                 "image": [
-                    "FjDKw91UoAA-1y5.jpg",
-                    "FjDKx6kUAAE6bm5.jpg",
-                    "FjDKys0UUAAvGx2.jpg"
+                    "FjDKw91UoAA-1y5.jpg"
                 ],
                 "project": [
                     "月待ビンゴ"
@@ -376021,7 +376019,9 @@
                     "ZInRNp6EHqJMvqZ6o4tFV3GqaXWNOfrjChZbKAGZ.jpg"
                 ],
                 "mesh_code": 56393636,
-                "city_code": 7208
+                "city_code": 7208,
+                "built_year": "文化十三丙子年",
+                "built_year_ce": 1816
             }
         },
         {
@@ -1088055,8 +1088055,6 @@
                 "type": [
                     "道祖神塔"
                 ],
-                "built_year": "寛政5",
-                "built_year_ce": 1793,
                 "image": [
                     "RJBUXByw0Tni1ZG8SVtbftgaOwTsKrvD3UQHLaOT.jpg",
                     "Q7MzUSAG26DWFzszz8GOuWwxha3MWC7BVsseRqdy.jpg"
@@ -1088065,7 +1088063,9 @@
                 "mesh_code": 53404049,
                 "tag": [
                     "石祠型"
-                ]
+                ],
+                "built_year": "寛政十年",
+                "built_year_ce": 1798
             }
         },
         {
@@ -1088144,17 +1088144,16 @@
                 "created_at": "2026-08-29",
                 "address": "千葉県千葉市花見川区横戸町",
                 "city_code": 12102,
-                "place": "路傍",
-                "type": [
-                    "道標"
-                ],
                 "built_year": "万延元年",
                 "built_year_ce": 1860,
                 "image": [
                     "aPdq3bcl8pehlq3SOLy2VfET70rPeYZLjpArvjcA.jpg",
                     "v8Nh5BaaKvGuemhMdmwT3BllNnnyO76ggUx1xGOT.jpg"
                 ],
-                "mesh_code": 53404049
+                "mesh_code": 53404049,
+                "type": [
+                    "庚申塔"
+                ]
             }
         },
         {
@@ -1088181,7 +1088180,9 @@
                     "xKYN02fJvzov56BGli256w4ONPhBu8zwi1nuRnqy.jpg",
                     "QaGzR1LGGwkgVf54nItsFMf7sH320yVkbuSKfMGY.jpg"
                 ],
-                "mesh_code": 53404049
+                "mesh_code": 53404049,
+                "built_year": "明治21年",
+                "built_year_ce": 1888
             }
         },
         {
@@ -1096027,14 +1096028,17 @@
                 "type": [
                     "庚申塔"
                 ],
-                "built_year": "昭和55",
-                "built_year_ce": 1980,
                 "image": [
                     "JQflsOiQc3K1EOaZ5LiLMU8fk4viMchkBq1clWBm.jpg"
                 ],
                 "photo_date": "2026-09-27",
                 "mesh_code": 54402095,
-                "place": "墓地脇"
+                "place": "墓地脇",
+                "comment": [
+                    "住宅地建設のため南椎尾小山より移設\r\n造立年は「真壁町の石仏・石塔 : 野の仏」による。"
+                ],
+                "built_year": "明治14",
+                "built_year_ce": 1881
             }
         },
         {
@@ -1096062,7 +1096066,10 @@
                 ],
                 "photo_date": "2026-09-27",
                 "mesh_code": 54402095,
-                "place": "墓地脇"
+                "place": "墓地脇",
+                "comment": [
+                    "住宅地建設のため南椎尾小山より移設"
+                ]
             }
         },
         {
@@ -1098281,14 +1098288,14 @@
                 "built_year": "延宝3",
                 "built_year_ce": 1675,
                 "principal": "青面金剛",
-                "comment": [
-                    "アーンク種字「庚申供養青面救助所」\r\n銘および造立年は「真壁町の石仏・石塔 : 野の仏」による。"
-                ],
                 "image": [
                     "XentnRWdGvSajeoBb26aHJAAMjPWbtHNEmQLOQtD.jpg"
                 ],
                 "photo_date": "2026-10-04",
-                "mesh_code": 54402086
+                "mesh_code": 54402086,
+                "comment": [
+                    "アーンク種字「庚申供養青面救助所」\r\n銘および造立年は「真壁町の石造物 : 寺社編」による。"
+                ]
             }
         },
         {
@@ -1099094,15 +1099101,13 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    139.709338,
-                    37.522807
+                    139.709318,
+                    37.522805
                 ]
             },
             "properties": {
                 "contributor": "holly_b503",
                 "created_at": "2026-10-05",
-                "address": "福島県河沼郡柳津町大字飯谷",
-                "city_code": 7423,
                 "place": "瑠璃光薬師如来堂前",
                 "type": [
                     "出羽三山塔",
@@ -1099119,6 +1099124,8 @@
                     "B6tNajpPokV6ZzOKH86wRsvnDcWUoU2B7WKnNavR.jpg"
                 ],
                 "photo_date": "2026-09-23",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
                 "mesh_code": 56392526
             }
         },
@@ -1099128,15 +1099135,13 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    139.709322,
-                    37.522788
+                    139.709329,
+                    37.522803
                 ]
             },
             "properties": {
                 "contributor": "holly_b503",
                 "created_at": "2026-10-05",
-                "address": "福島県河沼郡柳津町大字飯谷",
-                "city_code": 7423,
                 "place": "瑠璃光薬師如来堂前",
                 "type": [
                     "出羽三山塔",
@@ -1099152,6 +1099157,8 @@
                     "0fEosZB7AMeiFVbvvEL0WLsyL2bRCi4bk3fHcQwX.jpg"
                 ],
                 "photo_date": "2026-09-23",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
                 "mesh_code": 56392526
             }
         },
@@ -1099410,7 +1099417,10 @@
                     "ZkGfO778L3IUTeyv022JVMbN504w87rbGBKK7Zyn.jpg"
                 ],
                 "photo_date": "2026-10-03",
-                "mesh_code": 53404084
+                "mesh_code": 53404084,
+                "tag": [
+                    "湯殿山中心"
+                ]
             }
         },
         {
@@ -1099618,6 +1099628,4476 @@
                 ],
                 "photo_date": "2026-10-03",
                 "mesh_code": 53404095
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43273,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.270216,
+                    35.833788
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-05",
+                "address": "千葉県印旛郡栄町龍角寺",
+                "city_code": 12329,
+                "place": "龍角寺境内",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "寛政3",
+                "built_year_ce": 1791,
+                "figure": "青面金剛",
+                "image": [
+                    "ZaoHz6Hh6jZFDKra8IbQbQGLA2NpNDmDKhJA3iDb.jpg",
+                    "kwG2GIIuqOPq6hldcWaorUq1eP1DW1Z4hCBEIxv8.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53406201
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43274,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.269955,
+                    35.833738
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町龍角寺",
+                "city_code": 12329,
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "天保4",
+                "built_year_ce": 1833,
+                "figure": "如意輪観音",
+                "image": [
+                    "sPc04M7JDoIuYAPzMLbxxIc3Nl3dDWdW8UsRnNVd.jpg",
+                    "OdFI2GV6OLaT84RsbwWSJQNvNqRKdY19ozqq3C5k.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53406201
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43275,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.264736,
+                    35.828574
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町龍角寺",
+                "city_code": 12329,
+                "type": [
+                    "庚申塔",
+                    "道標"
+                ],
+                "principal": "青面金剛",
+                "image": [
+                    "zXWEG7i1sNUJqpWKBWTVeovCJMAgHvQGWyV2jPSX.jpg",
+                    "2ms2UcS8L0OOMFlM3eSPw1oiwHNc3zV8HyFnZSOF.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53405291
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43276,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.264736,
+                    35.828574
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町龍角寺",
+                "city_code": 12329,
+                "type": [
+                    "道祖神塔"
+                ],
+                "image": [
+                    "ZWPNZIZv548BXmVYVxzTDDEHiNcaK0T3uYhpy2c3.jpg",
+                    "ItlavlEK4vetIllE7ZPL3qrgaNED80QQ7pOWMB0J.jpg"
+                ],
+                "mesh_code": 53405291
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43277,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.254431,
+                    35.838976
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町安食",
+                "city_code": 12329,
+                "place": "田中不動尊",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "延享",
+                "figure": "青面金剛",
+                "image": [
+                    "4f9EBYlrBpsMj0vbzvtuQ2Vmn5ym9sxfwj8670Yc.jpg",
+                    "OU1u1Kw7XYhd5oqCV9afKzDvp5PJ0HLEeVmjPMB1.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53406200
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43278,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.254431,
+                    35.838976
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町安食",
+                "city_code": 12329,
+                "type": [
+                    "倶利伽羅龍王塔"
+                ],
+                "built_year": "天明5",
+                "built_year_ce": 1785,
+                "image": [
+                    "JMJ9n3HNy4T2a0RWe9pNrGSZo804rogeqRVn1961.jpg",
+                    "B070pJkzw0OJTdwYJmLZMJNydRerZB5ECIG3LLDx.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53406200
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43279,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.257483,
+                    35.838472
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町安食",
+                "city_code": 12329,
+                "place": "路傍",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "天明7",
+                "built_year_ce": 1787,
+                "figure": "青面金剛",
+                "image": [
+                    "bZgaQMRZmjdFdCxlnOAiCPaRcqk8MWP8oOBpZ6rE.jpg",
+                    "QqGoDWuzxpwOI6Je9Sl2ODveIfV314n11uL2sn1E.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53406200
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43280,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.264146,
+                    35.833262
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町酒直",
+                "city_code": 12329,
+                "place": "多宝院",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "万延元年",
+                "built_year_ce": 1860,
+                "figure": "青面金剛",
+                "image": [
+                    "lPl4GPlkPpD7CIO2dZ252ltbLXBSmHSlv8mKw7r2.jpg",
+                    "x99tzGswOuhcjayqkoieHw3m7tQeW5qaeXszFjyV.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53405291
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43281,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.264146,
+                    35.833262
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町酒直",
+                "city_code": 12329,
+                "place": "多宝院",
+                "type": [
+                    "庚申塔"
+                ],
+                "image": [
+                    "Hihc9q1drkTAfAZVz3ODlCYlo5hR3tQ6n3PvrqtN.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53405291
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43282,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.264564,
+                    35.832575
+                ]
+            },
+            "properties": {
+                "contributor": "かあ",
+                "created_at": "2026-10-06",
+                "address": "千葉県印旛郡栄町龍角寺",
+                "city_code": 12329,
+                "type": [
+                    "疫神塔"
+                ],
+                "built_year": "明治19",
+                "built_year_ce": 1886,
+                "image": [
+                    "WjuN0wKoS6Ah6XRcWddq1ZyBOEIixDEbWCGwZP3j.jpg",
+                    "FV3BK7dYlYSLYScbOPEjOXqITtf5iAnB7DN1Vu68.jpg",
+                    "G69A7kFlmPj9lsRrOmBAcmH1rzSox0VXkjfw1pFy.jpg"
+                ],
+                "photo_date": "2026-09-27",
+                "mesh_code": 53405291,
+                "tag": [
+                    "石祠型"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43283,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.535056,
+                    35.859383
+                ]
+            },
+            "properties": {
+                "contributor": "Takashi KOIKE",
+                "created_at": "2026-10-06",
+                "address": "埼玉県富士見市渡戸２丁目９",
+                "city_code": 11235,
+                "place": "路傍",
+                "type": [
+                    "庚申塔",
+                    "道標"
+                ],
+                "built_year": "寛政四年",
+                "built_year_ce": 1792,
+                "figure": "青面金剛",
+                "image": [
+                    "0b2ixRw1m7oVb9mNvY0YBqAJCrSwD90D2yIlGtjv.jpg",
+                    "KY9RiqJZ5et2XdL5pYy0v035CflyYLVvBwfn1Dkv.jpg",
+                    "FV5GTKTaUMYJeKahcuS7B3K8KtzMUGzMwlwcNEke.jpg"
+                ],
+                "photo_date": "2026-10-06",
+                "mesh_code": 53396432,
+                "comment": [
+                    "「是□□右 江戸道」"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43285,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.252748,
+                    38.037742
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-08",
+                "address": "山形県東置賜郡高畠町大字二井宿",
+                "city_code": 6381,
+                "place": "大社神社",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申塔」"
+                ],
+                "image": [
+                    "vNxaVqGKgdUkzcIWJ6D6rudmg6ArUBOQsD5kwGET.jpg"
+                ],
+                "photo_date": "2026-09-30",
+                "mesh_code": 57400240
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43286,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    141.409768,
+                    38.439163
+                ]
+            },
+            "properties": {
+                "contributor": "豆人",
+                "created_at": "2026-10-11",
+                "address": "宮城県牡鹿郡女川町浦宿浜",
+                "city_code": 4581,
+                "place": "渓秀院参道わき",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "元禄十二年",
+                "built_year_ce": 1699,
+                "image": [
+                    "IUZ8nBRnGcfc2mH8IBxgrQ5OYbkW7DPKKQfIxIbA.jpg",
+                    "MEiHMjVhDCZFZ1E24YZ4uOcTRqvdeDAuaWOB9VEY.jpg",
+                    "kD1om7HQeACk02puTvjywtPgbrSH7qKFmE54lFV4.jpg"
+                ],
+                "photo_date": "2026-10-11",
+                "mesh_code": 57415322
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43287,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    141.488636,
+                    38.443568
+                ]
+            },
+            "properties": {
+                "contributor": "豆人",
+                "created_at": "2026-10-11",
+                "address": "宮城県牡鹿郡女川町竹浦",
+                "city_code": 4581,
+                "place": "二渡神社・五十鈴神社鳥居わき",
+                "type": [
+                    "八大龍王塔"
+                ],
+                "built_year": "明治六年",
+                "built_year_ce": 1873,
+                "image": [
+                    "Z7uUwde1gpHiuw8y5gcGlRIu9RfFVOtVSeH53M4f.jpg",
+                    "o2kWXU3rTjj42YPSiZ3SbsNCwwLdlAb1lvt4fvv9.jpg"
+                ],
+                "photo_date": "2026-10-11",
+                "mesh_code": 57415339
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43288,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.879552,
+                    35.717205
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都江戸川区松本２丁目３１",
+                "city_code": 13123,
+                "place": "路傍",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "明和七庚寅歳七月吉祥日",
+                "built_year_ce": 1770,
+                "figure": "青面金剛",
+                "comment": [
+                    "日月･邪鬼･三猿･二鶏･ｼｮｹﾗ　　願主　新五郎"
+                ],
+                "image": [
+                    "YvO2ZyUf8TTT99j1b5mNAEFx8QSu1VI7zflbErwg.jpg",
+                    "GKSocDha3F1A5L1fOxnL0XuxjP4xI6tVzMK0bRuv.jpg"
+                ],
+                "photo_date": "2026-10-07",
+                "mesh_code": 53394760
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43289,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.882062,
+                    35.710302
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都江戸川区大杉４丁目２５",
+                "city_code": 13123,
+                "place": "路傍",
+                "type": [
+                    "庚申塔",
+                    "道標"
+                ],
+                "built_year": "文化八年辛末正月",
+                "built_year_ce": 1811,
+                "figure": "青面金剛",
+                "comment": [
+                    "現当二世安楽　　道標を兼ねる〈台〉かハら道"
+                ],
+                "image": [
+                    "clifiMmB5BIVWky5Bqok4TELtCMKeTzncRqyXE4u.jpg",
+                    "vkRK8cObO7kFgduw6sng8HzGGrvRPSQJua5EJemX.jpg",
+                    "wPGzMHJTcXEvWtOR5B5kLBQWYs2CDWXBH82weTf1.jpg"
+                ],
+                "mesh_code": 53394750
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43290,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.664887,
+                    35.72102
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都中野区沼袋２丁目２８",
+                "city_code": 13114,
+                "place": "禅定院",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "寛文六丙午年十月廿六日",
+                "built_year_ce": 1666,
+                "comment": [
+                    "笠付角柱型　「奉供養庚申石塔二世安樂處」"
+                ],
+                "image": [
+                    "D3ZcRIkOg2ZnZ3310ksDeBhPBeVH1kkyny0Zsv2v.jpg",
+                    "hgoomcc74UIzdZ9a5p7zPXIKx3RjiIscFLdSdOp7.jpg",
+                    "YdYTBniW0x6ofNhb0KXaFps6ece9VSLBM5lc4Iy7.jpg"
+                ],
+                "photo_date": "2026-10-10",
+                "mesh_code": 53394563
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43291,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.658932,
+                    35.718664
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都中野区沼袋３丁目２１",
+                "city_code": 13114,
+                "place": "清谷寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "貞享四卯年十月吉日",
+                "built_year_ce": 1687,
+                "comment": [
+                    "笠付角柱型　「奉供養庚申待二世安樂所」　　武刕多麻郡沼袋村　願主矢嶋三郎右衛門　同岸仁兵衛　結衆廿人"
+                ],
+                "image": [
+                    "M7E8rNqAhX4eEooOwwxEQoDlKiBYxGoTTMiVBRpm.jpg",
+                    "bsmXI9bq8vw9CSigO5gvNXzpblZXAMjCGHbOnTbU.jpg"
+                ],
+                "mesh_code": 53394562
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43292,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.661443,
+                    35.723346
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都中野区沼袋４丁目３３－６",
+                "city_code": 13114,
+                "place": "路傍",
+                "type": [
+                    "庚申塔",
+                    "道標"
+                ],
+                "built_year": "正徳三癸巳年十一月吉日",
+                "built_year_ce": 1713,
+                "figure": "青面金剛",
+                "comment": [
+                    "武刕多麻郡江古田村　　日月邪鬼三猿二鶏ｼｮｹﾗ　道標：「左　さぎのミや」「右　中村道」"
+                ],
+                "image": [
+                    "8XdvKfHnaOENtarSXCjYNqci9P537Ne9cD3AuAn7.jpg",
+                    "kXgCOnNF2MQUAPZoaW0jHYQUmvxWxQwo73mdnI02.jpg",
+                    "mAZEyGHVp5FeYeRq4GiKauhqiNO1pCuCaAwTRw7z.jpg",
+                    "eUUaM2CwVPDY274L6c5hhiR86HprpyHGVCVZYHgi.jpg"
+                ],
+                "photo_date": "2026-10-10",
+                "mesh_code": 53394562
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43293,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.658809,
+                    35.719823
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都中野区野方４丁目１",
+                "city_code": 13114,
+                "place": "路傍",
+                "type": [
+                    "庚申塔",
+                    "道標"
+                ],
+                "built_year": "元文五年",
+                "built_year_ce": 1740,
+                "figure": "青面金剛",
+                "comment": [
+                    "奉造立庚申尊像　　道標：「右　中村みち　左　中野道」"
+                ],
+                "image": [
+                    "6MMccyAPt3H7pMYU0SdxhcBlG0FuWQn677qf2VWt.jpg",
+                    "pcRDEMqY7lE5cQjunI0suEx23a2h3DSHBiiynd37.jpg",
+                    "7DRhxAO4FdcjzFjEkepzB5PyzaSpIpRSvUXcPNSr.jpg",
+                    "lxYAO4pzse9vvvATQaFz0twDw8LmmzXd37FOMSVg.jpg",
+                    "8NBZmb9mFCobisCZ9klRpMA37nkAH09hvSaEThqQ.jpg"
+                ],
+                "photo_date": "2026-10-10",
+                "mesh_code": 53394562
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43294,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.652076,
+                    35.721452
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-11",
+                "address": "東京都中野区野方６丁目２８",
+                "city_code": 13114,
+                "place": "路傍",
+                "type": [
+                    "道標"
+                ],
+                "built_year": "寛延元戊辰天十月吉日",
+                "built_year_ce": 1748,
+                "comment": [
+                    "「奉供養庚申待二世安樂所」　念佛講中\/十人　武刕多摩郡上沼袋村　願主\/江川辰四良内　　道標「右中村ミち」「左さきのミやミち」"
+                ],
+                "image": [
+                    "7tpwYT7ZnEeuHdyYcqgblScXaFyR2myxVIdTEqo1.jpg",
+                    "yCWiDpvgpuKHsl83nD6x7PevkOLvq79mkDMu725P.jpg",
+                    "SKv4tJ5ZUvFCmw0TG6IwW3i8zZCOfSV2XVGVZZO9.jpg",
+                    "aMBom8ozsB1V6glbD4QIaAlFdqiDuu90g8EgWlHw.jpg",
+                    "wN1tJZKfApUW6cNsmT69rPFMqfONb7G61lEhWg9N.jpg"
+                ],
+                "mesh_code": 53394562
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43295,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.55912,
+                    36.377605
+                ]
+            },
+            "properties": {
+                "contributor": "Takashi KOIKE",
+                "created_at": "2026-10-13",
+                "address": "栃木県佐野市戸奈良町",
+                "city_code": 9204,
+                "place": "種徳院",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "image": [
+                    "2UpILP1WC3t8FGTE841APLqOhXqVe4nOR4FTyVcd.jpg",
+                    "lOcMdMVepRluu1V68DmDtpV8tRYL9zpo6AQQtqau.jpg"
+                ],
+                "photo_date": "2026-10-13",
+                "mesh_code": 54394454,
+                "figure": "如意輪観音",
+                "built_year": "大正九年",
+                "built_year_ce": 1920
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43296,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.709342,
+                    37.522795
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-13",
+                "place": "瑠璃光薬師如来堂前",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "天保十三寅年",
+                "built_year_ce": 1842,
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "o0x3EPxdzreNZhVvEGKZd4D7Ennaq9ZGEDQrj6lW.jpg",
+                    "3G1nSy6OoBy0eCP7oYAxEYL2s2MRViRIOqEJaufb.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "mesh_code": 56392526
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43297,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.252748,
+                    38.037741
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-16",
+                "address": "山形県東置賜郡高畠町大字二井宿",
+                "city_code": 6381,
+                "place": "大社神社",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申塔」"
+                ],
+                "image": [
+                    "S0dxbjd12xY75ZObslA7gGWWbvmiRC59eAEXzKM0.jpg"
+                ],
+                "photo_date": "2026-09-30",
+                "mesh_code": 57400240
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43298,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.25293,
+                    38.037993
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-16",
+                "address": "山形県東置賜郡高畠町大字二井宿",
+                "city_code": 6381,
+                "place": "大社神社",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "安政四",
+                "built_year_ce": 1857,
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "0XiQzQOe0UiTYOWe3qUIbZbyJ0oBZQigEgdlx1V3.jpg",
+                    "F9xgzVckADxR9oSX6IdBephw6yBsvZKqsddc0QS3.jpg"
+                ],
+                "photo_date": "2026-09-30",
+                "mesh_code": 57400240
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43299,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.252928,
+                    38.037989
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-16",
+                "address": "山形県東置賜郡高畠町大字二井宿",
+                "city_code": 6381,
+                "type": [
+                    "出羽三山塔",
+                    "八日塔"
+                ],
+                "built_year": "安永五",
+                "built_year_ce": 1776,
+                "comment": [
+                    "「八日講供養」"
+                ],
+                "image": [
+                    "Z9jX8ukxqJIckvBdzxpEXovdTGg4SCfmh0s5x5JQ.jpg"
+                ],
+                "photo_date": "2026-09-30",
+                "mesh_code": 57400240
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43300,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.996248,
+                    38.073258
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-17",
+                "address": "山形県西置賜郡飯豊町大字中",
+                "city_code": 6403,
+                "place": "中村観音堂旧参道",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申」"
+                ],
+                "image": [
+                    "aWiWpRSeyZQT6AdHzfcmTMPkBHf15ThLTLaeZ7AI.jpg",
+                    "etEgjnQKBgQXUdDEkZ1pNQKKRTlbuK6DyKWKjnMO.jpg"
+                ],
+                "photo_date": "2026-09-14",
+                "mesh_code": 57390789
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43301,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.996248,
+                    38.073262
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-17",
+                "address": "山形県西置賜郡飯豊町大字中",
+                "city_code": 6403,
+                "place": "中村観音堂旧参道",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "ZTEmNHMFW6nfG10ihsA268HhVBaapRpNruop734S.jpg"
+                ],
+                "photo_date": "2026-09-14",
+                "mesh_code": 57390789
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43302,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.861707,
+                    37.335173
+                ]
+            },
+            "properties": {
+                "contributor": "すとれちあ丸",
+                "created_at": "2026-10-17",
+                "address": "福島県南会津郡下郷町大字大内",
+                "city_code": 7362,
+                "place": "大内宿浅沼食堂前",
+                "type": [
+                    "湯殿山塔",
+                    "出羽三山塔"
+                ],
+                "built_year": "天保15",
+                "built_year_ce": 1844,
+                "image": [
+                    "5gEKebtdCqFxWQ1TyaWzJo7QBwAqrcgmehQWrsjI.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 56390608
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43303,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.862469,
+                    37.335079
+                ]
+            },
+            "properties": {
+                "contributor": "すとれちあ丸",
+                "created_at": "2026-10-17",
+                "address": "福島県南会津郡下郷町大字大内",
+                "city_code": 7362,
+                "place": "弁天様参道西側",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "image": [
+                    "5qZ7EW7AGigFl2rizDTVWCtQabrNAIwF2cqYDbSq.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 56390608
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43304,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.862469,
+                    37.335079
+                ]
+            },
+            "properties": {
+                "contributor": "すとれちあ丸",
+                "created_at": "2026-10-17",
+                "address": "福島県南会津郡下郷町大字大内",
+                "city_code": 7362,
+                "place": "弁天様参道西側",
+                "type": [
+                    "日待塔",
+                    "巳待塔"
+                ],
+                "image": [
+                    "CGWtsWhePPTObX1fpTkUpvMWheIa0vCTpgDPmRCz.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 56390608
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43305,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.862469,
+                    37.335079
+                ]
+            },
+            "properties": {
+                "contributor": "すとれちあ丸",
+                "created_at": "2026-10-17",
+                "address": "福島県南会津郡下郷町大字大内",
+                "city_code": 7362,
+                "place": "弁天様参道西側",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "image": [
+                    "vS2IlXTYtY88INh9Y7UDJSRzhRPBV1o7Kfd8w225.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 56390608
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43306,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.709298,
+                    37.522768
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-18",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "place": "瑠璃光薬師如来堂前",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「青面金剛」"
+                ],
+                "image": [
+                    "a2E0QjnPDtwzNWAm5KGBR68dniHY0IRfwO80l61G.jpg"
+                ],
+                "mesh_code": 56392526,
+                "photo_date": "2026-09-23"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43307,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.709006,
+                    37.522816
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-18",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "place": "瑠璃光薬師如来堂",
+                "type": [
+                    "日待塔",
+                    "巳待塔"
+                ],
+                "built_year": "寛延二巳年",
+                "built_year_ce": 1749,
+                "comment": [
+                    "「巳待供養塔」"
+                ],
+                "image": [
+                    "XIxAhMWeQacMbPudsy4bSRtCxirIKmpV2qL3ky59.jpg",
+                    "bj31tMkdbVIIHAE1EJ9KV9xhpfRdUpLUIKszmHfW.jpg",
+                    "EXeGv5uANw2IisVpcnnQMhR758zWuRdaE7IBIl5w.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56392526
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43308,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.70681,
+                    37.522277
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-18",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "place": "稲荷神社",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "元治元甲子年",
+                "built_year_ce": 1864,
+                "comment": [
+                    "「湯殿山供養」"
+                ],
+                "image": [
+                    "KsijbEEQS0JiFBRV5UUBk1nv0Bc0PbAwwby5NRkD.jpg",
+                    "YKNNyyZQXRqVyQSWESLwa2VR8nbQVmOJmPNWJmNq.jpg",
+                    "xK72fLo5ygscGY0wqxrIrDwxpzGqHOyE7qk1fOOz.jpg",
+                    "36fdW7eLJhYs9DVaafyrY6L6qhLQmSHcbG3Fzxhy.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56392526
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43309,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.706809,
+                    37.52228
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-18",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "place": "稲荷神社",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "明治二巳年",
+                "built_year_ce": 1869,
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "CfBuNH4eaDUxkJCnaN967GL2zV8XegLgivPAFJc0.jpg",
+                    "0juoeMRKwxrrszZDFVvER9qevMlX9NQ2hBY4DEQc.jpg"
+                ],
+                "mesh_code": 56392526
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43310,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.663299,
+                    35.682947
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-19",
+                "address": "東京都中野区南台３丁目４３",
+                "city_code": 13114,
+                "place": "宝福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "正徳元辛卯天十月吉日",
+                "built_year_ce": 1711,
+                "figure": "青面金剛",
+                "comment": [
+                    "奉供養\/庚申塔"
+                ],
+                "image": [
+                    "GDOFPxIMRljiV6OIL6h6DUxsGVxMNo7GmdF5VzsJ.jpg",
+                    "IGsObxSUWcXkUZBL91iMiNk5ZmVwewKMfXaU3UnB.jpg",
+                    "elkGB8cTTjQHo6NhiJdqbaPu51BsWUFZybfEdqfp.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 53394513
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43311,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.666196,
+                    35.678999
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-19",
+                "address": "東京都中野区南台４丁目４７",
+                "city_code": 13114,
+                "place": "一本松庚申堂",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "昭和二十五年",
+                "built_year_ce": 1950,
+                "figure": "青面金剛",
+                "comment": [
+                    "合掌六臂    日月邪鬼三猿二鶏     お堂の中、写真はガラス戸越し"
+                ],
+                "image": [
+                    "djGHTb6mT3RYn9AysIgpIDTP7cvQXhyOFH7AZnA0.jpg",
+                    "mhMMdPXdy0A7GZUsBUshLzyF4sqgS05KZOX4HFT9.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 53394513
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43312,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.666196,
+                    35.678999
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-10-19",
+                "address": "東京都中野区南台４丁目４７",
+                "city_code": 13114,
+                "place": "一本松庚申堂",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "昭和四十五年四月吉日",
+                "built_year_ce": 1970,
+                "comment": [
+                    "「庚申塚」"
+                ],
+                "image": [
+                    "WVNIl8JNpmq21WJv3ff3oRJ9aOWTpT0LJSgsG72H.jpg",
+                    "9Ql9fMvTZVNDVJVKXJLjL16U6J2aknKJV3HBYkJ3.jpg",
+                    "LWed47eJZtoL6X1LcwzcYwATHsM82YmoESJItBEY.jpg"
+                ],
+                "photo_date": "2026-10-17",
+                "mesh_code": 53394513
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43313,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.379555,
+                    38.3069
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-22",
+                "address": "山形県山形市大字十文字",
+                "city_code": 6201,
+                "place": "路傍",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "元文２",
+                "built_year_ce": 1737,
+                "comment": [
+                    "「庚申供羪」"
+                ],
+                "image": [
+                    "TOtZEi0FDqJUeRdaJVODpLQQUK22Teoo8fH794r3.jpg"
+                ],
+                "photo_date": "2026-09-13",
+                "mesh_code": 57403360
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43314,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.838747,
+                    36.102792
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県猿島郡境町大字伏木",
+                "city_code": 8546,
+                "type": [
+                    "十六夜塔"
+                ],
+                "built_year": "享保2",
+                "built_year_ce": 1717,
+                "figure": "如意輪観音",
+                "image": [
+                    "hit3jyJSRG6Ka7O0grzxfeuR1vDZaEVXVDvoUlfA.jpg",
+                    "QIW20Axl3ycsWgcfkWXGuwz641fmdGfKQrU4Cpy2.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391627
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43315,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.846864,
+                    36.101357
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "昭和10",
+                "built_year_ce": 1935,
+                "comment": [
+                    "造立年は「さしまの石塔・石仏」による。"
+                ],
+                "image": [
+                    "XQ0fBRonq0MWqHghX254O8UoLJW1zvMQVcJMDzE4.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "address": "茨城県坂東市菅谷",
+                "city_code": 8228,
+                "mesh_code": 54391627
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43316,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.844654,
+                    36.100226
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市菅谷",
+                "city_code": 8228,
+                "type": [
+                    "道標"
+                ],
+                "principal": "馬頭観音",
+                "image": [
+                    "0p90w9CmIwDOuOGADdGgOflqcxIS6gQ4ka0MUOtQ.jpg",
+                    "IX3xXTYuLwKfDUjkhQKvOnkCRdu5NQWiit2jcnKi.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391627,
+                "built_year": "寛政3",
+                "built_year_ce": 1791
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43317,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.855442,
+                    36.097118
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市生子",
+                "city_code": 8228,
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "昭和2",
+                "built_year_ce": 1927,
+                "comment": [
+                    "造立年は「さしまの石塔・石仏」による。"
+                ],
+                "image": [
+                    "1ul1tynymzRxIgeBx3I8Kb9XcEvsAXAPveFYLohQ.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391618
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43318,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.85502,
+                    36.096759
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市生子",
+                "city_code": 8228,
+                "place": "墓地",
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "嘉永3",
+                "built_year_ce": 1850,
+                "image": [
+                    "rpBYoCXmRuwQ4qSr3Vtol1agDch57CnsK8pgsIgO.jpg",
+                    "7untLLLfpdqnokq0vqqFX7vihY0WEyInnPho0Tbv.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391618
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43319,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.859803,
+                    36.101158
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市生子",
+                "city_code": 8228,
+                "type": [
+                    "二十三夜塔"
+                ],
+                "built_year": "嘉永3",
+                "built_year_ce": 1850,
+                "image": [
+                    "nZQWF9lknQFvUiiNufi93noKngEc2y5s2ToypDxJ.jpg",
+                    "RaAtj4ZmUcxnf77WfDTjOuyoDTn2WGj0g2jFzNge.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391628
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43320,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.859749,
+                    36.101444
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市生子",
+                "city_code": 8228,
+                "place": "墓地",
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "文政12",
+                "built_year_ce": 1829,
+                "image": [
+                    "A65Tm4hDOxg5aBlhFYYpfVCHCjF062FnA3ZMicnJ.jpg",
+                    "UZXDJm9JLY7bHo1iDZy9lcKe3TMxVaW5KSqx44nU.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391628
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43321,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.859749,
+                    36.101444
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市生子",
+                "city_code": 8228,
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "安永3",
+                "built_year_ce": 1774,
+                "figure": "如意輪観音",
+                "image": [
+                    "c4hhamBi3gW0oL1yZpkERVTtf1iyAaBUXyOwLN9L.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391628,
+                "place": "墓地"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43322,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.859749,
+                    36.101444
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市生子",
+                "city_code": 8228,
+                "place": "墓地",
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "正徳4",
+                "built_year_ce": 1714,
+                "figure": "如意輪観音",
+                "image": [
+                    "SdKv0XwckQAgH4LPeSHevvH8KprIHfXbatflO16j.jpg",
+                    "jt2pOofHg4K0W6Zz9ln36ZjFkMgW3z7OgXCR2wjx.jpg",
+                    "8PsknWhVPuoXwrglJDo2lzfVC1WfvieRD2uelY7a.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391628
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43323,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.870017,
+                    36.123063
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "かねふり地蔵尊",
+                "type": [
+                    "庚申塔"
+                ],
+                "figure": "青面金剛",
+                "image": [
+                    "oiALHsfDkuoyuLdFW5aGnKrjRA4ARcBKeETkGa8P.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391649
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43324,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.870757,
+                    36.125745
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "堂",
+                "type": [
+                    "十九夜塔"
+                ],
+                "figure": "如意輪観音",
+                "image": [
+                    "AZ63x9S6dB0W125Z75asUIkqHUh98uMmYDu27pZG.jpg",
+                    "FrLTAEc2lxSTilKiy5H58XaaRxIOwkLSTc9bpwbD.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391659,
+                "built_year": "寛政11",
+                "built_year_ce": 1799
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43325,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.870757,
+                    36.125743
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "堂",
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "享保1",
+                "built_year_ce": 1716,
+                "figure": "地蔵",
+                "image": [
+                    "vQlgm1KuUAv2MreGKJkNVBmuFuCy9GqfXB9in5nB.jpg",
+                    "SPS0Wc7Vtiu7F3hs79YRJ5Y8p1KpGrtZU3MjFyNh.jpg",
+                    "ga9daVaA5Xw7133qhgZU6JiDg6vxjR0letH4B64R.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391659
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43326,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.875918,
+                    36.131999
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "十九夜観音堂",
+                "type": [
+                    "十九夜塔"
+                ],
+                "figure": "如意輪観音",
+                "image": [
+                    "DIzih7SmsZEKSuxEKFvBkcWkE5LacFrfeK4jn2Kp.jpg",
+                    "EUoWlnK5BGTk0x8ieWf9vWO33Fd9b9virgNsyDMo.jpg",
+                    "kO4O8Im61BMKFEEVb5ymoKLcPMXMkQ7lASA9KMfj.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391750,
+                "built_year": "正徳5",
+                "built_year_ce": 1715
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43327,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.875918,
+                    36.131999
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "十九夜観音堂",
+                "type": [
+                    "二十三夜塔"
+                ],
+                "figure": "勢至菩薩",
+                "image": [
+                    "rmgfSvET8abgVgwbV6n3Y2HTlDoO4VAJ2ypTuWmE.jpg",
+                    "EnRP2sDkGERXk0oN9YlpprVGycjoczdB1bB9q6n1.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391750,
+                "built_year": "寛保3",
+                "built_year_ce": 1743
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43328,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.875918,
+                    36.131999
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "十九夜観音堂",
+                "type": [
+                    "二十三夜塔"
+                ],
+                "image": [
+                    "WgpXNlk0QgKjrA1QdAEBlgUrUYvlOePid7BocBJt.jpg",
+                    "yLarHN0vV6itvoBlPPUjpJyxqItNOnIl2I2Bdz0f.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391750,
+                "built_year": "文化11",
+                "built_year_ce": 1814
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43329,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.879517,
+                    36.127407
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "宝蔵院観音堂",
+                "type": [
+                    "二十三夜塔"
+                ],
+                "built_year": "文化11",
+                "built_year_ce": 1814,
+                "image": [
+                    "RJZF1uby0CMr5numdtWgWXBYrex73veoq3c6dyje.jpg",
+                    "bKyduUciBljlzLvdgqWmsvfsh9OxWREqCoJ3t4l0.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391750
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43330,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.879517,
+                    36.127407
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "宝蔵院観音堂",
+                "type": [
+                    "二十三夜塔"
+                ],
+                "built_year": "大正8",
+                "built_year_ce": 1919,
+                "image": [
+                    "syeoquSKBnOZRq71k0Y4hf0AVHDqWPC8atNzKXe8.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391750
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43331,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.879517,
+                    36.127407
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "宝蔵院観音堂",
+                "type": [
+                    "道標"
+                ],
+                "built_year": "文化8",
+                "built_year_ce": 1811,
+                "image": [
+                    "Wa7SuHVb5GkXI8CBife3KL5jJhFQuDOOjotjPgHf.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391750
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43332,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.883079,
+                    36.121891
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "墓地",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "享保3",
+                "built_year_ce": 1718,
+                "figure": "如意輪観音",
+                "image": [
+                    "lRhqcyC67wF6i1v2u0qa1qI2zzLh0xktMqIZHUEg.jpg",
+                    "ftNpjeTb8La2TEJcOCHFKNo7do6wKupEki3iyShC.jpg",
+                    "FMwYQ5Vwof2v18JnDiHFzgZo0YQeL7MXy4Y6Uz2e.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391740,
+                "comment": [
+                    "「さしまの石塔・石仏」では二十九夜塔とされているが、「立」の字を「二」と誤認した可能性がある。"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43333,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.883079,
+                    36.121891
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-22",
+                "address": "茨城県坂東市山",
+                "city_code": 8228,
+                "place": "墓地",
+                "type": [
+                    "十九夜塔"
+                ],
+                "built_year": "嘉永2",
+                "built_year_ce": 1849,
+                "image": [
+                    "hBmevTKRMHZA23GAEGR9DAePUxyDc2pCf51RIXgC.jpg",
+                    "n6KPCxpn103rRCNlR8QTLPWDBQpGq9tTqr52pmX2.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391740
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43334,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.682077,
+                    37.497882
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "type": [
+                    "月待塔",
+                    "二十六夜塔"
+                ],
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "image": [
+                    "xbbD7KCMgilJKLhhcvR3WWrYv7PtJmMnmA6nmy0d.jpg",
+                    "PkGcl2ejWzoqtnfwqCP8DWny7VqtHGagOZrqIX4x.jpg",
+                    "ZMOPYW6hkBxTIsUiXuwQyOhgPcTV9xnnp0p50pca.jpg",
+                    "PF53weaBEV7H39acShBaQXRa29RWNdhYlfmUzQIX.jpg"
+                ],
+                "mesh_code": 56391594,
+                "photo_date": "2026-09-23",
+                "built_year": "文化十三年",
+                "built_year_ce": 1816,
+                "comment": [
+                    "「廿六夜供養塔」"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43335,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.682079,
+                    37.49788
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "寶曆三年",
+                "built_year_ce": 1753,
+                "comment": [
+                    "「庚申供養塔」"
+                ],
+                "image": [
+                    "H6IFWv0JMwPSYFRsM59PuIv4M2hwZ8W9PXDkDG30.jpg",
+                    "JT7UXWeG4TXnnWM1AjDtUkm6objhsLtD91Kt45zV.jpg",
+                    "PlwnE43EoH5WVSKpFlh5F9GGKonOrNwWQkSgtzSN.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56391594
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43336,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.682079,
+                    37.49788
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県河沼郡柳津町大字飯谷",
+                "city_code": 7423,
+                "type": [
+                    "日待塔",
+                    "巳待塔"
+                ],
+                "built_year": "寶曆三年",
+                "built_year_ce": 1753,
+                "comment": [
+                    "「巳待供養塔」"
+                ],
+                "image": [
+                    "RzywJaRPBc25T6BDkgQskw0q8dexLegqsR8yz8O0.jpg",
+                    "kNSKWfXzE6gYfi0Tvf4rTprJDnNIMk0NKlfBqCRS.jpg",
+                    "121e2T8MbJmxBVryfb2jINL7xxOQz32nQ6YCYiZw.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56391594
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43337,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.847392,
+                    36.102432
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-24",
+                "address": "茨城県坂東市菅谷",
+                "city_code": 8228,
+                "type": [
+                    "二十三夜塔"
+                ],
+                "built_year": "天保6",
+                "built_year_ce": 1835,
+                "image": [
+                    "PdDjj9KUEIaJifmeIZ0EDUZIHgYTJ6BcoVLBiJef.jpg",
+                    "3AijUdNKstOU6viGpzpjlqNaHNCSe6GvA6uef4Mg.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391627
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43338,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.846909,
+                    36.101691
+                ]
+            },
+            "properties": {
+                "contributor": "sekinema",
+                "created_at": "2026-10-24",
+                "address": "茨城県坂東市菅谷",
+                "city_code": 8228,
+                "place": "道目地蔵尊",
+                "type": [
+                    "十六夜塔"
+                ],
+                "built_year": "明和4",
+                "built_year_ce": 1767,
+                "image": [
+                    "pkX0yQEKSFbYvvwIKaZ5lOfbtHtqxNZBxupej04d.jpg"
+                ],
+                "photo_date": "2026-10-21",
+                "mesh_code": 54391627
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43339,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.666039,
+                    37.538345
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県耶麻郡西会津町下谷",
+                "city_code": 7405,
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申」"
+                ],
+                "image": [
+                    "VQD4PJ8qlxOwMidoYEqlFxzE77k58e2CJNVuv1to.jpg",
+                    "njo5pTEWb7HNweUNw5QgPNoloW12PDLxK0gWZc6z.jpg",
+                    "E56gaIDbYIUMCMbGEehhNpasmkLvDoCLOgxnnEX8.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56392543
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43340,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.666039,
+                    37.53835
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県耶麻郡西会津町下谷",
+                "city_code": 7405,
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "明和元甲申年",
+                "built_year_ce": 1764,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「廿三夜供羪塔」"
+                ],
+                "image": [
+                    "wF7GER7NvB6z3puuejb5WoItmrRTV5N5nqt8jyQQ.jpg",
+                    "zE9fyAG9pYMTabRpI7SHcg8pkTHEBIAmqWvewkP5.jpg",
+                    "kP0pvist8kkUtiZEu5VKVCCtkDt2VY1xLETG2b3u.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56392543
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43341,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.666039,
+                    37.53835
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県耶麻郡西会津町下谷",
+                "city_code": 7405,
+                "type": [
+                    "月待塔",
+                    "二十六夜塔"
+                ],
+                "built_year": "明和六己丑年",
+                "built_year_ce": 1769,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「廿六夜供養塔」"
+                ],
+                "image": [
+                    "aGFN2r9hhv9V6z1dHt9jtjbAK0Rf2P5c58zjWYN5.jpg",
+                    "jHixcSO9lidKAvE4OD7wo0nXLgPebuTjbcLhDsTW.jpg",
+                    "IESN7DzbbalQG518K7ooeE3RXQhgszSFWIcGfntB.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56392543
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43342,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.111163,
+                    37.534711
+                ]
+            },
+            "properties": {
+                "contributor": "すとれちあ丸",
+                "created_at": "2026-10-24",
+                "address": "福島県耶麻郡猪苗代町大字堅田",
+                "city_code": 7408,
+                "place": "入江観音堂",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "元文4",
+                "built_year_ce": 1739,
+                "image": [
+                    "Im9oPTul5PPlOarIaZCm3BkRnEGBcCrGop961Gd7.jpg"
+                ],
+                "photo_date": "2026-10-24",
+                "mesh_code": 56402048
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43343,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.666039,
+                    37.53835
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県耶麻郡西会津町下谷",
+                "city_code": 7405,
+                "type": [
+                    "日待塔",
+                    "巳待塔"
+                ],
+                "built_year": "宝曆三癸酉年",
+                "built_year_ce": 1753,
+                "comment": [
+                    "「巳待供養塔」"
+                ],
+                "image": [
+                    "icYDBo2F82D1K4KIfYsAIq6fmejfGkuLqW6ZPvmr.jpg",
+                    "ku9nLYkWJexYR21Hr9PPIxYkv8GMbbKMiAWzL3Os.jpg",
+                    "rfA8xhWM67AbTfQsQ60DPQi0Z1lSLWfUuPPNIac9.jpg"
+                ],
+                "photo_date": "2026-09-23",
+                "mesh_code": 56392543
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43344,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.929131,
+                    37.514663
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-24",
+                "address": "福島県会津若松市町北町大字上荒久田",
+                "city_code": 7202,
+                "place": "厩山緑地公園",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "文化六己巳年",
+                "built_year_ce": 1809,
+                "comment": [
+                    "「庚申塚」"
+                ],
+                "image": [
+                    "SPDixcaFtlBamTJUvkuTJRm5KXeow33AdA0ztq4t.jpg",
+                    "rE3Fd7p7sVCQsiPV7qdqLI5lpVjKEpi47q5WhGWr.jpg",
+                    "lBQWsNTUQ7Emd6YagUyXucF2dJEebByVNKytTNnl.jpg",
+                    "2Sn2EzXNpGGog4C8D2tINYs0Ufc7s6eVtYoluy4k.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56392714
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43345,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.125346,
+                    37.532626
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字金田",
+                "city_code": 7408,
+                "place": "羽黒山神社",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "figure": "青面金剛",
+                "image": [
+                    "1zj3gyy70vHL3ru4oDQV0QE6FHft5bKbrNxMygsF.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402130
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43346,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.14238,
+                    37.536104
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字川桁",
+                "city_code": 7408,
+                "place": "淸神社　参道入り口",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "jZIILU9TEMSjC6Joel5RjBu1vDvy1Qi0Voaefq34.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402141
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43347,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.142379,
+                    37.536093
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字川桁",
+                "city_code": 7408,
+                "place": "淸神社　参道入り口",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "寛延二己巳年",
+                "built_year_ce": 1749,
+                "comment": [
+                    "「巳待供養塔」"
+                ],
+                "image": [
+                    "R3nh5rCaL54ELPfSjZWmR0rX6NELvmDNLyOmQqr6.jpg",
+                    "mRW15StLhcYFamgMEO6uuv4qvDaJUFlNFP7cSkbr.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402141
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43348,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.143237,
+                    37.536682
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字川桁",
+                "city_code": 7408,
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "元文五庚申年",
+                "built_year_ce": 1740,
+                "comment": [
+                    "「庚申供羪塔」"
+                ],
+                "image": [
+                    "QzHGK8uTXWUgFg5YixxKEu0LvGIKddqkxlYmPSeV.jpg",
+                    "XQYTo7UMM1atdudzpGPnbbhzdsAuKPVoRsCIK83I.jpg",
+                    "mlXRo0ydWeXBLD7t32vA8kXGk3J002XsGpKtJez5.jpg",
+                    "p3v93tkcw45CjsncDqUqdQ5oFkDsBMxqsZvE4ij1.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402141,
+                "place": "淸神社　参道"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43349,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.143239,
+                    37.536679
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字川桁",
+                "city_code": 7408,
+                "place": "淸神社　参道",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申供羪塔」"
+                ],
+                "image": [
+                    "yRAizOv25dEufr6CKh1gXebyNAeIkC5xFdh68yNA.jpg",
+                    "B5hxIw1fICFKremaL4AI4oi87GY7I0OU2wIVBLHp.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402141
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43350,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.143239,
+                    37.536679
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字川桁",
+                "city_code": 7408,
+                "place": "淸神社　参道",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "寛政六甲寅年",
+                "built_year_ce": 1794,
+                "comment": [
+                    "「庚申供養塔」"
+                ],
+                "image": [
+                    "gBFQ6HH6cC0tnScQk8NZnNz4tcjxfBpYVedFrKH7.jpg",
+                    "7PlOg2guo6gCiIXMCyeryd4rq5YoGyFrPlBWVXrX.jpg",
+                    "901Jqc9zASDSjocIfV7mhyEZLLO5lj8xIgcOIkYt.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402141
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43351,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.181597,
+                    37.502848
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字壺楊",
+                "city_code": 7408,
+                "place": "皇太神宮",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "嘉永元戊申年",
+                "built_year_ce": 1848,
+                "comment": [
+                    "「湯殿山供養」"
+                ],
+                "image": [
+                    "EhSRFoTmbpwruHI2cCBmFN0OoZ8zzmWGB6v0tv0E.jpg",
+                    "OkawN5UKUd3KzSSfopA8KWaGZPHsIXJLllhSgLhN.jpg",
+                    "hCyppXRVdfWvo0ol2m88WxYNHcrBT0owI5h0KIjf.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402104
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43352,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.113348,
+                    37.534691
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字堅田",
+                "city_code": 7408,
+                "place": "観音堂境内",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "安政三辰年",
+                "built_year_ce": 1856,
+                "comment": [
+                    "「庚申塔」"
+                ],
+                "image": [
+                    "UEpxJDey4Cl8lDX4MJgVqLiDWZeXadmRJthhIsMj.jpg",
+                    "c8TS23quchstOpUEUB0Hne2qRsWX4U7RHZ3Pq7dk.jpg",
+                    "KzsB7ueuQHnFrD37cwB8wjLha69mckzPQ2nEwZWh.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402049
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43353,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.111288,
+                    37.534698
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字堅田",
+                "city_code": 7408,
+                "place": "入江観音堂",
+                "type": [
+                    "日待塔",
+                    "巳待塔"
+                ],
+                "comment": [
+                    "「巳待塔」"
+                ],
+                "image": [
+                    "mwnTMvzfVZNM5V17TXXHsY5T1sGiZWClrpaFVoeA.jpg",
+                    "y1lG4gqXqpBopAi6WBOjEsEJN34qJJVDYDRmymnx.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402048
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43354,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.111289,
+                    37.534704
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-10-25",
+                "address": "福島県耶麻郡猪苗代町大字堅田",
+                "city_code": 7408,
+                "place": "入江観音堂",
+                "type": [
+                    "日待塔",
+                    "巳待塔"
+                ],
+                "comment": [
+                    "「巳待塔」"
+                ],
+                "image": [
+                    "VFjrkSiImsjEFq5DJ2ez7zOJ1gwXqQYGPnVudk72.jpg",
+                    "BejqN3wQNyzJ6bQumCzfALQVNoedydpUYekaZkYH.jpg"
+                ],
+                "photo_date": "2026-10-18",
+                "mesh_code": 56402048
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43355,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.318432,
+                    38.1572
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-26",
+                "address": "山形県上山市高野",
+                "city_code": 6207,
+                "place": "大師堂",
+                "type": [
+                    "龍神塔"
+                ],
+                "built_year": "明治４１",
+                "built_year_ce": 1908,
+                "comment": [
+                    "「龍王殿」"
+                ],
+                "image": [
+                    "d7HNDng2E5e7INJwIxp1vbRX9h1MYWaeJy4a0ldk.jpg",
+                    "1hVRWPp5XNc7ZQKTwrpDy70eKDOpC8pmA3gulGD2.jpg",
+                    "xW8j7lPvEzg53EpAK8BiN4L4l7KuvAi21umlsFeJ.jpg"
+                ],
+                "photo_date": "2026-10-26",
+                "mesh_code": 57401285
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43356,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.318426,
+                    38.157198
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-27",
+                "address": "山形県上山市高野",
+                "city_code": 6207,
+                "place": "大師堂",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申待供養碑」"
+                ],
+                "image": [
+                    "VwkKNhPz2ygOGXYHDZbvGwMsmKMaSmClNc71MHTE.jpg",
+                    "tOddyCKQrMyLTrgvSje8aNDV8hufEyNk50f5tq5S.jpg"
+                ],
+                "photo_date": "2026-10-26",
+                "mesh_code": 57401285
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43357,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.318231,
+                    38.157013
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-10-29",
+                "address": "山形県上山市高野",
+                "city_code": 6207,
+                "place": "大師堂",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "寛政七",
+                "built_year_ce": 1795,
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "JYChChSV2ZPrZMJSHGZYCFtIZBZ925v9f4mrvhFi.jpg",
+                    "vUjPJGFOOkmFTveMU0IBJwDkY23wirINNNk3hR0o.jpg"
+                ],
+                "photo_date": "2026-10-26",
+                "mesh_code": 57401285
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43358,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.899512,
+                    35.85702
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-01",
+                "address": "千葉県流山市流山１丁目",
+                "city_code": 12220,
+                "place": "流山浅間神社",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "享保元年丙申九月吉日",
+                "built_year_ce": 1716,
+                "figure": "青面金剛",
+                "comment": [
+                    "丸彫型　奉供養青面金剛現当成就所　庚申講中須藤半助ら"
+                ],
+                "image": [
+                    "D5d5NrtP9bi3Fa4suOmhh8pY8gDOI0bnOFxT5He1.jpg",
+                    "y5vafRvy02O4GztIwx3n7QjxJraRumTzhIaFHVG8.jpg",
+                    "HLE1XXq3AgORdfkMqxo82QxN0dtr97WYM1FjOoM6.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396721
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43359,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.89951,
+                    35.85702
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-01",
+                "address": "千葉県流山市流山１丁目",
+                "city_code": 12220,
+                "place": "流山浅間神社",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "享保七壬寅天二月吉日",
+                "built_year_ce": 1722,
+                "figure": "青面金剛",
+                "comment": [
+                    "駒型　奉供養庚申待二世成就所"
+                ],
+                "image": [
+                    "aSREu6GJcVHsf6mhma2C3fehtrifNr8oMUBDB0a9.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396721
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43360,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.900004,
+                    35.85683
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-01",
+                "address": "千葉県流山市流山１丁目",
+                "city_code": 12220,
+                "place": "流山浅間神社",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "安永二葵巳九月吉日",
+                "built_year_ce": 1773,
+                "comment": [
+                    "灯籠　「御宝前」　庚講中　施主名多数"
+                ],
+                "image": [
+                    "jfVB1Eeon8PTw2UHYVtfPqTV1O7DwxottNtwVpO2.jpg",
+                    "rjo6fxAu6MBYWnggzeJzZ0eK0Opc1l3VQvFONH1t.jpg",
+                    "wIqNnWu9AepcQMla1M8Rz8Mf2RThGMJzXDOdXOHl.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396722
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43361,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.900004,
+                    35.85683
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-01",
+                "address": "千葉県流山市流山１丁目",
+                "city_code": 12220,
+                "place": "流山浅間神社",
+                "type": [
+                    "庚申塔"
+                ],
+                "principal": "猿田彦",
+                "comment": [
+                    "自然石型　「猿田彦大神」　富士塚中"
+                ],
+                "image": [
+                    "M9yM8WefwqPaoyHgSSuSqTtNzDuai0B0Y5y8oGHv.jpg",
+                    "BMQhfaNaDgjv9jmNzpJzSspZzkPCDzuMsRy4kL4v.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396722
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43362,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.898979,
+                    35.853883
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-02",
+                "address": "千葉県流山市流山３丁目",
+                "city_code": 12220,
+                "place": "路傍",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "文化十五戊寅年三月吉日",
+                "built_year_ce": 1818,
+                "comment": [
+                    "「庚申塔」　下総国葛飾郡流山村根郷"
+                ],
+                "image": [
+                    "tRzR29gcOHcKrq1O964x2oyqWN8llxnev9kJSFt2.jpg",
+                    "O7VRGVqk3dHKZduf20jQd1eT2TLL3CrQ6XlBvuA2.jpg",
+                    "BqpNXl8nr610l0Ns5BEcVjfUhFLnkTuRoYlq6BlP.jpg",
+                    "rF1Mb5JshRpJGSHNM7JzeHroUI5n2okKhUQn0og1.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396721
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43363,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.89722,
+                    35.851361
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-02",
+                "address": "千葉県流山市流山５丁目",
+                "city_code": 12220,
+                "place": "路傍",
+                "type": [
+                    "庚申塔"
+                ],
+                "figure": "青面金剛",
+                "comment": [
+                    "三猿・見猿欠"
+                ],
+                "image": [
+                    "2VDpxMRxwr5JyuNzL6t0Co8yMaeJxC80DD9ZDMru.jpg",
+                    "Q6U9Vit9NkEDEsHLpYpVFItYQqcs5ltzuGuf9qLj.jpg",
+                    "CNx56JzxfCCyHYyMeCzV85LEPYcEwEfBv1QVcNi5.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396721
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43364,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.894999,
+                    35.849352
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-02",
+                "address": "千葉県流山市流山６丁目",
+                "city_code": 12220,
+                "place": "光明院",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "宝暦五亥年五月吉日",
+                "built_year_ce": 1755,
+                "figure": "青面金剛",
+                "comment": [
+                    "小金領□　　日月邪気三猿二鷄"
+                ],
+                "image": [
+                    "U2t0MFMOEPxZpsAonAzf9zfEyl2K7uzBwtDuSOmF.jpg",
+                    "KSU1YTspzqe9yq8vYIFdgtyOAksHxbM9IP86g4nE.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396711
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43365,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.894999,
+                    35.849352
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-02",
+                "address": "千葉県流山市流山６丁目",
+                "city_code": 12220,
+                "place": "光明院",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "宝暦十一辛巳年二月吉日",
+                "built_year_ce": 1761,
+                "principal": "青面金剛",
+                "comment": [
+                    "「青面金剛供養塔」　日日三猿二鷄"
+                ],
+                "image": [
+                    "HwkMqVVnzIMGuylTiqL5D2lYvbNPEGsOLEaKfLa1.jpg",
+                    "NkE7gnRTgTF6o3M6ERQfxwkmSMNTJZa2agcBkhIs.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396711
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43366,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.894999,
+                    35.849352
+                ]
+            },
+            "properties": {
+                "contributor": "やぶじ～３",
+                "created_at": "2026-11-02",
+                "address": "千葉県流山市流山６丁目",
+                "city_code": 12220,
+                "place": "光明院",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "文政八乙酉年八月吉日",
+                "built_year_ce": 1825,
+                "comment": [
+                    "「庚申塔」　三猿"
+                ],
+                "image": [
+                    "citV2YZTLy5zZjFpaHWPG5N6dbVn8WlATRkSV1Jz.jpg",
+                    "WysqMmfofKvEgPVTNEDLksZ9Z51TpM5upDJ3Gf4B.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 53396711
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43367,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.16975,
+                    37.167496
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-02",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "type": [
+                    "月待塔",
+                    "二十四夜塔"
+                ],
+                "built_year": "嘉永三戌年",
+                "built_year_ce": 1850,
+                "figure": "子安観音",
+                "comment": [
+                    "「二十四夜供羪」"
+                ],
+                "image": [
+                    "LlHOAroIvqQUDe78YEINoBHf1oXRb5bGYYe6qmmW.jpg",
+                    "7p52OyHLcEnuTcKYi9supuDxIzFhyP3JgSn4B5vO.jpg",
+                    "ObFHM3GFRe833g73D0v9ylb4h9x15oXUoTM1QTqS.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103,
+                "place": "愛宕神社参道（下羽太地区集落センター前）"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43368,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.172015,
+                    37.163292
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-02",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "東谷山 大龍寺",
+                "type": [
+                    "月待塔",
+                    "二十四夜塔"
+                ],
+                "built_year": "慶應三卯年",
+                "built_year_ce": 1867,
+                "figure": "子安観音",
+                "comment": [
+                    "「二十四夜供羪」"
+                ],
+                "image": [
+                    "DPwBQwx03lm8n92W8EEhHhnS7jUfHM7ER7azVqsU.jpg",
+                    "zlHOfbvFJEZnfnpE8JWTFbw08Uak7cW0mmUkxjxx.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55405193
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43369,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.173737,
+                    37.163127
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-02",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "墓地入り口",
+                "type": [
+                    "月待塔",
+                    "二十四夜塔"
+                ],
+                "built_year": "文化十三子年",
+                "built_year_ce": 1816,
+                "comment": [
+                    "「二十四日供羪」"
+                ],
+                "image": [
+                    "KGcK9h0GYHSfVPUKbXbKtrUoIKvaA9hwZXGVi2Sv.jpg",
+                    "UQZzsZ4Qj6P9sdrIneVrLwKWvSYfqznHm0ok8gpz.jpg",
+                    "Ck4qzIn1cz77MNiMBITLFuWolGpGa0CiZKHKpeoE.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55405193
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43370,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.173695,
+                    37.163135
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-02",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "墓地入り口",
+                "type": [
+                    "月待塔",
+                    "二十四夜塔"
+                ],
+                "built_year": "天保八丁酉年",
+                "built_year_ce": 1837,
+                "figure": "子安観音",
+                "comment": [
+                    "「二十四日供養」"
+                ],
+                "image": [
+                    "jHlgSwzwbS44QVkBQcwfjogmrb0jfRZJ8fUqBZMB.jpg",
+                    "xkQvolLxX79Zcd75KVafu8bNYRzGpDFjff33G1ma.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55405193
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43371,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.946181,
+                    37.294104
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-04",
+                "address": "福島県南会津郡下郷町大字高陦",
+                "city_code": 7362,
+                "type": [
+                    "道標"
+                ],
+                "built_year": "享保四己亥年",
+                "built_year_ce": 1719,
+                "comment": [
+                    "「右　芦原□若松□\r\n　左　白岩□田島□」"
+                ],
+                "image": [
+                    "cVP1HfssBi9pCcm3Qb4EvPW3PxG8mrfWmLdhA9Ly.jpg",
+                    "JD4eUlzOhFR0pFpZK12IM9AAlpk8MfdMhQt8m6pG.jpg",
+                    "dFugJs3Cy9xffT8Sf7d9aHFTt0CHONvAadWVGmME.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55397755
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43372,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.9604,
+                    37.287737
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-04",
+                "address": "福島県南会津郡下郷町大字枝松",
+                "city_code": 7362,
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "弘化三年",
+                "built_year_ce": 1846,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「二十三夜」"
+                ],
+                "image": [
+                    "jEIntbWIhDCliI0eCStGYSH2WQeSm5a5g8csbap9.jpg",
+                    "WWZiWRxQLkhQFJU0xHgxr07yMdY5vVjq0LDKmmSh.jpg",
+                    "wQ3owHsO5sOdoFDfZ9Fm96w4q1FeSROTTfV6qn17.jpg",
+                    "N5kPey27RTnC2pIV77CDFzTTZzlMPlKZNLbW3GDa.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55397746
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43373,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.915625,
+                    35.158924
+                ]
+            },
+            "properties": {
+                "contributor": "レフ",
+                "created_at": "2026-11-05",
+                "address": "千葉県富津市山中",
+                "city_code": 12226,
+                "place": "日吉神社鳥居",
+                "type": [
+                    "庚申塔"
+                ],
+                "figure": "青面金剛",
+                "image": [
+                    "lLbd6wmKmYZ3JbK9sUXw2DaBacZslurKD3suBs17.jpg",
+                    "R4v8O041D2V4eSeQhGhJwFLInddrbVaCbLWkD8PP.jpg"
+                ],
+                "photo_date": "2026-11-05",
+                "mesh_code": 52395793
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43374,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.960398,
+                    37.28774
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-07",
+                "address": "福島県南会津郡下郷町大字枝松",
+                "city_code": 7362,
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "文化二乙丑年",
+                "built_year_ce": 1805,
+                "comment": [
+                    "「湯殿山供羪」"
+                ],
+                "image": [
+                    "18Vkpx8x946awOrvjquVBOxp7sVFdN49Hfb3Qoxi.jpg",
+                    "NiZPVqeA5k1LBYx6wvccmsP1U46yaCvYxfEPDACj.jpg",
+                    "VKAK8E8vU1JloxoEt81jhJAiAG9blDvIT64CzP2y.jpg",
+                    "ZjUJCNSeG99i00s9diyQMYQLTeFGKCHsbyFTROJX.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55397746
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43375,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.118374,
+                    37.204416
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-07",
+                "place": "笹原神社",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "嘉永四辛亥年",
+                "built_year_ce": 1851,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「十九夜供養」"
+                ],
+                "image": [
+                    "FrmZ6kLMpLzEVVNA9TukNB5LgexZxcH5C9wGExvp.jpg",
+                    "vsxci8IsO5Rqeqsn6FuGa6iyjo8VAkb8M0GBhQJv.jpg",
+                    "p38fWNZBx9SjGNoxkkRsDrXvQ4A9OhIWGDXbjOsN.jpg",
+                    "OvwA3hWnNBd1JRkfUEdXZWby0iSNjDzGC9PScmTu.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "mesh_code": 55406049
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43376,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.118368,
+                    37.20442
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-07",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "笹原神社",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "寛政二戌年",
+                "built_year_ce": 1790,
+                "figure": "如意輪観音",
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「拾九夜供養」"
+                ],
+                "image": [
+                    "5LVp8e2uImKIsbPFwqyQTiUXP16HLfatncR9sSWF.jpg",
+                    "YhbBASXelvrnRjgCaDKR789sbj6JgwDGEQsQ8OQh.jpg",
+                    "W5F7JpBNMvVV36TcUH4LtjeN7KKgFbUWDjYeVBpS.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406049
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43377,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.919294,
+                    35.210045
+                ]
+            },
+            "properties": {
+                "contributor": "レフ",
+                "created_at": "2026-11-07",
+                "address": "千葉県富津市田原",
+                "city_code": 12226,
+                "place": "八幡宮",
+                "type": [
+                    "庚申塔"
+                ],
+                "figure": "青面金剛",
+                "image": [
+                    "7uYCMtdY9Uo5HFVSNPi24cYq7TEJIj5cQpVuMlgt.jpg",
+                    "VQQMcuStoJsePmGxp0TdpmDMy2TceFkiBdzg34fX.jpg"
+                ],
+                "photo_date": "2026-11-07",
+                "mesh_code": 52396753
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43378,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.922481,
+                    35.168897
+                ]
+            },
+            "properties": {
+                "contributor": "レフ",
+                "created_at": "2026-11-07",
+                "address": "千葉県富津市山中",
+                "city_code": 12226,
+                "place": "山王堂",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "享保九年",
+                "built_year_ce": 1724,
+                "figure": "青面金剛",
+                "image": [
+                    "VDkhfktKAUAAbtWAEBMXDtRGZrD29AxBeqqxwKj0.jpg",
+                    "vN7EoqML5fyvEFzeMtBRvCtFEoO1wFDbTxd8OtRE.jpg",
+                    "i7XIAuRSuImaKjr6i0GcjmIuD0BOj7F1UsNCC5Jx.jpg",
+                    "ZbyqQLGf4IkCmoybJhJylcYSPBUfcsU2VnyHybVO.jpg"
+                ],
+                "photo_date": "2026-11-07",
+                "mesh_code": 52396703
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43379,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.13474,
+                    37.190399
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-07",
+                "place": "八幡神社　境内",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "享和二戌年",
+                "built_year_ce": 1802,
+                "figure": "如意輪観音",
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「十九夜供羪」"
+                ],
+                "image": [
+                    "OEFE5yymZ6DTwDlVkxq7f8nuiykSAgWWQAFluZMs.jpg",
+                    "e9ZA90cw6YY8x78fZDptjIqkO2pyUibE2dPrkiRv.jpg",
+                    "RO8JoEMPwpTP4Yf7arm5pb99c0R2xv1iiNartmhO.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "mesh_code": 55406120
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43381,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.013366,
+                    36.273769
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-07",
+                "address": "茨城県筑西市村田",
+                "city_code": 8227,
+                "place": "墓地",
+                "type": [
+                    "月待塔",
+                    "十八夜塔"
+                ],
+                "built_year": "弘化三年",
+                "built_year_ce": 1846,
+                "comment": [
+                    "雨引山延命観世音像"
+                ],
+                "image": [
+                    "0e9PBf2ut0yn8Wgg8yapp3knhI2IzBQxQCBVJg3y.jpg",
+                    "PkEFfKZm3Yzzb1oRmSz9NyktMl6uecvLt2Psp53Z.jpg"
+                ],
+                "photo_date": "2026-10-31",
+                "mesh_code": 54403021
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43382,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.717867,
+                    35.712479
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "出羽三山塔"
+                ],
+                "built_year": "昭和五年",
+                "built_year_ce": 1930,
+                "image": [
+                    "upNuXpWAeF2aBXyD5IsJzU4EkKNZ3dQVLJETvJZs.jpg",
+                    "Fpd9U13iXQOOs3IloM7mz1CIf7AujkMxXxN4JXwz.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557,
+                "tag": [
+                    "月山中心"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43383,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.717867,
+                    35.712479
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "出羽三山塔"
+                ],
+                "built_year": "昭和二十五年",
+                "built_year_ce": 1950,
+                "image": [
+                    "RWLlUMlNJXmcRBYSTc9YyBA7spkOtx6VHm14G3bS.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557,
+                "tag": [
+                    "月山中心"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43384,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.717867,
+                    35.712479
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "出羽三山塔"
+                ],
+                "built_year": "昭和二十四年",
+                "built_year_ce": 1949,
+                "image": [
+                    "FZRalkDDOZPJRZAG1TWorUd1R5MoMjEneYG7Lez8.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557,
+                "tag": [
+                    "月山中心"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43385,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "嘉永六年",
+                "built_year_ce": 1853,
+                "principal": "青面金剛",
+                "image": [
+                    "yMwcnYw37xoVOurDRtAEEq4ULzl1a84Y7YsMoQl2.jpg",
+                    "ASh10Xfe2WQVkWkBDfZiOvQywyHzoz9UmvTlOqUc.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43386,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "principal": "青面金剛",
+                "image": [
+                    "sNv1i5VTWjVhMGcj82Sgv6eO4It9wgmRGUPnmdZA.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43387,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "image": [
+                    "AhbArU4sjXqZjq3M6yI1p7B3KSXkqrQeH4SDybMM.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43388,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "安永六年",
+                "built_year_ce": 1777,
+                "principal": "青面金剛",
+                "image": [
+                    "0xcAKML6qnKGQPUTHCbR6Sk36JHusizelK4vnuog.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43389,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "天保十三年",
+                "built_year_ce": 1842,
+                "principal": "青面金剛",
+                "image": [
+                    "nejdvbJ0FDVIL97eqElOOfxZULZN1DmRyNhAH8oQ.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43390,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "大正九年",
+                "built_year_ce": 1920,
+                "image": [
+                    "v8i2CVYSk8YW5dVElw5Kv2VNIDMAbMq2Yu291TMm.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43391,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "安政七年",
+                "built_year_ce": 1860,
+                "image": [
+                    "dc1osUbJiy8K7vWsnFVgVH8D273u1qY3okHwQaJZ.jpg",
+                    "oNl1MtR4LY1yM43kmfHpqhCvpzH9S8dhJfoAZq0N.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43392,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「百庚申塔」\r\n明和 or 明治八年か"
+                ],
+                "image": [
+                    "R5kzt7gpPsG93eMp5Ni5TWNdxUcpK8fYfduPIYTz.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43393,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "image": [
+                    "3xH1WROLIVO7UgfS0eMC2QtdBGwGbNHPCRkU3mj9.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43394,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "嘉永六年",
+                "built_year_ce": 1853,
+                "principal": "青面金剛",
+                "image": [
+                    "2vGhfiFPoeYwpybX0byC1IYMsN160IK0AxIN6ioZ.jpg",
+                    "Rw1Gn8XlBkV884qPAcmYiFx154MtAq0dBaten8Gz.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43395,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "principal": "青面金剛",
+                "comment": [
+                    "「大青面金剛　三右衛門」"
+                ],
+                "image": [
+                    "7qf7ihgpFfd3lUJSObnwpRQoYwY3yjvC8OAAKGx1.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43396,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "image": [
+                    "pzSZYItSHYwY8TMsvcjxzUctCn94dJ9ie8GiGQJO.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43397,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "comment": [
+                    "「庚申塔 \/ 渡辺治左…」"
+                ],
+                "image": [
+                    "9TqvNFmAbFaEfvWE0pBxkzrF5MXjgXZqjMT133BA.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43398,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "天保七年",
+                "built_year_ce": 1836,
+                "principal": "青面金剛",
+                "image": [
+                    "A29crRBKDSv4OV8sKmntmAZc4lQTjjF3jObhhtwX.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43399,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "嘉永元年",
+                "built_year_ce": 1848,
+                "image": [
+                    "hnMPCNitSxfyIY0KUPsW7w98VkyUk3vTpzJ9tDR3.jpg",
+                    "XzlBVkAUqSqhhtZvpeHDxlnVk3dkFyAMansJ2ap2.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43400,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "built_year": "慶応四年",
+                "built_year_ce": 1868,
+                "principal": "青面金剛",
+                "image": [
+                    "a95LlwORw7hzt78RVqtLLbY2s9wmoPub6ThODViy.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43401,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "庚申塔"
+                ],
+                "image": [
+                    "xJJaswWNuXKdpy8zhm7UPtPHNzudIVw9gfjP2Yy4.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43402,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.718052,
+                    35.71241
+                ]
+            },
+            "properties": {
+                "contributor": "wil397",
+                "created_at": "2026-11-08",
+                "address": "千葉県旭市横根",
+                "city_code": 12215,
+                "place": "東福寺",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "文化九年",
+                "built_year_ce": 1812,
+                "figure": "如意輪観音",
+                "image": [
+                    "05l4TJzBp3VFkOxeaWFTxbpspgEDwUT8pPh6ZOWa.jpg",
+                    "ghW0B1mWYXGpEpEljtvteQlHx1QjIuHfc21xu2zd.jpg"
+                ],
+                "photo_date": "2026-09-22",
+                "mesh_code": 53404557
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43403,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.406586,
+                    38.327534
+                ]
+            },
+            "properties": {
+                "contributor": "あべまき",
+                "created_at": "2026-11-09",
+                "address": "山形県天童市大字下荻野戸",
+                "city_code": 6210,
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "天保三",
+                "built_year_ce": 1832,
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "iGLhGRsiUeNYFPzQYrSy36wldNwZNk1xImMrhc6l.jpg",
+                    "4W00YYxdS4f80rYSPO7GSFio4S624ecSLyMEcd4q.jpg",
+                    "sU4rXQzlgvV5u0tuhRxprs9ye5ROrLgIrD1v0dWF.jpg"
+                ],
+                "photo_date": "2026-11-08",
+                "mesh_code": 57403392
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43404,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.858714,
+                    35.107797
+                ]
+            },
+            "properties": {
+                "contributor": "レフ",
+                "created_at": "2026-11-12",
+                "address": "千葉県安房郡鋸南町下佐久間",
+                "city_code": 12463,
+                "place": "検儀谷浅間山　八坂神社",
+                "type": [
+                    "庚申塔"
+                ],
+                "comment": [
+                    "手水鉢型？"
+                ],
+                "image": [
+                    "OVIZR6L7TrVGh7ko5VfEnGfFAnZeHgOjHZMimAz7.jpg",
+                    "ea3eWdJILzI5BUgAKByXppBdWUBuj0dA7GezKhbH.jpg"
+                ],
+                "photo_date": "2026-11-12",
+                "mesh_code": 52395628
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43405,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.134739,
+                    37.190401
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "八幡神社",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "享保七寅年",
+                "built_year_ce": 1722,
+                "figure": "如意輪観音",
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "image": [
+                    "V2xFWsaTTSEDCA8gRwkzQe5YuFLvGvsjYi1pjPXT.jpg",
+                    "7O14NYDOsqAOvFsFTIslsOflGK0UGdD9eYc9LHfH.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406120
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43406,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.134736,
+                    37.190401
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "八幡神社　境内",
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "天保十五甲寅年",
+                "built_year_ce": 1844,
+                "comment": [
+                    "「二十三夜供養」"
+                ],
+                "image": [
+                    "keTQrYxWBFm6PEkZTtjajSr7w7WuIyV4B9pNoKsl.jpg",
+                    "75yKNhnmg5GahyEn8qC0szbHps1N54eTj2NOurkz.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406120,
+                "project": [
+                    "月待ビンゴ"
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43407,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.134739,
+                    37.190401
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "八幡神社　境内",
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "宝暦十二壬午年",
+                "built_year_ce": 1762,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「二十三夜待供羪塔」"
+                ],
+                "image": [
+                    "Bh7UbGp7s90Ribk8Oy8UQcShVyWXEfcaOg8wyAq1.jpg",
+                    "LuFpM3adhDvo3NT86jj1WP9hsoc3slzwpVsMYn6S.jpg",
+                    "4BvHdtS1bNFitUOCQFzMNf5r50is0IQIhs2yc8HG.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406120
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43408,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.134739,
+                    37.1904
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "八幡神社　境内",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "安永九年子",
+                "built_year_ce": 1780,
+                "comment": [
+                    "「庚申供羪塔」"
+                ],
+                "image": [
+                    "np1J7kb91oa3azcC0c4fjyQeiCUIx3x2OHOzZZyd.jpg",
+                    "ru0SmIKTyk0E0NaIO2E3POYL0LjziFML1CqvJDRt.jpg",
+                    "7RW1xt4BVt0T72fgh0TzPwh5YV4ANWF2s0Vp5efy.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406120
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43409,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.134739,
+                    37.1904
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "八幡神社　境内",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "享保十五庚戌年",
+                "built_year_ce": 1730,
+                "comment": [
+                    "「奉詣庚申供養□□□塔」"
+                ],
+                "image": [
+                    "zDcdjYKJjdzRBleqtO70sZJxxn2i8gk2lmprtz3r.jpg",
+                    "iQqRpcONNDCcvwrJgkp60nm1PbKd6a5h3Gh3sA7p.jpg",
+                    "K5sf1eQHGMd6vo0ut1BMoJ8cZZt960KPfz4zEnm1.jpg",
+                    "f7vU2hgybqilJnSLxBOLzgIWnNsubiEy8Qmbcn05.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406120
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43410,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.150181,
+                    37.1788
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "comment": [
+                    "「湯殿山供羪」"
+                ],
+                "image": [
+                    "qjBZAR08ZzVWlnyfSC4oejhFRIotluA8atzDl6hr.jpg",
+                    "mOWkBqDQ9gEJCFIMtMHonLIwoyOv3UK4eP1fAcmK.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406112
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43411,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.169424,
+                    37.167318
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "愛宕神社　境内",
+                "type": [
+                    "出羽三山塔",
+                    "湯殿山塔"
+                ],
+                "built_year": "弘化二巳年",
+                "built_year_ce": 1845,
+                "comment": [
+                    "「湯殿山」"
+                ],
+                "image": [
+                    "JYceVXmpxF6vVHBKLrlRSzPE0cAKQVccDre6tT8H.jpg",
+                    "iFgZQiI268GzhSzuj9Ca5nEJzkNxkefiYiB5PhTO.jpg",
+                    "KbEnMnCf97B4MELiTtpV7qubMAvl5H3jsExm4IhQ.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43412,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.169749,
+                    37.1675
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "愛宕神社参道（下羽太地区集落センター前）",
+                "type": [
+                    "月待塔",
+                    "十九夜塔"
+                ],
+                "built_year": "天保十己亥年",
+                "built_year_ce": 1839,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「十九夜供養」"
+                ],
+                "image": [
+                    "fpysf3o4bAA0TbgMpkw7j2NeCRa7ZvWbpXRWHV5u.jpg",
+                    "uuLOYbj7e6ixmTgXAa3QjoJN8kNXtnS1rVLUzhgm.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103,
+                "figure": "如意輪観音"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43413,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.169749,
+                    37.167499
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "愛宕神社参道（下羽太地区集落センター前）",
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "文久元辛酉年",
+                "built_year_ce": 1861,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「廿三夜供羪」"
+                ],
+                "image": [
+                    "tQ9fe6yOpmlXuyY23TpiOip05Q5hzGVnJpEAy62N.jpg",
+                    "mnX99xuVOvMWH74AnMGKLLYQXvCy2aYglnx9kf1j.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43414,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.169749,
+                    37.167499
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "愛宕神社参道（下羽太地区集落センター前）",
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "文政九丙戌年",
+                "built_year_ce": 1826,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「廿三夜供養塔」"
+                ],
+                "image": [
+                    "ukLJIB9Ow37gFAWyaI6Cayx4GUu7mjlk57BZEJFy.jpg",
+                    "NvTJRTzDeekcUzTtq9c1VxthKBUOkWPt9ZVKtCho.jpg",
+                    "mUlnFas2HX7wvseMmEP6edrBf0C6p9oJ05pAMXvd.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43415,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.169747,
+                    37.167498
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "愛宕神社参道（下羽太地区集落センター前）",
+                "type": [
+                    "月待塔",
+                    "二十三夜塔"
+                ],
+                "built_year": "宝暦九己丑年",
+                "built_year_ce": 1759,
+                "project": [
+                    "月待ビンゴ"
+                ],
+                "comment": [
+                    "「二十三夜供養塔」"
+                ],
+                "image": [
+                    "ZiKEEfwP2qwtIDf3Y66CWMEmteIvuX7l8dkBZa8o.jpg",
+                    "LGyritJuIpgPAILAc5kw7VNQc7OThQkxEgb6GdZ6.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 43416,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    140.169749,
+                    37.167499
+                ]
+            },
+            "properties": {
+                "contributor": "holly_b503",
+                "created_at": "2026-11-14",
+                "address": "福島県西白河郡西郷村大字羽太",
+                "city_code": 7461,
+                "place": "愛宕神社参道（下羽太地区集落センター前）",
+                "type": [
+                    "日待塔",
+                    "庚申塔"
+                ],
+                "built_year": "明和八卯年",
+                "built_year_ce": 1771,
+                "comment": [
+                    "「庚申塔」"
+                ],
+                "image": [
+                    "veJ2DT0MUU1WK3vM5pgmHk7uziBLDispFEkGKTOJ.jpg",
+                    "a57QM1T0OeL21TEbzts9y0voFgWCUEm9YebUxxXc.jpg",
+                    "GjkwPA8rlBmCoOTX2Fq7wcHQrraRzPjK9n7yS7VM.jpg"
+                ],
+                "photo_date": "2026-11-02",
+                "mesh_code": 55406103
             }
         }
     ]
